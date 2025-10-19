@@ -97,12 +97,12 @@ const Header = () => {
   };
 
   return (
-    <header ref={headerRef} className="fixed top-0 left-0 right-0 z-50 bg-white border-b border-gray-200 shadow-sm">
+    <header ref={headerRef} className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-100 shadow-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-14 md:h-20">
           {/* 로고 */}
           <Link href="/" className="flex items-center">
-            <h1 className="text-base sm:text-lg md:text-xl lg:text-2xl font-light text-gray-900 tracking-tight">ON:SOOM</h1>
+            <h1 className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-toss-500 tracking-tight">ON:SOOM</h1>
           </Link>
 
           {/* 데스크톱 네비게이션 */}
@@ -117,14 +117,14 @@ const Header = () => {
                   <Link
                     href={item.href}
                     onClick={(e) => handleClick(e, item.href!)}
-                    className="text-gray-600 hover:text-gray-900 text-xs md:text-sm lg:text-base font-light transition-colors"
+                    className="text-gray-700 hover:text-toss-500 text-xs md:text-sm lg:text-base font-medium transition-colors"
                   >
                     {item.name}
                   </Link>
                 ) : (
                   <button 
                     onClick={() => toggleDropdown(item.name)}
-                    className="text-gray-600 hover:text-gray-900 text-xs md:text-sm lg:text-base font-light transition-colors"
+                    className="text-gray-700 hover:text-toss-500 text-xs md:text-sm lg:text-base font-medium transition-colors"
                   >
                     {item.name}
                   </button>
@@ -133,7 +133,7 @@ const Header = () => {
                 {/* 드롭다운 메뉴 - 애니메이션 효과 추가 */}
                 {item.subMenu && openDropdown === item.name && (
                   <div 
-                    className="absolute left-0 top-full mt-2 w-max bg-white border border-gray-200 shadow-lg overflow-hidden animate-slideDown"
+                    className="absolute left-0 top-full mt-2 w-max bg-white border border-gray-100 rounded-lg shadow-toss-lg overflow-hidden animate-slideDown"
                     style={{
                       animation: 'slideDown 0.3s ease-out forwards'
                     }}
@@ -143,7 +143,7 @@ const Header = () => {
                         key={subItem.name}
                         href={subItem.href}
                         onClick={(e) => handleClick(e, subItem.href)}
-                        className="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 transition-colors"
+                        className="block px-4 py-3 text-sm text-gray-700 hover:bg-toss-50 hover:text-toss-600 transition-colors"
                       >
                         {subItem.name}
                       </Link>
@@ -157,13 +157,13 @@ const Header = () => {
             <div className="flex items-center gap-3 ml-4 pl-4 border-l border-gray-200">
               <Link
                 href="/login"
-                className="text-gray-600 hover:text-gray-900 text-xs md:text-sm font-light transition-colors"
+                className="text-gray-700 hover:text-toss-500 text-xs md:text-sm font-medium transition-colors"
               >
                 로그인
               </Link>
               <Link
                 href="/signup"
-                className="px-4 py-2 bg-gray-900 text-white text-xs md:text-sm font-light rounded-md hover:bg-gray-800 transition-colors"
+                className="px-5 py-2.5 bg-toss-500 text-white text-xs md:text-sm font-medium rounded-lg hover:bg-toss-600 transition-all shadow-sm hover:shadow-md"
               >
                 회원가입
               </Link>
@@ -173,7 +173,7 @@ const Header = () => {
           {/* 모바일 메뉴 버튼 */}
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="md:hidden p-2 text-gray-900"
+            className="md:hidden p-2 text-toss-500 hover:bg-toss-50 rounded-lg transition-colors"
             aria-label="메뉴"
           >
             <svg
@@ -236,13 +236,13 @@ const Header = () => {
               <div className="flex flex-col gap-2 p-4 bg-gray-50">
                 <Link
                   href="/login"
-                  className="text-center py-2 text-gray-900 text-sm font-light border border-gray-300 rounded-md hover:bg-white transition-colors"
+                  className="text-center py-3 text-toss-600 text-sm font-medium border border-toss-200 rounded-lg hover:bg-toss-50 transition-colors"
                 >
                   로그인
                 </Link>
                 <Link
                   href="/signup"
-                  className="text-center py-2 bg-gray-900 text-white text-sm font-light rounded-md hover:bg-gray-800 transition-colors"
+                  className="text-center py-3 bg-toss-500 text-white text-sm font-medium rounded-lg hover:bg-toss-600 transition-all shadow-sm hover:shadow-md"
                 >
                   회원가입
                 </Link>

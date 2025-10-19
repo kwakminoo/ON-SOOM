@@ -4,18 +4,18 @@ export default function CorporatePage() {
   return (
     <div className="min-h-screen bg-white">
       {/* 히어로 섹션 */}
-      <section className="pt-32 pb-20 px-4 bg-gradient-to-b from-gray-50 to-white">
+      <section className="pt-32 pb-20 px-4 bg-gradient-to-b from-toss-50 to-white">
         <div className="max-w-5xl mx-auto text-center">
-          <div className="inline-block mb-6 px-4 py-2 bg-blue-50 text-blue-600 rounded-full text-sm font-medium">
+          <div className="inline-block mb-6 px-5 py-2.5 bg-toss-500 text-white rounded-full text-sm font-bold shadow-md">
             Corporate Coaching Program
           </div>
-          <h1 className="text-5xl md:text-6xl font-light text-gray-900 mb-6 leading-tight">
+          <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">
             기업 상담
           </h1>
-          <p className="text-xl md:text-2xl text-gray-600 font-light leading-relaxed max-w-3xl mx-auto">
+          <p className="text-xl md:text-2xl text-gray-700 font-medium leading-relaxed max-w-3xl mx-auto">
             사람 중심의 리더십, 관계 회복, 지속 가능한 조직문화를 만드는<br/>
             온ː숨의 기업 성장 코칭 프로그램.<br/>
-            <span className="text-blue-600 font-medium">성과보다 '숨결'을 다룹니다.</span>
+            <span className="text-toss-600 font-bold">성과보다 '숨결'을 다룹니다.</span>
           </p>
         </div>
       </section>
@@ -154,7 +154,7 @@ export default function CorporatePage() {
           </p>
           <Link
             href="/consult"
-            className="inline-block bg-blue-600 text-white px-10 py-4 rounded-full text-lg font-medium hover:bg-blue-700 transition-colors shadow-lg hover:shadow-xl"
+            className="inline-block bg-toss-500 text-white px-12 py-5 rounded-2xl text-lg font-bold hover:bg-toss-600 transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5"
           >
             상담 신청하기
           </Link>

@@ -109,15 +109,15 @@ const ProgramSection = () => {
   }, []);
 
   return (
-    <section id="programs" className="py-16 md:py-24 bg-gray-50 overflow-hidden">
+    <section id="programs" className="py-16 md:py-24 bg-gradient-to-b from-white to-toss-50 overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-8">
         {/* 섹션 헤더 */}
         <div className="mb-8 sm:mb-10 md:mb-12 lg:mb-16">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-light text-gray-900 mb-3 sm:mb-4 tracking-tight">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-gray-900 mb-3 sm:mb-4 tracking-tight">
             프로그램
           </h2>
           <p className="text-gray-600 text-sm sm:text-base md:text-lg max-w-2xl">
-            2030 세대를 위한 맞춤 상담 프로그램
+            2030 세대를 위한 <span className="text-toss-600 font-semibold">맞춤 성장 프로그램</span>
           </p>
         </div>
       </div>
@@ -130,9 +130,9 @@ const ProgramSection = () => {
               key={program.uniqueId}
               className="flex-shrink-0 w-[260px] sm:w-[280px] md:w-72 lg:w-80 mx-2 sm:mx-3 md:mx-4"
             >
-              <div className="bg-white overflow-hidden shadow-md hover:shadow-xl transition-shadow">
+              <div className="bg-white rounded-2xl overflow-hidden shadow-toss hover:shadow-toss-lg transition-all hover:-translate-y-1">
                 {/* 이미지 */}
-                <div className="relative h-48 sm:h-52 md:h-56 lg:h-64 overflow-hidden bg-gray-200">
+                <div className="relative h-48 sm:h-52 md:h-56 lg:h-64 overflow-hidden bg-gradient-to-br from-toss-100 to-toss-200">
                   <Image
                     src={program.image}
                     alt={program.title}
@@ -143,10 +143,10 @@ const ProgramSection = () => {
 
                 {/* 컨텐츠 */}
                 <div className="p-5 sm:p-6 md:p-7 lg:p-8">
-                  <span className="text-[10px] sm:text-xs font-medium text-gray-400 uppercase tracking-widest mb-2 sm:mb-3 block">
+                  <span className="inline-block text-[10px] sm:text-xs font-semibold text-toss-600 bg-toss-50 px-3 py-1 rounded-full uppercase tracking-wider mb-3">
                     {program.ageGroup}
                   </span>
-                  <h3 className="text-lg sm:text-xl md:text-2xl font-light text-gray-900 mb-2 sm:mb-3">
+                  <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-2 sm:mb-3">
                     {program.title}
                   </h3>
                   <p className="text-xs sm:text-sm md:text-base text-gray-600 leading-relaxed">

@@ -21,52 +21,69 @@ const QuickConsult = () => {
   };
 
   return (
-    <section id="contact" className="bg-white py-16 md:py-20 border-t border-gray-200">
+    <section id="contact" className="bg-gradient-to-b from-white to-toss-50 py-16 md:py-24 border-t border-gray-100">
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-8">
-        <div className="max-w-3xl mx-auto">
-          <h3 className="text-xl sm:text-2xl md:text-2xl lg:text-3xl font-light text-gray-900 mb-6 sm:mb-8 md:mb-10 text-center">
+        <div className="max-w-2xl mx-auto">
+          <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-3 text-center">
             상담 문의
           </h3>
-          <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-5">
-            {/* 센터 선택 */}
-            <select
-              value={center}
-              onChange={(e) => setCenter(e.target.value)}
-              className="w-full px-4 sm:px-5 py-3 sm:py-4 border border-gray-300 focus:border-gray-900 focus:outline-none bg-white text-gray-900 text-sm sm:text-base"
-              required
-            >
-              <option value="">센터 선택</option>
-              {centers.map((c) => (
-                <option key={c} value={c}>
-                  {c}
-                </option>
-              ))}
-            </select>
-
-            {/* 연락처 입력 */}
-            <input
-              type="tel"
-              value={phone}
-              onChange={(e) => setPhone(e.target.value)}
-              placeholder="연락처 (000-0000-0000)"
-              className="w-full px-4 sm:px-5 py-3 sm:py-4 border border-gray-300 focus:border-gray-900 focus:outline-none text-sm sm:text-base"
-              pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}"
-              required
-            />
-
-            {/* 문의하기 버튼 */}
-            <button
-              type="submit"
-              className="w-full bg-gray-900 text-white py-3 sm:py-4 md:py-5 text-sm sm:text-base md:text-lg font-medium hover:bg-gray-800 transition-colors rounded-sm mt-2"
-            >
-              문의하기
-            </button>
-          </form>
-
-          {/* 안내 텍스트 */}
-          <p className="text-center text-sm text-gray-500 mt-6">
-            상담 전문가가 24시간 내 연락드리겠습니다
+          <p className="text-center text-gray-600 mb-8 md:mb-12">
+            온ː숨 전문가가 함께하겠습니다
           </p>
+          <div className="bg-white rounded-2xl shadow-toss-lg p-6 md:p-10">
+            <form onSubmit={handleSubmit} className="space-y-5">
+              {/* 센터 선택 */}
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  센터 선택
+                </label>
+                <select
+                  value={center}
+                  onChange={(e) => setCenter(e.target.value)}
+                  className="w-full px-4 py-3.5 border-2 border-gray-200 focus:border-toss-500 focus:ring-2 focus:ring-toss-100 focus:outline-none bg-white text-gray-900 text-base rounded-xl transition-colors"
+                  required
+                >
+                  <option value="">센터를 선택해주세요</option>
+                  {centers.map((c) => (
+                    <option key={c} value={c}>
+                      {c}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              {/* 연락처 입력 */}
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  연락처
+                </label>
+                <input
+                  type="tel"
+                  value={phone}
+                  onChange={(e) => setPhone(e.target.value)}
+                  placeholder="010-1234-5678"
+                  className="w-full px-4 py-3.5 border-2 border-gray-200 focus:border-toss-500 focus:ring-2 focus:ring-toss-100 focus:outline-none text-base rounded-xl transition-colors"
+                  pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}"
+                  required
+                />
+              </div>
+
+              {/* 문의하기 버튼 */}
+              <button
+                type="submit"
+                className="w-full bg-toss-500 text-white py-4 text-base md:text-lg font-bold hover:bg-toss-600 transition-all rounded-xl mt-6 shadow-md hover:shadow-lg"
+              >
+                상담 신청하기
+              </button>
+            </form>
+
+            {/* 안내 텍스트 */}
+            <div className="mt-6 pt-6 border-t border-gray-100">
+              <p className="text-center text-sm text-gray-500">
+                ⏱️ 상담 전문가가 <span className="text-toss-600 font-medium">24시간 내</span> 연락드립니다
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </section>

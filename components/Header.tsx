@@ -154,16 +154,16 @@ const Header = () => {
             ))}
 
             {/* 로그인/회원가입 */}
-            <div className="flex items-center gap-3 ml-4 pl-4 border-l border-gray-200">
+            <div className="flex items-center gap-6 lg:gap-8 xl:gap-10 ml-4 pl-4 border-l border-gray-200">
               <Link
                 href="/login"
-                className="text-gray-700 hover:text-toss-500 text-xs md:text-sm font-medium transition-colors"
+                className="text-gray-700 hover:text-toss-500 text-xs md:text-sm lg:text-base font-medium transition-colors"
               >
                 로그인
               </Link>
               <Link
                 href="/signup"
-                className="px-5 py-2.5 bg-toss-500 text-white text-xs md:text-sm font-medium rounded-lg hover:bg-toss-600 transition-all shadow-sm hover:shadow-md"
+                className="text-gray-700 hover:text-toss-500 text-xs md:text-sm lg:text-base font-medium transition-colors"
               >
                 회원가입
               </Link>
@@ -233,16 +233,16 @@ const Header = () => {
               ))}
               
               {/* 모바일 로그인/회원가입 */}
-              <div className="flex flex-col gap-2 p-4 bg-gray-50">
+              <div className="flex gap-2 p-4 border-t border-gray-200">
                 <Link
                   href="/login"
-                  className="text-center py-3 text-toss-600 text-sm font-medium border border-toss-200 rounded-lg hover:bg-toss-50 transition-colors"
+                  className="flex-1 text-center py-2.5 text-gray-700 text-sm font-medium border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
                 >
                   로그인
                 </Link>
                 <Link
                   href="/signup"
-                  className="text-center py-3 bg-toss-500 text-white text-sm font-medium rounded-lg hover:bg-toss-600 transition-all shadow-sm hover:shadow-md"
+                  className="flex-1 text-center py-2.5 text-gray-700 text-sm font-medium border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
                 >
                   회원가입
                 </Link>

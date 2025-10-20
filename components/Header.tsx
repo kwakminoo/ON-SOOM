@@ -195,13 +195,13 @@ const Header = () => {
         {isMenuOpen && (
           <nav className="md:hidden border-t border-gray-200 bg-white">
             <div className="flex flex-col">
-              {navigation.map((item) => (
-                <div key={item.name}>
+              {navigation.map((item, index) => (
+                <div key={item.name} className={index === navigation.length - 1 ? 'mt-1' : ''}>
                   {item.href ? (
                     <Link
                       href={item.href}
                       onClick={(e) => handleClick(e, item.href!)}
-                      className="text-gray-900 text-base font-light py-4 px-4 border-b border-gray-100 hover:bg-gray-50 transition-colors"
+                      className={`block text-gray-900 text-base font-light py-4 px-4 ${index === navigation.length - 1 ? '' : 'border-b border-gray-100'} hover:bg-gray-50 transition-colors`}
                     >
                       {item.name}
                     </Link>
@@ -233,7 +233,7 @@ const Header = () => {
               ))}
               
               {/* 모바일 로그인/회원가입 */}
-              <div className="flex gap-2 p-4 border-t border-gray-200">
+              <div className="flex gap-2 px-4 pb-6 pt-6 border-t border-gray-200">
                 <Link
                   href="/login"
                   className="flex-1 text-center py-2.5 text-gray-700 text-sm font-medium border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"

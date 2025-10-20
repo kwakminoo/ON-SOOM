@@ -2,16 +2,18 @@
 
 import { useState } from "react";
 
+// 게시글 데이터
 const notices = [
   {
     id: 1,
-    category: "신규 프로그램",
+    category: "공지사항",
     title: "'숨 결 리더십 코칭' 11월 참가자 모집",
     date: "2024.10.20",
     author: "온ː숨",
     views: 1245,
     badge: "모집중",
     badgeColor: "bg-blue-100 text-blue-600",
+    isNotice: true,
     content: `개인 리더의 자기이해와 관계 리더십을 다루는 4주 집중 프로그램입니다.
 
 📅 프로그램 일정
@@ -37,51 +39,14 @@ const notices = [
   },
   {
     id: 2,
-    category: "워크숍 안내",
-    title: "겨울 정기 성장 워크숍 '나를 다시 배우는 시간' 개최",
-    date: "2024.10.18",
-    author: "온ː숨",
-    views: 987,
-    badge: "신청 가능",
-    badgeColor: "bg-green-100 text-green-600",
-    content: `12월 7~8일 양일간 오프라인으로 진행됩니다. 참가 신청은 선착순 마감입니다.
-
-🌟 워크숍 개요
-겨울을 맞아 자신을 돌아보고 새로운 한 해를 준비하는 성장 워크숍입니다.
-자기이해, 관계 회복, 내년 목표 설계를 함께 다룹니다.
-
-📅 일정
-- 날짜: 2024년 12월 7일(토) ~ 8일(일)
-- 시간: 1일차 10:00~18:00, 2일차 09:00~17:00
-- 장소: 경기도 가평 힐링센터 (숙박 포함)
-
-👥 대상
-- 자기성장에 관심 있는 성인 누구나
-- 정원: 30명 (선착순 마감)
-
-💰 참가비
-- 1인: 350,000원 (숙박, 식사 3회 포함)
-- 2인 이상 동반 신청: 1인당 320,000원
-
-🎁 제공 사항
-- 워크북 및 필기구
-- 숙박 및 식사 (조식 1회, 중식 2회, 석식 1회)
-- 수료증
-
-📝 신청 기한
-11월 30일까지 (조기 마감 시 공지)
-
-문의: workshop@onsoom.kr`
-  },
-  {
-    id: 3,
-    category: "공지",
+    category: "공지사항",
     title: "온ː숨 홈페이지 리뉴얼 및 예약 시스템 개편 안내",
     date: "2024.10.25",
     author: "온ː숨",
     views: 2134,
     badge: "중요",
     badgeColor: "bg-red-100 text-red-600",
+    isNotice: true,
     content: `신규 예약 페이지가 11월 10일부터 적용됩니다.
 
 📌 주요 변경 사항
@@ -114,140 +79,15 @@ const notices = [
 문의: help@onsoom.kr`
   },
   {
-    id: 4,
-    category: "모집",
-    title: "청년 성장 서포터즈 2기 모집",
-    date: "2024.10.15",
-    author: "온ː숨",
-    views: 756,
-    badge: "모집중",
-    badgeColor: "bg-purple-100 text-purple-600",
-    content: `청년의 자기성장 문화를 함께 만드는 콘텐츠 기획·운영 인턴십 프로그램.
-
-🎯 활동 내용
-- SNS 콘텐츠 기획 및 제작
-- 청년 프로그램 기획 참여
-- 성장 워크숍 운영 지원
-- 블로그 및 뉴스레터 작성
-
-👥 모집 대상
-- 만 19세~34세 청년
-- 자기성장과 심리학에 관심이 있는 분
-- 콘텐츠 제작 및 기획 경험자 우대
-- 월 2회 이상 온라인 미팅 참여 가능자
-
-📅 활동 기간
-- 2024년 11월 ~ 2025년 1월 (3개월)
-- 주 1회 오프라인 미팅 (강남센터)
-- 온라인 협업
-
-🎁 혜택
-- 활동비 지급 (월 30만원)
-- 온ː숨 프로그램 50% 할인 쿠폰 제공
-- 수료증 발급
-- 우수 활동자 정규직 전환 기회
-
-📝 지원 방법
-이메일: recruit@onsoom.kr
-제출 서류: 이력서, 자기소개서, 포트폴리오(선택)
-마감: 2024년 10월 31일
-
-문의: 02-1234-5678`
-  },
-  {
-    id: 5,
-    category: "협약 소식",
-    title: "○○대학교와 '캠퍼스 마인드 성장 프로젝트' MOU 체결",
-    date: "2024.10.12",
-    author: "온ː숨",
-    views: 634,
-    badge: "소식",
-    badgeColor: "bg-yellow-100 text-yellow-600",
-    content: `대학생 대상 진로·자존감 코칭 커리큘럼 공동 운영 예정.
-
-🤝 협약 개요
-온ː숨과 ○○대학교 학생상담센터가 대학생의 정신 건강과 성장을 위한
-'캠퍼스 마인드 성장 프로젝트' 업무협약(MOU)을 체결했습니다.
-
-📋 주요 협력 내용
-
-1. 대학생 맞춤형 코칭 프로그램 개발
-- 진로 탐색 워크숍
-- 자존감 회복 프로그램
-- 대인관계 성장 코칭
-
-2. 전문가 교육 및 양성
-- 대학 상담사 대상 코칭 기법 교육
-- 또래 상담자 양성 프로그램 공동 운영
-
-3. 무료 상담 지원
-- 학기 중 월 2회 온ː숨 전문가 방문 상담
-- 온라인 집단 코칭 프로그램 제공
-
-4. 연구 및 학술 교류
-- 대학생 정신건강 관련 공동 연구
-- 학술 세미나 및 컨퍼런스 개최
-
-📅 시작 시기
-2024년 11월부터 본격 운영
-
-💬 온ː숨 센터장 코멘트
-"대학생 시기는 정체성을 형성하고 진로를 고민하는 중요한 시기입니다.
-이번 협약을 통해 더 많은 청년들이 자신을 이해하고 성장할 수 있는
-기회를 제공하게 되어 기쁩니다."
-
-문의: partnership@onsoom.kr`
-  },
-  {
-    id: 6,
-    category: "이벤트",
-    title: "'숨을 나누다' 참여 후기 남기고 굿즈 받기",
-    date: "2024.10.10",
-    author: "온ː숨",
-    views: 1523,
-    badge: "진행중",
-    badgeColor: "bg-pink-100 text-pink-600",
-    content: `11월 한 달간 진행되는 후기 공유 캠페인입니다.
-
-🎁 이벤트 안내
-온ː숨 프로그램에 참여하신 경험을 나눠주시면
-감사의 마음을 담아 특별한 굿즈를 드립니다!
-
-📝 참여 방법
-1. 온ː숨 홈페이지 또는 인스타그램에서 후기 작성
-2. 해시태그 #온숨 #숨을나누다 포함
-3. 인스타그램 후기는 @onsoom_official 태그 필수
-
-🎁 혜택
-✨ 전원: 온ː숨 감사 엽서 + 스티커
-⭐ 우수 후기 10명: 온ː숨 텀블러 + 노트
-🌟 최우수 후기 3명: 다음 프로그램 50% 할인권
-
-📅 이벤트 기간
-2024년 11월 1일 ~ 11월 30일
-
-🏆 당첨자 발표
-2024년 12월 5일 (개별 연락 및 홈페이지 공지)
-
-💡 후기 작성 팁
-- 프로그램 참여 전후 변화
-- 가장 인상 깊었던 순간
-- 다른 분들께 추천하고 싶은 이유
-- 솔직한 경험담
-
-여러분의 소중한 이야기를 기다립니다! 😊
-
-문의: event@onsoom.kr`
-  },
-  {
-    id: 7,
-    category: "공지",
+    id: 3,
+    category: "공지사항",
     title: "코칭 예약 취소·변경 규정 개정 안내 (11/1 시행)",
     date: "2024.10.08",
     author: "온ː숨",
     views: 892,
     badge: "중요",
     badgeColor: "bg-red-100 text-red-600",
+    isNotice: true,
     content: `공정한 운영을 위해 예약 취소 및 환불 규정이 일부 변경됩니다.
 
 📌 개정 이유
@@ -295,14 +135,183 @@ const notices = [
 전화: 02-1234-5678`
   },
   {
+    id: 4,
+    category: "일반",
+    title: "겨울 정기 성장 워크숍 '나를 다시 배우는 시간' 개최",
+    date: "2024.10.18",
+    author: "온ː숨",
+    views: 987,
+    badge: "신청 가능",
+    badgeColor: "bg-green-100 text-green-600",
+    isNotice: false,
+    content: `12월 7~8일 양일간 오프라인으로 진행됩니다. 참가 신청은 선착순 마감입니다.
+
+🌟 워크숍 개요
+겨울을 맞아 자신을 돌아보고 새로운 한 해를 준비하는 성장 워크숍입니다.
+자기이해, 관계 회복, 내년 목표 설계를 함께 다룹니다.
+
+📅 일정
+- 날짜: 2024년 12월 7일(토) ~ 8일(일)
+- 시간: 1일차 10:00~18:00, 2일차 09:00~17:00
+- 장소: 경기도 가평 힐링센터 (숙박 포함)
+
+👥 대상
+- 자기성장에 관심 있는 성인 누구나
+- 정원: 30명 (선착순 마감)
+
+💰 참가비
+- 1인: 350,000원 (숙박, 식사 3회 포함)
+- 2인 이상 동반 신청: 1인당 320,000원
+
+🎁 제공 사항
+- 워크북 및 필기구
+- 숙박 및 식사 (조식 1회, 중식 2회, 석식 1회)
+- 수료증
+
+📝 신청 기한
+11월 30일까지 (조기 마감 시 공지)
+
+문의: workshop@onsoom.kr`
+  },
+  {
+    id: 5,
+    category: "일반",
+    title: "청년 성장 서포터즈 2기 모집",
+    date: "2024.10.15",
+    author: "온ː숨",
+    views: 756,
+    badge: "모집중",
+    badgeColor: "bg-purple-100 text-purple-600",
+    isNotice: false,
+    content: `청년의 자기성장 문화를 함께 만드는 콘텐츠 기획·운영 인턴십 프로그램.
+
+🎯 활동 내용
+- SNS 콘텐츠 기획 및 제작
+- 청년 프로그램 기획 참여
+- 성장 워크숍 운영 지원
+- 블로그 및 뉴스레터 작성
+
+👥 모집 대상
+- 만 19세~34세 청년
+- 자기성장과 심리학에 관심이 있는 분
+- 콘텐츠 제작 및 기획 경험자 우대
+- 월 2회 이상 온라인 미팅 참여 가능자
+
+📅 활동 기간
+- 2024년 11월 ~ 2025년 1월 (3개월)
+- 주 1회 오프라인 미팅 (강남센터)
+- 온라인 협업
+
+🎁 혜택
+- 활동비 지급 (월 30만원)
+- 온ː숨 프로그램 50% 할인 쿠폰 제공
+- 수료증 발급
+- 우수 활동자 정규직 전환 기회
+
+📝 지원 방법
+이메일: recruit@onsoom.kr
+제출 서류: 이력서, 자기소개서, 포트폴리오(선택)
+마감: 2024년 10월 31일
+
+문의: 02-1234-5678`
+  },
+  {
+    id: 6,
+    category: "일반",
+    title: "○○대학교와 '캠퍼스 마인드 성장 프로젝트' MOU 체결",
+    date: "2024.10.12",
+    author: "온ː숨",
+    views: 634,
+    badge: "소식",
+    badgeColor: "bg-yellow-100 text-yellow-600",
+    isNotice: false,
+    content: `대학생 대상 진로·자존감 코칭 커리큘럼 공동 운영 예정.
+
+🤝 협약 개요
+온ː숨과 ○○대학교 학생상담센터가 대학생의 정신 건강과 성장을 위한
+'캠퍼스 마인드 성장 프로젝트' 업무협약(MOU)을 체결했습니다.
+
+📋 주요 협력 내용
+
+1. 대학생 맞춤형 코칭 프로그램 개발
+- 진로 탐색 워크숍
+- 자존감 회복 프로그램
+- 대인관계 성장 코칭
+
+2. 전문가 교육 및 양성
+- 대학 상담사 대상 코칭 기법 교육
+- 또래 상담자 양성 프로그램 공동 운영
+
+3. 무료 상담 지원
+- 학기 중 월 2회 온ː숨 전문가 방문 상담
+- 온라인 집단 코칭 프로그램 제공
+
+4. 연구 및 학술 교류
+- 대학생 정신건강 관련 공동 연구
+- 학술 세미나 및 컨퍼런스 개최
+
+📅 시작 시기
+2024년 11월부터 본격 운영
+
+💬 온ː숨 센터장 코멘트
+"대학생 시기는 정체성을 형성하고 진로를 고민하는 중요한 시기입니다.
+이번 협약을 통해 더 많은 청년들이 자신을 이해하고 성장할 수 있는
+기회를 제공하게 되어 기쁩니다."
+
+문의: partnership@onsoom.kr`
+  },
+  {
+    id: 7,
+    category: "일반",
+    title: "'숨을 나누다' 참여 후기 남기고 굿즈 받기",
+    date: "2024.10.10",
+    author: "온ː숨",
+    views: 1523,
+    badge: "진행중",
+    badgeColor: "bg-pink-100 text-pink-600",
+    isNotice: false,
+    content: `11월 한 달간 진행되는 후기 공유 캠페인입니다.
+
+🎁 이벤트 안내
+온ː숨 프로그램에 참여하신 경험을 나눠주시면
+감사의 마음을 담아 특별한 굿즈를 드립니다!
+
+📝 참여 방법
+1. 온ː숨 홈페이지 또는 인스타그램에서 후기 작성
+2. 해시태그 #온숨 #숨을나누다 포함
+3. 인스타그램 후기는 @onsoom_official 태그 필수
+
+🎁 혜택
+✨ 전원: 온ː숨 감사 엽서 + 스티커
+⭐ 우수 후기 10명: 온ː숨 텀블러 + 노트
+🌟 최우수 후기 3명: 다음 프로그램 50% 할인권
+
+📅 이벤트 기간
+2024년 11월 1일 ~ 11월 30일
+
+🏆 당첨자 발표
+2024년 12월 5일 (개별 연락 및 홈페이지 공지)
+
+💡 후기 작성 팁
+- 프로그램 참여 전후 변화
+- 가장 인상 깊었던 순간
+- 다른 분들께 추천하고 싶은 이유
+- 솔직한 경험담
+
+여러분의 소중한 이야기를 기다립니다! 😊
+
+문의: event@onsoom.kr`
+  },
+  {
     id: 8,
-    category: "사회공헌",
+    category: "일반",
     title: "취약계층 청년 대상 무료 성장코칭 진행 (온ː숨 나눔주간)",
     date: "2024.10.05",
     author: "온ː숨",
     views: 1067,
     badge: "진행 예정",
     badgeColor: "bg-green-100 text-green-600",
+    isNotice: false,
     content: `12월 1주간 진행되며, 후원자 모집도 함께 진행합니다.
 
 💚 온ː숨 나눔주간
@@ -356,13 +365,14 @@ const notices = [
   },
   {
     id: 9,
-    category: "강연",
+    category: "일반",
     title: "'성장하는 조직, 회복하는 리더' 공개 세미나 신청 오픈",
     date: "2024.10.02",
     author: "온ː숨",
     views: 745,
     badge: "신청 가능",
     badgeColor: "bg-blue-100 text-blue-600",
+    isNotice: false,
     content: `기업 담당자 대상 1일 오픈 세미나, 11월 28일 진행.
 
 🎤 세미나 개요
@@ -423,13 +433,14 @@ const notices = [
   },
   {
     id: 10,
-    category: "공지",
+    category: "일반",
     title: "온ː숨 카카오톡 채널 개설 안내",
     date: "2024.10.01",
     author: "온ː숨",
     views: 1876,
     badge: "신규",
     badgeColor: "bg-yellow-100 text-yellow-600",
+    isNotice: false,
     content: `프로그램 소식과 상담 예약을 채널에서 간편하게 받아보세요.
 
 💬 카카오톡 채널 오픈!
@@ -498,6 +509,17 @@ https://pf.kakao.com/onsoom (예시)
 
 export default function NoticePage() {
   const [selectedNotice, setSelectedNotice] = useState<number | null>(null);
+  const [searchTerm, setSearchTerm] = useState("");
+
+  // 공지사항과 일반 게시글 분리
+  const noticePosts = notices.filter(notice => notice.isNotice);
+  const generalPosts = notices.filter(notice => !notice.isNotice);
+
+  // 검색 필터링
+  const filteredGeneralPosts = generalPosts.filter(post => 
+    post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    post.content.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
   const handleNoticeClick = (id: number) => {
     setSelectedNotice(id);
@@ -507,6 +529,7 @@ export default function NoticePage() {
     setSelectedNotice(null);
   };
 
+
   const selectedNoticeData = notices.find(notice => notice.id === selectedNotice);
 
   return (
@@ -514,56 +537,149 @@ export default function NoticePage() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mb-12">
           <h1 className="text-4xl md:text-5xl font-light text-gray-900 mb-4 text-center">
-            공지사항
+            게시판
           </h1>
           <p className="text-center text-gray-600">
-            ON ː SOOM의 새로운 소식을 확인하세요
+            ON ː SOOM의 소식을 확인하세요
           </p>
         </div>
 
         {/* 게시글 목록 */}
         {!selectedNotice && (
-          <div className="space-y-4">
-            {notices.map((notice) => (
-              <div
-                key={notice.id}
-                onClick={() => handleNoticeClick(notice.id)}
-                className="bg-white border border-gray-200 rounded-xl p-6 hover:shadow-lg cursor-pointer transition-all hover:border-gray-300"
+          <>
+            {/* 검색 버튼 */}
+            <div className="flex flex-col sm:flex-row gap-4 mb-8">
+              <div className="flex-1">
+                <input
+                  type="text"
+                  placeholder="제목 또는 내용으로 검색..."
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-toss-500 focus:border-transparent"
+                />
+              </div>
+              <button
+                onClick={() => {
+                  // 검색 기능은 이미 실시간으로 작동하므로 추가 동작 없음
+                }}
+                className="px-6 py-2 bg-toss-500 text-white rounded-lg hover:bg-toss-600 transition-colors font-medium"
               >
-                {/* 배지와 카테고리 */}
-                <div className="flex items-center gap-2 mb-3">
-                  <span className={`inline-block px-3 py-1 rounded-full text-xs font-medium ${notice.badgeColor}`}>
-                    {notice.badge}
-                  </span>
-                  <span className="text-sm text-gray-500">{notice.category}</span>
-                </div>
+                검색
+              </button>
+            </div>
 
-                {/* 제목 */}
-                <h3 className="text-lg md:text-xl font-medium text-gray-900 mb-3 hover:text-blue-600 transition-colors">
-                  {notice.title}
-                </h3>
-
-                {/* 메타 정보 */}
-                <div className="flex flex-wrap items-center gap-3 text-sm text-gray-500">
-                  <span className="flex items-center gap-1">
-                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                    </svg>
-                    {notice.date}
-                  </span>
-                  <span>•</span>
-                  <span className="flex items-center gap-1">
-                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                    </svg>
-                    {notice.views.toLocaleString()}
-                  </span>
+            {/* 게시글 목록 테이블 */}
+            <div className="bg-white border border-gray-200 rounded-lg overflow-hidden">
+              {/* 테이블 헤더 */}
+              <div className="bg-gray-50 border-b border-gray-200">
+                <div className="grid grid-cols-12 gap-4 px-6 py-3 text-sm font-medium text-gray-700">
+                  <div className="col-span-1 text-center">번호</div>
+                  <div className="col-span-6">제목</div>
+                  <div className="col-span-2 text-center">작성자</div>
+                  <div className="col-span-2 text-center">작성일</div>
+                  <div className="col-span-1 text-center">조회</div>
                 </div>
               </div>
-            ))}
-          </div>
+
+              {/* 게시글 목록 */}
+              <div className="divide-y divide-gray-200">
+                {/* 공지사항 - 항상 상단 고정 */}
+                {noticePosts.map((notice) => (
+                  <div
+                    key={notice.id}
+                    onClick={() => handleNoticeClick(notice.id)}
+                    className="grid grid-cols-12 gap-4 px-6 py-4 bg-orange-50 hover:bg-orange-100 cursor-pointer transition-colors border-l-4 border-orange-400"
+                  >
+                    <div className="col-span-1 text-center text-sm text-gray-600">
+                      <span className="inline-block px-2 py-1 bg-orange-500 text-white text-xs font-bold rounded">
+                        공지
+                      </span>
+                    </div>
+                    <div className="col-span-6">
+                      <div className="flex items-center gap-2">
+                        <span className="text-sm font-medium text-gray-900 hover:text-orange-600 transition-colors">
+                          {notice.title}
+                        </span>
+                        <span className={`inline-block px-2 py-1 rounded text-xs font-medium ${notice.badgeColor}`}>
+                          {notice.badge}
+                        </span>
+                      </div>
+                    </div>
+                    <div className="col-span-2 text-center text-sm text-gray-600">
+                      {notice.author}
+                    </div>
+                    <div className="col-span-2 text-center text-sm text-gray-600">
+                      {notice.date}
+                    </div>
+                    <div className="col-span-1 text-center text-sm text-gray-600">
+                      {notice.views}
+                    </div>
+                  </div>
+                ))}
+
+                {/* 일반 게시글 */}
+                {filteredGeneralPosts.length === 0 ? (
+                  <div className="px-6 py-12 text-center text-gray-500">
+                    {searchTerm ? "검색 결과가 없습니다." : "게시글이 없습니다."}
+                  </div>
+                ) : (
+                  filteredGeneralPosts.map((post, index) => (
+                    <div
+                      key={post.id}
+                      onClick={() => handleNoticeClick(post.id)}
+                      className="grid grid-cols-12 gap-4 px-6 py-4 hover:bg-gray-50 cursor-pointer transition-colors"
+                    >
+                      <div className="col-span-1 text-center text-sm text-gray-600">
+                        {filteredGeneralPosts.length - index}
+                      </div>
+                      <div className="col-span-6">
+                        <div className="flex items-center gap-2">
+                          <span className="text-sm font-medium text-gray-900 hover:text-toss-600 transition-colors">
+                            {post.title}
+                          </span>
+                          <span className={`inline-block px-2 py-1 rounded text-xs font-medium ${post.badgeColor}`}>
+                            {post.badge}
+                          </span>
+                        </div>
+                      </div>
+                      <div className="col-span-2 text-center text-sm text-gray-600">
+                        {post.author}
+                      </div>
+                      <div className="col-span-2 text-center text-sm text-gray-600">
+                        {post.date}
+                      </div>
+                      <div className="col-span-1 text-center text-sm text-gray-600">
+                        {post.views}
+                      </div>
+                    </div>
+                  ))
+                )}
+              </div>
+            </div>
+
+            {/* 페이지네이션 (간단한 형태) */}
+            <div className="flex justify-center mt-8">
+              <div className="flex items-center gap-2">
+                <button className="px-3 py-2 text-sm border border-gray-300 rounded hover:bg-gray-50">
+                  이전
+                </button>
+                <button className="px-3 py-2 text-sm bg-toss-500 text-white rounded">
+                  1
+                </button>
+                <button className="px-3 py-2 text-sm border border-gray-300 rounded hover:bg-gray-50">
+                  2
+                </button>
+                <button className="px-3 py-2 text-sm border border-gray-300 rounded hover:bg-gray-50">
+                  3
+                </button>
+                <button className="px-3 py-2 text-sm border border-gray-300 rounded hover:bg-gray-50">
+                  다음
+                </button>
+              </div>
+            </div>
+          </>
         )}
+
 
         {/* 게시글 상세 보기 */}
         {selectedNotice && selectedNoticeData && (

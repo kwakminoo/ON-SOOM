@@ -60,7 +60,7 @@ const Header = () => {
     {
       name: "커뮤니티",
       subMenu: [
-        { name: "공지사항", href: "/community/notice" },
+        { name: "게시판", href: "/community/notice" },
         { name: "FAQ", href: "/community/faq" },
       ]
     },

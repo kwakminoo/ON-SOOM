@@ -68,13 +68,6 @@ const faqs = [
 
 export default function CommunityFAQPage() {
   const [openId, setOpenId] = useState<number | null>(null);
-  const [selectedCategory, setSelectedCategory] = useState<string>("전체");
-
-  const categories = ["전체", ...Array.from(new Set(faqs.map(faq => faq.category)))];
-
-  const filteredFaqs = selectedCategory === "전체" 
-    ? faqs 
-    : faqs.filter(faq => faq.category === selectedCategory);
 
   const toggleFaq = (id: number) => {
     setOpenId(openId === id ? null : id);
@@ -93,26 +86,9 @@ export default function CommunityFAQPage() {
           </p>
         </div>
 
-        {/* 카테고리 필터 */}
-        <div className="flex flex-wrap gap-2 mb-8 justify-center">
-          {categories.map((category) => (
-            <button
-              key={category}
-              onClick={() => setSelectedCategory(category)}
-              className={`px-4 py-2 text-sm font-medium transition-colors ${
-                selectedCategory === category
-                  ? "bg-gray-900 text-white"
-                  : "bg-gray-100 text-gray-700 hover:bg-gray-200"
-              }`}
-            >
-              {category}
-            </button>
-          ))}
-        </div>
-
         {/* FAQ 목록 */}
         <div className="space-y-3">
-          {filteredFaqs.map((faq) => (
+          {faqs.map((faq) => (
             <div
               key={faq.id}
               className="border border-gray-200 bg-white"
@@ -122,14 +98,9 @@ export default function CommunityFAQPage() {
                 onClick={() => toggleFaq(faq.id)}
                 className="w-full px-6 py-5 text-left flex items-center justify-between hover:bg-gray-50 transition-colors"
               >
-                <div className="flex-1">
-                  <span className="inline-block px-2 py-1 bg-gray-100 text-gray-700 text-xs font-medium mr-3">
-                    {faq.category}
-                  </span>
-                  <span className="text-base font-medium text-gray-900">
-                    Q. {faq.question}
-                  </span>
-                </div>
+                <span className="text-base font-medium text-gray-900 flex-1">
+                  Q. {faq.question}
+                </span>
                 <svg
                   className={`w-5 h-5 text-gray-500 transition-transform flex-shrink-0 ml-4 ${
                     openId === faq.id ? "transform rotate-180" : ""

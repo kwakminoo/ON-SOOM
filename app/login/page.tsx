@@ -65,26 +65,6 @@ export default function LoginPage() {
           </div>
         </div>
 
-        {/* 소셜 로그인 (선택사항) */}
-        <div className="mt-6">
-          <div className="relative">
-            <div className="absolute inset-0 flex items-center">
-              <div className="w-full border-t border-gray-300"></div>
-            </div>
-            <div className="relative flex justify-center text-sm">
-              <span className="px-4 bg-gray-50 text-gray-500">또는</span>
-            </div>
-          </div>
-
-          <div className="mt-6 grid grid-cols-2 gap-3">
-            <button className="px-4 py-3 border border-gray-300 rounded-md hover:bg-white transition-colors text-sm font-medium">
-              Google
-            </button>
-            <button className="px-4 py-3 border border-gray-300 rounded-md hover:bg-white transition-colors text-sm font-medium">
-              Kakao
-            </button>
-          </div>
-        </div>
       </div>
     </div>
   );

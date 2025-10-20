@@ -3,21 +3,23 @@
 import { useState } from "react";
 
 const QuickConsult = () => {
+  const [name, setName] = useState("");
+  const [gender, setGender] = useState("");
+  const [age, setAge] = useState("");
   const [phone, setPhone] = useState("");
   const [center, setCenter] = useState("");
 
   const centers = [
-    "강남센터",
-    "홍대센터",
-    "강북센터",
-    "분당센터",
+    "홍대 1호",
+    "홍대 2호",
+    "구로",
     "온라인상담",
   ];
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     // 실제로는 API 호출
-    alert(`상담 문의가 접수되었습니다.\n센터: ${center}\n연락처: ${phone}`);
+    alert(`상담 문의가 접수되었습니다.\n이름: ${name}\n성별: ${gender}\n나이: ${age}\n연락처: ${phone}\n희망장소: ${center}`);
   };
 
   return (
@@ -32,24 +34,53 @@ const QuickConsult = () => {
           </p>
           <div className="bg-white rounded-2xl shadow-toss-lg p-6 md:p-10">
             <form onSubmit={handleSubmit} className="space-y-5">
-              {/* 센터 선택 */}
+              {/* 이름 입력 */}
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
-                  센터 선택
+                  이름
+                </label>
+                <input
+                  type="text"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  placeholder="홍길동"
+                  className="w-full px-4 py-3.5 border-2 border-gray-200 focus:border-toss-500 focus:ring-2 focus:ring-toss-100 focus:outline-none text-base rounded-xl transition-colors"
+                  required
+                />
+              </div>
+
+              {/* 성별 선택 */}
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  성별
                 </label>
                 <select
-                  value={center}
-                  onChange={(e) => setCenter(e.target.value)}
+                  value={gender}
+                  onChange={(e) => setGender(e.target.value)}
                   className="w-full px-4 py-3.5 border-2 border-gray-200 focus:border-toss-500 focus:ring-2 focus:ring-toss-100 focus:outline-none bg-white text-gray-900 text-base rounded-xl transition-colors"
                   required
                 >
-                  <option value="">센터를 선택해주세요</option>
-                  {centers.map((c) => (
-                    <option key={c} value={c}>
-                      {c}
-                    </option>
-                  ))}
+                  <option value="">성별을 선택해주세요</option>
+                  <option value="남성">남성</option>
+                  <option value="여성">여성</option>
                 </select>
+              </div>
+
+              {/* 나이 입력 */}
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  나이
+                </label>
+                <input
+                  type="number"
+                  value={age}
+                  onChange={(e) => setAge(e.target.value)}
+                  placeholder="예: 25"
+                  min="1"
+                  max="120"
+                  className="w-full px-4 py-3.5 border-2 border-gray-200 focus:border-toss-500 focus:ring-2 focus:ring-toss-100 focus:outline-none text-base rounded-xl transition-colors"
+                  required
+                />
               </div>
 
               {/* 연락처 입력 */}
@@ -66,6 +97,26 @@ const QuickConsult = () => {
                   pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}"
                   required
                 />
+              </div>
+
+              {/* 희망장소 선택 */}
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  희망장소
+                </label>
+                <select
+                  value={center}
+                  onChange={(e) => setCenter(e.target.value)}
+                  className="w-full px-4 py-3.5 border-2 border-gray-200 focus:border-toss-500 focus:ring-2 focus:ring-toss-100 focus:outline-none bg-white text-gray-900 text-base rounded-xl transition-colors"
+                  required
+                >
+                  <option value="">희망 장소를 선택해주세요</option>
+                  {centers.map((c) => (
+                    <option key={c} value={c}>
+                      {c}
+                    </option>
+                  ))}
+                </select>
               </div>
 
               {/* 문의하기 버튼 */}

@@ -6,35 +6,27 @@ import { MapPin, Phone, Clock } from "lucide-react";
 const centers = [
   {
     id: 1,
-    name: "강남센터",
-    address: "서울시 강남구 테헤란로 123, 4층",
+    name: "홍대 1호",
+    address: "서울특별시 마포구 홍익로 000",
     phone: "02-1234-5678",
-    hours: "평일 10:00 - 21:00 | 주말 10:00 - 19:00",
-    map: "강남역 도보 3분",
+    hours: "평일 10:00 - 20:00 | 주말 10:00 - 18:00",
+    map: "지하철 2호선 홍대입구역 9번 출구 도보 5분",
   },
   {
     id: 2,
-    name: "홍대센터",
-    address: "서울시 마포구 홍익로 456, 3층",
+    name: "홍대 2호",
+    address: "서울특별시 마포구 와우산로 000",
     phone: "02-2345-6789",
-    hours: "평일 10:00 - 21:00 | 주말 10:00 - 19:00",
-    map: "홍대입구역 도보 5분",
+    hours: "평일 10:00 - 20:00 | 주말 10:00 - 18:00",
+    map: "지하철 2호선 홍대입구역 3번 출구 도보 7분",
   },
   {
     id: 3,
-    name: "강북센터",
-    address: "서울시 성북구 동소문로 789, 5층",
+    name: "구로",
+    address: "서울특별시 구로구 디지털로 000",
     phone: "02-3456-7890",
-    hours: "평일 10:00 - 21:00 | 주말 10:00 - 19:00",
-    map: "미아사거리역 도보 2분",
-  },
-  {
-    id: 4,
-    name: "분당센터",
-    address: "경기도 성남시 분당구 판교역로 101, 7층",
-    phone: "031-1234-5678",
-    hours: "평일 10:00 - 21:00 | 주말 10:00 - 19:00",
-    map: "판교역 직결",
+    hours: "평일 10:00 - 20:00 | 주말 10:00 - 18:00",
+    map: "지하철 2호선 구로디지털단지역 2번 출구 도보 3분",
   },
 ];
 
@@ -116,16 +108,6 @@ const CenterSection = () => {
                 <p className="text-xs font-medium text-gray-400 uppercase tracking-wider mb-2">운영시간</p>
                 <p className="text-gray-900">{selectedCenter.hours}</p>
               </div>
-            </div>
-
-            {/* CTA 버튼 */}
-            <div className="mt-5 sm:mt-6 md:mt-8 lg:mt-10">
-              <a
-                href={`tel:${selectedCenter.phone}`}
-                className="inline-block bg-gray-900 text-white px-5 sm:px-6 md:px-8 py-2.5 sm:py-3 md:py-4 text-xs sm:text-sm md:text-base font-light hover:bg-gray-800 transition-colors w-full text-center rounded-sm"
-              >
-                전화 문의하기
-              </a>
             </div>
           </div>
         </div>

@@ -539,7 +539,7 @@ export default function NoticePage() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mb-12">
           <h1 className="text-4xl md:text-5xl font-light text-gray-900 mb-4 text-center">
-            공지사항
+            관리자 게시판
           </h1>
           <p className="text-center text-gray-600">
             ON ː SOOM의 소식을 확인하세요
@@ -636,9 +636,7 @@ export default function NoticePage() {
                       className="grid grid-cols-12 gap-4 px-6 py-4 hover:bg-gray-50 cursor-pointer transition-colors"
                     >
                       <div className="col-span-1 text-center text-sm text-gray-600">
-                        <span className="inline-block px-2 py-1 bg-gray-500 text-white text-xs font-bold rounded ml-2">
-                          일반
-                        </span>
+                        {filteredGeneralPosts.length - index}
                       </div>
                       <div className="col-span-6">
                         <div className="flex items-center gap-2">
@@ -670,17 +668,21 @@ export default function NoticePage() {
             {/* 페이지네이션 (간단한 형태) */}
             <div className="flex justify-center mt-8">
               <div className="flex items-center gap-2">
-                {/* <button className="px-3 py-2 text-sm border border-gray-300 rounded hover:bg-gray-50">
+                <button className="px-3 py-2 text-sm border border-gray-300 rounded hover:bg-gray-50">
                   이전
-                </button> */}
-
+                </button>
                 <button className="px-3 py-2 text-sm bg-toss-500 text-white rounded">
                   1
                 </button>
-
-                {/* <button className="px-3 py-2 text-sm border border-gray-300 rounded hover:bg-gray-50">
+                <button className="px-3 py-2 text-sm border border-gray-300 rounded hover:bg-gray-50">
+                  2
+                </button>
+                <button className="px-3 py-2 text-sm border border-gray-300 rounded hover:bg-gray-50">
+                  3
+                </button>
+                <button className="px-3 py-2 text-sm border border-gray-300 rounded hover:bg-gray-50">
                   다음
-                </button> */}
+                </button>
               </div>
             </div>
           </>

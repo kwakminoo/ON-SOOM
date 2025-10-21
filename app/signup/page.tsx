@@ -14,7 +14,10 @@ export default function SignupPage() {
         <div className="bg-white p-8 rounded-xl shadow-sm">
           <form className="space-y-6">
             <div>
-              <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
+              <label
+                htmlFor="name"
+                className="block text-sm font-medium text-gray-700 mb-2"
+              >
                 이름
               </label>
               <input
@@ -26,7 +29,10 @@ export default function SignupPage() {
             </div>
 
             <div>
-              <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+              <label
+                htmlFor="email"
+                className="block text-sm font-medium text-gray-700 mb-2"
+              >
                 이메일
               </label>
               <input
@@ -38,7 +44,10 @@ export default function SignupPage() {
             </div>
 
             <div>
-              <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-2">
+              <label
+                htmlFor="password"
+                className="block text-sm font-medium text-gray-700 mb-2"
+              >
                 비밀번호
               </label>
               <input
@@ -47,11 +56,16 @@ export default function SignupPage() {
                 className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-gray-900 focus:border-transparent transition-all"
                 placeholder="••••••••"
               />
-              <p className="mt-1 text-xs text-gray-500">8자 이상, 영문/숫자/특수문자 포함</p>
+              <p className="mt-1 text-xs text-gray-500">
+                8자 이상, 영문/숫자/특수문자 포함
+              </p>
             </div>
 
             <div>
-              <label htmlFor="password-confirm" className="block text-sm font-medium text-gray-700 mb-2">
+              <label
+                htmlFor="password-confirm"
+                className="block text-sm font-medium text-gray-700 mb-2"
+              >
                 비밀번호 확인
               </label>
               <input
@@ -63,7 +77,10 @@ export default function SignupPage() {
             </div>
 
             <div>
-              <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2">
+              <label
+                htmlFor="phone"
+                className="block text-sm font-medium text-gray-700 mb-2"
+              >
                 전화번호
               </label>
               <input
@@ -76,13 +93,19 @@ export default function SignupPage() {
 
             <div className="space-y-3">
               <label className="flex items-start">
-                <input type="checkbox" className="mt-1 rounded border-gray-300 text-gray-900 focus:ring-gray-900" />
+                <input
+                  type="checkbox"
+                  className="mt-1 rounded border-gray-300 text-gray-900 focus:ring-gray-900"
+                />
                 <span className="ml-2 text-sm text-gray-600">
                   [필수] 이용약관 및 개인정보처리방침에 동의합니다
                 </span>
               </label>
               <label className="flex items-start">
-                <input type="checkbox" className="mt-1 rounded border-gray-300 text-gray-900 focus:ring-gray-900" />
+                <input
+                  type="checkbox"
+                  className="mt-1 rounded border-gray-300 text-gray-900 focus:ring-gray-900"
+                />
                 <span className="ml-2 text-sm text-gray-600">
                   [선택] 마케팅 정보 수신에 동의합니다
                 </span>
@@ -100,7 +123,10 @@ export default function SignupPage() {
           <div className="mt-6 text-center">
             <p className="text-sm text-gray-600">
               이미 계정이 있으신가요?{" "}
-              <Link href="/login" className="text-gray-900 font-medium hover:underline">
+              <Link
+                href="/login"
+                className="text-gray-900 font-medium hover:underline"
+              >
                 로그인
               </Link>
             </p>
@@ -110,5 +136,3 @@ export default function SignupPage() {
     </div>
   );
 }
-
-

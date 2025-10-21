@@ -26,17 +26,20 @@ const Header = () => {
   // 외부 클릭 감지
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (headerRef.current && !headerRef.current.contains(event.target as Node)) {
+      if (
+        headerRef.current &&
+        !headerRef.current.contains(event.target as Node)
+      ) {
         setOpenDropdown(null);
       }
     };
 
-    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener("mousedown", handleClickOutside);
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
-  
+
   const navigation: MenuItem[] = [
     {
       name: "온숨소개",
@@ -44,45 +47,58 @@ const Header = () => {
         { name: "온숨 스토리", href: "/about/story" },
         { name: "기업이념", href: "/about/vision" },
         { name: "센터별 안내", href: "/about/centers" },
-      ]
+      ],
     },
     {
       name: "프로그램",
       subMenu: [
         { name: "프로그램 안내", href: "/programs" },
-        { name: "자가진단", href: "/programs/self-test" },
         { name: "온라인 신청", href: "/programs/apply" },
-        { name: "기업 상담", href: "/programs/corporate" },
-        { name: "교육기관 상담", href: "/programs/education" },
-        { name: "강연 및 세미나", href: "/programs/seminar" },
-      ]
+      ],
+    },
+    {
+      name: "기업용",
+      subMenu: [
+        { name: "기업 상담", href: "/business/corporate" },
+        { name: "교육기관 상담", href: "/business/education" },
+        { name: "강연 및 세미나", href: "/business/seminar" },
+      ],
     },
     {
       name: "커뮤니티",
       subMenu: [
-        { name: "게시판", href: "/community/notice" },
+        { name: "공지사항", href: "/community/notice" },
         { name: "FAQ", href: "/community/faq" },
-      ]
+        { name: "자가진단", href: "/community/self-test" },
+      ],
     },
-    { name: "신청하기", href: "/consult" },
+    //todo 관리자 탭 로그인 한 경우 보이도록 작업
+    // {
+    //   name: "관리자",
+    //   subMenu: [{ name: "게시판", href: "/admin/board" }],
+    // },
   ];
 
-  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-    if (href.startsWith('#')) {
+  const handleClick = (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    href: string
+  ) => {
+    if (href.startsWith("#")) {
       e.preventDefault();
-      
-      if (pathname !== '/') {
+
+      if (pathname !== "/") {
         window.location.href = `/${href}`;
       } else {
         const element = document.querySelector(href);
         if (element) {
           const headerHeight = 80;
-          const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
+          const elementPosition =
+            element.getBoundingClientRect().top + window.pageYOffset;
           const offsetPosition = elementPosition - headerHeight;
 
           window.scrollTo({
             top: offsetPosition,
-            behavior: 'smooth'
+            behavior: "smooth",
           });
         }
       }
@@ -97,12 +113,17 @@ const Header = () => {
   };
 
   return (
-    <header ref={headerRef} className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-100 shadow-sm">
+    <header
+      ref={headerRef}
+      className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-100 shadow-sm"
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-14 md:h-20">
           {/* 로고 */}
           <Link href="/" className="flex items-center">
-            <h1 className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-toss-500 tracking-tight">ON:SOOM</h1>
+            <h1 className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-toss-500 tracking-tight">
+              ON:SOOM
+            </h1>
           </Link>
 
           {/* 데스크톱 네비게이션 */}
@@ -122,7 +143,7 @@ const Header = () => {
                     {item.name}
                   </Link>
                 ) : (
-                  <button 
+                  <button
                     onClick={() => toggleDropdown(item.name)}
                     className="text-gray-700 hover:text-toss-500 text-xs md:text-sm lg:text-base font-medium transition-colors"
                   >
@@ -132,10 +153,10 @@ const Header = () => {
 
                 {/* 드롭다운 메뉴 - 애니메이션 효과 추가 */}
                 {item.subMenu && openDropdown === item.name && (
-                  <div 
+                  <div
                     className="absolute left-0 top-full mt-2 w-max bg-white border border-gray-100 rounded-lg shadow-toss-lg overflow-hidden animate-slideDown"
                     style={{
-                      animation: 'slideDown 0.3s ease-out forwards'
+                      animation: "slideDown 0.3s ease-out forwards",
                     }}
                   >
                     {item.subMenu.map((subItem) => (
@@ -183,9 +204,19 @@ const Header = () => {
               viewBox="0 0 24 24"
             >
               {isMenuOpen ? (
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M6 18L18 6M6 6l12 12"
+                />
               ) : (
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M4 6h16M4 12h16M4 18h16"
+                />
               )}
             </svg>
           </button>
@@ -196,19 +227,30 @@ const Header = () => {
           <nav className="md:hidden border-t border-gray-200 bg-white">
             <div className="flex flex-col">
               {navigation.map((item, index) => (
-                <div key={item.name} className={index === navigation.length - 1 ? 'mt-1' : ''}>
+                <div
+                  key={item.name}
+                  className={index === navigation.length - 1 ? "mt-1" : ""}
+                >
                   {item.href ? (
                     <Link
                       href={item.href}
                       onClick={(e) => handleClick(e, item.href!)}
-                      className={`block text-gray-900 text-base font-light py-4 px-4 ${index === navigation.length - 1 ? '' : 'border-b border-gray-100'} hover:bg-gray-50 transition-colors`}
+                      className={`block text-gray-900 text-base font-light py-4 px-4 ${
+                        index === navigation.length - 1
+                          ? ""
+                          : "border-b border-gray-100"
+                      } hover:bg-gray-50 transition-colors`}
                     >
                       {item.name}
                     </Link>
                   ) : (
                     <>
                       <button
-                        onClick={() => setOpenMobileMenu(openMobileMenu === item.name ? null : item.name)}
+                        onClick={() =>
+                          setOpenMobileMenu(
+                            openMobileMenu === item.name ? null : item.name
+                          )
+                        }
                         className="w-full text-left text-gray-900 text-base font-light py-4 px-4 border-b border-gray-100 hover:bg-gray-50 transition-colors"
                       >
                         {item.name}
@@ -231,7 +273,7 @@ const Header = () => {
                   )}
                 </div>
               ))}
-              
+
               {/* 모바일 로그인/회원가입 */}
               <div className="flex gap-2 px-4 pb-6 pt-6 border-t border-gray-200">
                 <Link
@@ -256,4 +298,3 @@ const Header = () => {
 };
 
 export default Header;
-

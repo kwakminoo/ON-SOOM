@@ -35,7 +35,7 @@ const notices = [
 상담 신청 페이지에서 '숨결 리더십 코칭'을 선택하여 신청해주세요.
 선착순 20명 마감됩니다.
 
-문의: 02-1234-5678`
+문의: 02-1234-5678`,
   },
   {
     id: 2,
@@ -76,7 +76,7 @@ const notices = [
 - 기존 예약 내역은 모두 유지됩니다
 - 시스템 점검 시간에는 예약 및 변경이 불가합니다
 
-문의: help@onsoom.kr`
+문의: help@onsoom.kr`,
   },
   {
     id: 3,
@@ -132,7 +132,7 @@ const notices = [
 - 마이페이지에서 예약 내역 확인 가능합니다
 
 문의: booking@onsoom.kr
-전화: 02-1234-5678`
+전화: 02-1234-5678`,
   },
   {
     id: 4,
@@ -171,7 +171,7 @@ const notices = [
 📝 신청 기한
 11월 30일까지 (조기 마감 시 공지)
 
-문의: workshop@onsoom.kr`
+문의: workshop@onsoom.kr`,
   },
   {
     id: 5,
@@ -213,7 +213,7 @@ const notices = [
 제출 서류: 이력서, 자기소개서, 포트폴리오(선택)
 마감: 2024년 10월 31일
 
-문의: 02-1234-5678`
+문의: 02-1234-5678`,
   },
   {
     id: 6,
@@ -258,7 +258,7 @@ const notices = [
 이번 협약을 통해 더 많은 청년들이 자신을 이해하고 성장할 수 있는
 기회를 제공하게 되어 기쁩니다."
 
-문의: partnership@onsoom.kr`
+문의: partnership@onsoom.kr`,
   },
   {
     id: 7,
@@ -300,7 +300,7 @@ const notices = [
 
 여러분의 소중한 이야기를 기다립니다! 😊
 
-문의: event@onsoom.kr`
+문의: event@onsoom.kr`,
   },
   {
     id: 8,
@@ -361,7 +361,7 @@ const notices = [
 여러분의 따뜻한 관심과 참여 부탁드립니다.
 
 문의: welfare@onsoom.kr
-전화: 02-1234-5678`
+전화: 02-1234-5678`,
   },
   {
     id: 9,
@@ -429,7 +429,7 @@ const notices = [
 정원: 100명 (선착순 마감)
 
 문의: seminar@onsoom.kr
-전화: 02-1234-5678`
+전화: 02-1234-5678`,
   },
   {
     id: 10,
@@ -503,8 +503,8 @@ https://pf.kakao.com/onsoom (예시)
 다양한 혜택을 받아보세요! 🎉
 
 문의: channel@onsoom.kr
-전화: 02-1234-5678`
-  }
+전화: 02-1234-5678`,
+  },
 ];
 
 export default function NoticePage() {
@@ -512,13 +512,14 @@ export default function NoticePage() {
   const [searchTerm, setSearchTerm] = useState("");
 
   // 공지사항과 일반 게시글 분리
-  const noticePosts = notices.filter(notice => notice.isNotice);
-  const generalPosts = notices.filter(notice => !notice.isNotice);
+  const noticePosts = notices.filter((notice) => notice.isNotice);
+  const generalPosts = notices.filter((notice) => !notice.isNotice);
 
   // 검색 필터링
-  const filteredGeneralPosts = generalPosts.filter(post => 
-    post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    post.content.toLowerCase().includes(searchTerm.toLowerCase())
+  const filteredGeneralPosts = generalPosts.filter(
+    (post) =>
+      post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      post.content.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   const handleNoticeClick = (id: number) => {
@@ -529,15 +530,16 @@ export default function NoticePage() {
     setSelectedNotice(null);
   };
 
-
-  const selectedNoticeData = notices.find(notice => notice.id === selectedNotice);
+  const selectedNoticeData = notices.find(
+    (notice) => notice.id === selectedNotice
+  );
 
   return (
     <div className="min-h-screen bg-white pt-24 pb-16">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mb-12">
           <h1 className="text-4xl md:text-5xl font-light text-gray-900 mb-4 text-center">
-            게시판
+            공지사항
           </h1>
           <p className="text-center text-gray-600">
             ON ː SOOM의 소식을 확인하세요
@@ -600,7 +602,9 @@ export default function NoticePage() {
                         <span className="text-sm font-medium text-gray-900 hover:text-orange-600 transition-colors">
                           {notice.title}
                         </span>
-                        <span className={`inline-block px-2 py-1 rounded text-xs font-medium ${notice.badgeColor}`}>
+                        <span
+                          className={`inline-block px-2 py-1 rounded text-xs font-medium ${notice.badgeColor}`}
+                        >
                           {notice.badge}
                         </span>
                       </div>
@@ -620,7 +624,9 @@ export default function NoticePage() {
                 {/* 일반 게시글 */}
                 {filteredGeneralPosts.length === 0 ? (
                   <div className="px-6 py-12 text-center text-gray-500">
-                    {searchTerm ? "검색 결과가 없습니다." : "게시글이 없습니다."}
+                    {searchTerm
+                      ? "검색 결과가 없습니다."
+                      : "게시글이 없습니다."}
                   </div>
                 ) : (
                   filteredGeneralPosts.map((post, index) => (
@@ -630,14 +636,18 @@ export default function NoticePage() {
                       className="grid grid-cols-12 gap-4 px-6 py-4 hover:bg-gray-50 cursor-pointer transition-colors"
                     >
                       <div className="col-span-1 text-center text-sm text-gray-600">
-                        {filteredGeneralPosts.length - index}
+                        <span className="inline-block px-2 py-1 bg-gray-500 text-white text-xs font-bold rounded ml-2">
+                          일반
+                        </span>
                       </div>
                       <div className="col-span-6">
                         <div className="flex items-center gap-2">
                           <span className="text-sm font-medium text-gray-900 hover:text-toss-600 transition-colors">
                             {post.title}
                           </span>
-                          <span className={`inline-block px-2 py-1 rounded text-xs font-medium ${post.badgeColor}`}>
+                          <span
+                            className={`inline-block px-2 py-1 rounded text-xs font-medium ${post.badgeColor}`}
+                          >
                             {post.badge}
                           </span>
                         </div>
@@ -660,26 +670,21 @@ export default function NoticePage() {
             {/* 페이지네이션 (간단한 형태) */}
             <div className="flex justify-center mt-8">
               <div className="flex items-center gap-2">
-                <button className="px-3 py-2 text-sm border border-gray-300 rounded hover:bg-gray-50">
+                {/* <button className="px-3 py-2 text-sm border border-gray-300 rounded hover:bg-gray-50">
                   이전
-                </button>
+                </button> */}
+
                 <button className="px-3 py-2 text-sm bg-toss-500 text-white rounded">
                   1
                 </button>
-                <button className="px-3 py-2 text-sm border border-gray-300 rounded hover:bg-gray-50">
-                  2
-                </button>
-                <button className="px-3 py-2 text-sm border border-gray-300 rounded hover:bg-gray-50">
-                  3
-                </button>
-                <button className="px-3 py-2 text-sm border border-gray-300 rounded hover:bg-gray-50">
+
+                {/* <button className="px-3 py-2 text-sm border border-gray-300 rounded hover:bg-gray-50">
                   다음
-                </button>
+                </button> */}
               </div>
             </div>
           </>
         )}
-
 
         {/* 게시글 상세 보기 */}
         {selectedNotice && selectedNoticeData && (
@@ -688,10 +693,14 @@ export default function NoticePage() {
             <div className="border-b border-gray-200 px-6 md:px-10 py-8 bg-gray-50">
               {/* 배지와 카테고리 */}
               <div className="flex items-center gap-2 mb-4">
-                <span className={`inline-block px-3 py-1 rounded-full text-xs font-medium ${selectedNoticeData.badgeColor}`}>
+                <span
+                  className={`inline-block px-3 py-1 rounded-full text-xs font-medium ${selectedNoticeData.badgeColor}`}
+                >
                   {selectedNoticeData.badge}
                 </span>
-                <span className="text-sm text-gray-500">{selectedNoticeData.category}</span>
+                <span className="text-sm text-gray-500">
+                  {selectedNoticeData.category}
+                </span>
               </div>
 
               {/* 제목 */}
@@ -702,23 +711,58 @@ export default function NoticePage() {
               {/* 메타 정보 */}
               <div className="flex flex-wrap gap-4 text-sm text-gray-600">
                 <span className="flex items-center gap-1">
-                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                  <svg
+                    className="w-4 h-4"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+                    />
                   </svg>
                   {selectedNoticeData.author}
                 </span>
                 <span>•</span>
                 <span className="flex items-center gap-1">
-                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                  <svg
+                    className="w-4 h-4"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                    />
                   </svg>
                   {selectedNoticeData.date}
                 </span>
                 <span>•</span>
                 <span className="flex items-center gap-1">
-                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                  <svg
+                    className="w-4 h-4"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                    />
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                    />
                   </svg>
                   {selectedNoticeData.views.toLocaleString()}
                 </span>

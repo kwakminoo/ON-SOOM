@@ -1,2 +1,7 @@
-Deployment trigger - 2025-10-20
+Deployment trigger - 2025-10-22
+
+배너 슬라이더 및 Pretendard 폰트 적용
+- 배너 이미지 추가 및 클릭 기능 구현
+- Pretendard Variable 폰트 적용
+- 후기 섹션 스크롤 이동 기능
 

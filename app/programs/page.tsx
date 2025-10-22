@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function ProgramsPage() {
   const programs = [
     {
@@ -69,9 +71,9 @@ export default function ProgramsPage() {
         {/* 프로그램 카드 그리드 */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
           {programs.map((program) => (
-            <a
+            <Link
               key={program.title}
-              href={program.href}
+              href={`${program.href}?program=${encodeURIComponent(program.title)}`}
               className={`relative p-8 bg-gradient-to-br ${
                 program.color
               } rounded-2xl hover:shadow-xl transition-all duration-300 group border border-gray-100 ${
@@ -110,7 +112,7 @@ export default function ProgramsPage() {
                   </span>
                 </div>
               </div>
-            </a>
+            </Link>
           ))}
         </div>
 
@@ -157,12 +159,12 @@ export default function ProgramsPage() {
           <p className="text-gray-300 mb-6 max-w-2xl mx-auto">
             각 프로그램에 대한 자세한 설명과 맞춤 상담을 제공해드립니다
           </p>
-          <a
+          <Link
             href="/consult"
             className="inline-block px-8 py-3 bg-white text-gray-900 rounded-lg hover:bg-gray-100 transition-colors font-medium"
           >
             무료 상담 신청하기
-          </a>
+          </Link>
         </div>
       </div>
     </div>

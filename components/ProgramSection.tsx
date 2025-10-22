@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 const programs = [
   {
@@ -151,7 +152,7 @@ const ProgramSection = () => {
       <div className="relative overflow-hidden">
         <div ref={scrollRef} className="flex" style={{ transition: "none" }}>
           {items.map((program) => (
-            <a
+            <Link
               key={program.uniqueId}
               className="flex-shrink-0 w-[280px] sm:w-[300px] md:w-[320px] lg:w-[340px] mx-2 sm:mx-3 md:mx-4"
               href={program.href}
@@ -196,7 +197,7 @@ const ProgramSection = () => {
                   </p>
                 </div>
               </div>
-            </a>
+            </Link>
           ))}
         </div>
       </div>

@@ -80,7 +80,7 @@ const testimonials = [
 
 const TestimonialSection = () => {
   return (
-    <section className="py-16 md:py-24 bg-white">
+    <section id="testimonials" className="py-16 md:py-24 bg-white scroll-mt-20">
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-8">
         {/* 섹션 헤더 */}
         <div className="mb-8 sm:mb-10 md:mb-12 lg:mb-16">

@@ -1,105 +1,166 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, Pagination, Navigation } from "swiper/modules";
+import { Autoplay, Pagination, Navigation, EffectFade } from "swiper/modules";
+import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
+import "swiper/css/effect-fade";
 
-const slides = [
+// 배너 슬라이드 데이터
+const bannerSlides = [
   {
     id: 1,
-    title: "행복으로 갈아타는",
-    subtitle: "2030 세대 심리상담 20% 할인",
-    description: "첫 상담 특별 할인 이벤트 진행 중",
-    bgColor: "from-blue-500 to-purple-600",
-    cta: "자세히 보기",
-    link: "/events/discount",
+    image: "/benner1.jpg",
+    title: "온숨심리상담센터 - 프로그램 안내",
+    link: "/programs",
   },
   {
     id: 2,
-    title: "심리상담 진짜 효과있나요?",
-    subtitle: "솔직 후기 확인하기",
-    description: "실제 내담자들의 생생한 후기를 만나보세요",
-    bgColor: "from-purple-500 to-pink-600",
-    cta: "후기 보기",
-    link: "/reviews",
+    image: "/benner2.jpg",
+    title: "온숨심리상담센터 - 자가진단",
+    link: "/community/self-test",
   },
   {
     id: 3,
-    title: "내게 꼭 맞는",
-    subtitle: "좋은 상담사 찾는 법",
-    description: "전문가 매칭 시스템으로 최적의 상담사를 찾아드립니다",
-    bgColor: "from-teal-500 to-blue-600",
-    cta: "전문가 보기",
-    link: "/experts",
-  },
-  {
-    id: 4,
-    title: "온라인·오프라인 모두 가능한",
-    subtitle: "편리한 상담 시스템",
-    description: "시간과 장소에 구애받지 않는 상담 서비스",
-    bgColor: "from-orange-500 to-red-600",
-    cta: "예약하기",
-    link: "/consult",
+    image: "/benner3.jpg",
+    title: "온숨심리상담센터 - 후기",
+    link: "#testimonials",
   },
 ];
 
 const HeroSlider = () => {
+  const [mounted, setMounted] = useState(false);
+  const router = useRouter();
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  // 배너 클릭 핸들러
+  const handleBannerClick = (link: string) => {
+    if (link.startsWith("#")) {
+      // 앵커 링크인 경우 스크롤 이동
+      const element = document.querySelector(link);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    } else {
+      // 페이지 이동
+      router.push(link);
+    }
+  };
+
+  if (!mounted) {
+    return (
+      <section className="relative w-full h-auto bg-gray-100" />
+    );
+  }
+
   return (
-    <section className="relative w-full h-[400px] md:h-[500px]">
+    <section className="relative w-full h-auto overflow-hidden">
       <Swiper
+        slidesPerView={1}
         spaceBetween={0}
-        centeredSlides={true}
         loop={true}
-        loopAdditionalSlides={2}
+        effect="fade"
+        fadeEffect={{
+          crossFade: true,
+        }}
         autoplay={{
-          delay: 4000,
+          delay: 5000,
           disableOnInteraction: false,
         }}
+        speed={1200}
         pagination={{
           clickable: true,
+          bulletClass: "swiper-pagination-bullet !bg-gray-400 !w-3 !h-3",
+          bulletActiveClass: "swiper-pagination-bullet-active !bg-gray-800 !w-10",
         }}
-        navigation={true}
-        modules={[Autoplay, Pagination, Navigation]}
-        className="h-full w-full"
+        navigation={{
+          nextEl: ".swiper-button-next-custom",
+          prevEl: ".swiper-button-prev-custom",
+        }}
+        modules={[Autoplay, Pagination, Navigation, EffectFade]}
+        className="w-full h-auto"
       >
-        {slides.map((slide) => (
+        {bannerSlides.map((slide) => (
           <SwiperSlide key={slide.id}>
-            <div className="relative w-full h-full bg-gray-900 flex items-center justify-center">
-              {/* 서브틀한 그리드 배경 */}
-              <div className="absolute inset-0 opacity-5">
-                <div className="absolute inset-0" style={{
-                  backgroundImage: `linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)`,
-                  backgroundSize: '50px 50px'
-                }} />
-              </div>
-
-              {/* 컨텐츠 */}
-              <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 md:px-8 text-center">
-                <div className="space-y-4 sm:space-y-6 md:space-y-8">
-                  <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-7xl font-light text-white tracking-tight leading-tight px-4">
-                    {slide.subtitle}
-                  </h2>
-                  <p className="text-white/80 text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl max-w-3xl mx-auto font-light px-4">
-                    {slide.description}
-                  </p>
-                  <Link
-                    href={slide.cta === "예약하기" ? "/consult" : slide.link}
-                    className="inline-block bg-white text-gray-900 px-8 sm:px-10 md:px-12 py-3 sm:py-4 md:py-5 text-sm sm:text-base md:text-lg font-medium hover:bg-gray-100 transition-colors rounded-sm mt-4"
-                  >
-                    {slide.cta}
-                  </Link>
-                </div>
-              </div>
+            <div 
+              className="relative w-full h-auto cursor-pointer group"
+              onClick={() => handleBannerClick(slide.link)}
+              role="button"
+              tabIndex={0}
+              aria-label={`${slide.title}로 이동`}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                  handleBannerClick(slide.link);
+                }
+              }}
+            >
+              {/* 배경 이미지 - 클릭 가능 */}
+              <Image
+                src={slide.image}
+                alt={slide.title}
+                width={1920}
+                height={1080}
+                className="w-full h-auto transition-transform duration-300 group-hover:scale-[1.02]"
+                priority={slide.id === 1}
+                quality={100}
+                sizes="100vw"
+              />
+              {/* 호버 오버레이 */}
+              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-all duration-300" />
             </div>
           </SwiperSlide>
         ))}
       </Swiper>
+
+      {/* 커스텀 네비게이션 버튼 */}
+      <button
+        className="swiper-button-prev-custom absolute left-4 md:left-8 top-1/2 -translate-y-1/2 z-10 w-12 h-12 md:w-14 md:h-14 bg-blue-600 hover:bg-blue-700 rounded-full flex items-center justify-center transition-all duration-300 group shadow-lg"
+        aria-label="이전 슬라이드"
+      >
+        <svg
+          className="w-6 h-6 md:w-7 md:h-7 text-white group-hover:scale-110 transition-transform"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2.5}
+            d="M15 19l-7-7 7-7"
+          />
+        </svg>
+      </button>
+
+      <button
+        className="swiper-button-next-custom absolute right-4 md:right-8 top-1/2 -translate-y-1/2 z-10 w-12 h-12 md:w-14 md:h-14 bg-blue-600 hover:bg-blue-700 rounded-full flex items-center justify-center transition-all duration-300 group shadow-lg"
+        aria-label="다음 슬라이드"
+      >
+        <svg
+          className="w-6 h-6 md:w-7 md:h-7 text-white group-hover:scale-110 transition-transform"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2.5}
+            d="M9 5l7 7-7 7"
+          />
+        </svg>
+      </button>
     </section>
   );
 };
 
 export default HeroSlider;
-

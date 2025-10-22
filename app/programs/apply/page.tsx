@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 
 // 다이얼 휠 선택기 컴포넌트
@@ -103,7 +103,8 @@ const WheelPicker = ({ items, value, onChange, placeholder }: WheelPickerProps) 
   );
 };
 
-export default function ApplyPage() {
+// 실제 폼 컴포넌트 - useSearchParams 사용
+function ApplyForm() {
   const searchParams = useSearchParams();
   const [name, setName] = useState("");
   const [gender, setGender] = useState("");
@@ -377,4 +378,18 @@ export default function ApplyPage() {
   );
 }
 
-
+// Suspense로 감싼 메인 페이지 컴포넌트
+export default function ApplyPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen bg-white pt-24 pb-16 flex items-center justify-center">
+        <div className="text-center">
+          <div className="inline-block animate-spin rounded-full h-12 w-12 border-4 border-gray-200 border-t-toss-500 mb-4"></div>
+          <p className="text-gray-600">로딩 중...</p>
+        </div>
+      </div>
+    }>
+      <ApplyForm />
+    </Suspense>
+  );
+}

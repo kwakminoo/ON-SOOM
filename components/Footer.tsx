@@ -50,7 +50,7 @@ const Footer = () => {
               <li><Link href="/reviews" className="hover:text-white transition-colors font-light">상담 후기</Link></li>
               <li><Link href="/events" className="hover:text-white transition-colors font-light">이벤트</Link></li>
               <li><Link href="/blog" className="hover:text-white transition-colors font-light">전문가 칼럼</Link></li>
-              <li><Link href="/consult" className="hover:text-white transition-colors font-light">상담 문의</Link></li>
+              <li><Link href="/consult" className="hover:text-white transition-colors font-light">신청 문의</Link></li>
             </ul>
           </div>
 

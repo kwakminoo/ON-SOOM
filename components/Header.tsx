@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useState, useEffect, useRef } from "react";
 import { usePathname, useRouter } from "next/navigation";
 
@@ -155,9 +156,15 @@ const Header = () => {
         <div className="flex justify-between items-center h-14 md:h-20">
           {/* 로고 */}
           <Link href="/" className="flex items-center">
-            <h1 className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-toss-500 tracking-tight">
-              ON:SOOM
-            </h1>
+            <Image
+              src="/ONSOOM_Logo.png"
+              alt="ONSOOM 온숨 심리상담센터"
+              width={150}
+              height={50}
+              className="h-8 md:h-10 lg:h-12 w-auto object-contain"
+              priority
+              unoptimized
+            />
           </Link>
 
           {/* 데스크톱 네비게이션 */}

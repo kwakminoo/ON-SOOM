@@ -7,7 +7,7 @@ export default function CentersPage() {
       name: "홍대 1호",
       tag: "1호점",
       tagColor: "bg-blue-100 text-blue-800",
-      address: "서울특별시 마포구 홍익로 000",
+      address: "서울특별시 마포구 서교동 354-8 호 LA",
       phone: "02-1234-5678",
       hours: {
         weekday: "평일: 10:00 - 20:00",
@@ -24,7 +24,7 @@ export default function CentersPage() {
       name: "홍대 2호",
       tag: "2호점",
       tagColor: "bg-green-100 text-green-800",
-      address: "서울특별시 마포구 와우산로 000",
+      address: "서울특별시 마포구 서교동 354-8 호 LA",
       phone: "02-2345-6789",
       hours: {
         weekday: "평일: 10:00 - 20:00",
@@ -38,10 +38,10 @@ export default function CentersPage() {
     },
     {
       id: 3,
-      name: "구로",
+      name: "남구로",
       tag: "3호점",
       tagColor: "bg-purple-100 text-purple-800",
-      address: "서울특별시 구로구 디지털로 000",
+      address: "서울특별시 구로구 디지털로 300",
       phone: "02-3456-7890",
       hours: {
         weekday: "평일: 10:00 - 20:00",
@@ -60,13 +60,13 @@ export default function CentersPage() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* 제목 */}
         <h1 className="text-4xl md:text-5xl font-light text-gray-900 mb-4 text-center">
-          센터별 안내
+          온숨의 공간
         </h1>
         <p className="text-center text-gray-600 mb-16">
-          ON ː SOOM의 센터를 방문해보세요
+          ON ː SOOM의 공간을 방문해보세요
         </p>
 
-        {/* 센터 카드 */}
+        {/* 공간 카드 */}
         <div className="space-y-8">
           {centers.map((center) => (
             <div

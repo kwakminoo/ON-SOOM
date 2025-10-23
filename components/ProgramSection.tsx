@@ -7,21 +7,7 @@ import Link from "next/link";
 const programs = [
   {
     id: 1,
-    title: "셀프 로드맵",
-    price: "1회 • 80,000원",
-    description:
-      "목표와 감정을 명확히 인식하도록 돕는 1:1 로드맵. 자기 인식과 감정 정리를 중심으로 진행.",
-    color: "#262627",
-    hoverColor: "#3d58ac",
-    textColor: "text-white",
-    href: "/programs",
-    image:
-      "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=400&h=300&fit=crop",
-  },
-  {
-    id: 2,
     title: "성장 로드맵",
-    price: "5회 패키지 • 400,000원",
     description:
       "진로·관계·자기 방향성을 함께 설계하는 성장형 로드맵. 매주 피드백과 과제 제공.",
     color: "#262627",
@@ -32,9 +18,20 @@ const programs = [
       "https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?w=400&h=300&fit=crop",
   },
   {
+    id: 2,
+    title: "통합 성장 로드맵",
+    description:
+      "청년층 대상의 장기 성장 프로젝트. 코칭+과제+팔로업 시스템을 결합해 '지속적 자기 확장'을 지원.",
+    color: "#262627",
+    hoverColor: "#3d58ac",
+    textColor: "text-white",
+    href: "/programs",
+    image:
+      "https://images.unsplash.com/photo-1588196749597-9ff075ee6b5b?w=400&h=300&fit=crop",
+  },
+  {
     id: 3,
     title: "라이프 로드맵",
-    price: "8회 패키지 • 650,000원",
     description:
       "번아웃, 무기력, 자존감 회복을 위한 장기 로드맵. 감정일기, 리프레임 훈련 포함.",
     color: "#262627",
@@ -46,21 +43,7 @@ const programs = [
   },
   {
     id: 4,
-    title: "통합 성장 로드맵",
-    price: "3개월 과정 • 1,000,000원",
-    description:
-      "청년층 대상의 장기 성장 프로젝트. 코칭+과제+팔로업 시스템을 결합해 '지속적 자기 확장'을 지원.",
-    color: "#262627",
-    hoverColor: "#3d58ac",
-    textColor: "text-white",
-    href: "/programs",
-    image:
-      "https://images.unsplash.com/photo-1588196749597-9ff075ee6b5b?w=400&h=300&fit=crop",
-  },
-  {
-    id: 5,
     title: "워크샵 로드맵",
-    price: "그룹 세션 1회 • 40,000원",
     description:
       "4~6인이 함께 참여해 '내면 대화'와 '관계 안에서의 나'를 탐색하는 집단 성장형 워크숍.",
     color: "#262627",
@@ -109,7 +92,7 @@ const ProgramSection = () => {
           container.style.transform = `translateX(0)`;
 
           setItems((prev) => {
-            const newItems = [...prev.slice(5)];
+            const newItems = [...prev.slice(4)];
             const newBatch = programs.map((program, idx) => ({
               ...program,
               uniqueId: `${Date.now()}-${idx}`,
@@ -180,13 +163,8 @@ const ProgramSection = () => {
 
                 {/* 컨텐츠 */}
                 <div className="p-6 sm:p-7 md:p-6">
-                  <span
-                    className={`text-xs font-bold ${program.textColor} opacity-80 uppercase tracking-widest mb-1 block`}
-                  >
-                    {program.price}
-                  </span>
                   <h3
-                    className={`text-xl sm:text-2xl md:text-3xl font-semibold ${program.textColor} mb-10`}
+                    className={`text-xl sm:text-2xl md:text-3xl font-semibold ${program.textColor} mb-4`}
                   >
                     {program.title}
                   </h3>

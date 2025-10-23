@@ -19,7 +19,7 @@ const QuickConsult = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     // 실제로는 API 호출
-    alert(`상담 문의가 접수되었습니다.\n이름: ${name}\n성별: ${gender}\n나이: ${age}\n연락처: ${phone}\n희망장소: ${center}`);
+    alert(`신청 문의가 접수되었습니다.\n이름: ${name}\n성별: ${gender}\n나이: ${age}\n연락처: ${phone}\n희망장소: ${center}`);
   };
 
   return (
@@ -27,7 +27,7 @@ const QuickConsult = () => {
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-8">
         <div className="max-w-2xl mx-auto">
           <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-3 text-center">
-            상담 문의
+            신청 문의
           </h3>
           <p className="text-center text-gray-600 mb-8 md:mb-12">
             온ː숨 전문가가 함께하겠습니다

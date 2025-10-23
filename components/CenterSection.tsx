@@ -1,37 +1,90 @@
 "use client";
 
-import { useState } from "react";
-import { MapPin, Phone, Clock } from "lucide-react";
+import { useState, useEffect, useRef } from "react";
+import { Phone } from "lucide-react";
+
+declare global {
+  interface Window {
+    kakao: any;
+  }
+}
 
 const centers = [
   {
     id: 1,
     name: "홍대 1호",
-    address: "서울특별시 마포구 홍익로 000",
+    address: "서울특별시 마포구 서교동 354-8 호 LA",
     phone: "02-1234-5678",
     hours: "평일 10:00 - 20:00 | 주말 10:00 - 18:00",
     map: "지하철 2호선 홍대입구역 9번 출구 도보 5분",
+    lat: 37.5549,
+    lng: 126.9225,
   },
   {
     id: 2,
     name: "홍대 2호",
-    address: "서울특별시 마포구 와우산로 000",
+    address: "서울특별시 마포구 서교동 354-8 호 LA",
     phone: "02-2345-6789",
     hours: "평일 10:00 - 20:00 | 주말 10:00 - 18:00",
     map: "지하철 2호선 홍대입구역 3번 출구 도보 7분",
+    lat: 37.5549,
+    lng: 126.9225,
   },
   {
     id: 3,
-    name: "구로",
-    address: "서울특별시 구로구 디지털로 000",
+    name: "남구로",
+    address: "서울특별시 구로구 디지털로 300",
     phone: "02-3456-7890",
     hours: "평일 10:00 - 20:00 | 주말 10:00 - 18:00",
     map: "지하철 2호선 구로디지털단지역 2번 출구 도보 3분",
+    lat: 37.4856,
+    lng: 126.8983,
   },
 ];
 
 const CenterSection = () => {
   const [selectedCenter, setSelectedCenter] = useState(centers[0]);
+  const mapRef = useRef<HTMLDivElement>(null);
+  const mapInstance = useRef<any>(null);
+  const markerInstance = useRef<any>(null);
+
+  useEffect(() => {
+    const loadKakaoMap = () => {
+      const script = document.createElement("script");
+      script.src = `//dapi.kakao.com/v2/maps/sdk.js?appkey=f08eb895ec7d3d5d9aed42cafb5ee451&autoload=false`;
+      document.head.appendChild(script);
+
+      script.onload = () => {
+        window.kakao.maps.load(() => {
+          if (!mapRef.current) return;
+
+          const options = {
+            center: new window.kakao.maps.LatLng(selectedCenter.lat, selectedCenter.lng),
+            level: 3,
+          };
+
+          mapInstance.current = new window.kakao.maps.Map(mapRef.current, options);
+
+          markerInstance.current = new window.kakao.maps.Marker({
+            map: mapInstance.current,
+            position: new window.kakao.maps.LatLng(selectedCenter.lat, selectedCenter.lng),
+          });
+        });
+      };
+    };
+
+    if (!window.kakao) {
+      loadKakaoMap();
+    }
+  }, []);
+
+  useEffect(() => {
+    if (mapInstance.current && markerInstance.current && window.kakao) {
+      const newPosition = new window.kakao.maps.LatLng(selectedCenter.lat, selectedCenter.lng);
+      mapInstance.current.setCenter(newPosition);
+      markerInstance.current.setPosition(newPosition);
+    }
+  }, [selectedCenter]);
 
   return (
     <section className="py-16 md:py-24 bg-gray-50">
@@ -39,14 +92,14 @@ const CenterSection = () => {
         {/* 섹션 헤더 */}
         <div className="mb-8 sm:mb-10 md:mb-12 lg:mb-16">
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-light text-gray-900 mb-3 sm:mb-4 tracking-tight">
-            센터
+            온숨의 공간
           </h2>
           <p className="text-gray-600 text-sm sm:text-base md:text-lg max-w-2xl">
-            편리한 위치의 센터에서 편안하게 상담받으세요
+            편안한 공간으로 오세요
           </p>
         </div>
 
-        {/* 센터 선택 탭 */}
+        {/* 공간 선택 탭 */}
         <div className="flex flex-wrap gap-2 sm:gap-3 md:gap-4 mb-8 sm:mb-10 md:mb-12 lg:mb-16">
           {centers.map((center) => (
             <button
@@ -63,20 +116,14 @@ const CenterSection = () => {
           ))}
         </div>
 
-        {/* 선택된 센터 정보 */}
+        {/* 선택된 공간 정보 */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
-          {/* 지도 영역 (플레이스홀더) */}
-          <div className="bg-gray-200 h-96 flex items-center justify-center">
-            <div className="text-center">
-              <MapPin className="w-12 h-12 text-gray-400 mx-auto mb-3" />
-              <p className="text-gray-600">{selectedCenter.name}</p>
-              <p className="text-gray-400 text-sm mt-2">
-                지도 API 연동 예정
-              </p>
-            </div>
+          {/* 카카오맵 */}
+          <div className="bg-white rounded-lg overflow-hidden shadow-md">
+            <div ref={mapRef} className="w-full h-96" />
           </div>
 
-          {/* 센터 상세 정보 */}
+          {/* 공간 상세 정보 */}
           <div className="bg-white p-6 sm:p-7 md:p-8 lg:p-10">
             <h3 className="text-xl sm:text-2xl md:text-2xl lg:text-3xl font-light text-gray-900 mb-5 sm:mb-6 md:mb-8 lg:mb-10">
               {selectedCenter.name}

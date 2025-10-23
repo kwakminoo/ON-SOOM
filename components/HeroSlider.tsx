@@ -2,14 +2,12 @@
 
 import { useState, useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, Pagination, Navigation, EffectFade } from "swiper/modules";
+import { Autoplay, Pagination, EffectFade } from "swiper/modules";
 import Image from "next/image";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 import "swiper/css";
 import "swiper/css/pagination";
-import "swiper/css/navigation";
 import "swiper/css/effect-fade";
 
 // 배너 슬라이드 데이터
@@ -82,11 +80,7 @@ const HeroSlider = () => {
           bulletClass: "swiper-pagination-bullet !bg-gray-400 !w-3 !h-3",
           bulletActiveClass: "swiper-pagination-bullet-active !bg-gray-800 !w-10",
         }}
-        navigation={{
-          nextEl: ".swiper-button-next-custom",
-          prevEl: ".swiper-button-prev-custom",
-        }}
-        modules={[Autoplay, Pagination, Navigation, EffectFade]}
+        modules={[Autoplay, Pagination, EffectFade]}
         className="w-full h-auto"
       >
         {bannerSlides.map((slide) => (
@@ -120,45 +114,6 @@ const HeroSlider = () => {
           </SwiperSlide>
         ))}
       </Swiper>
-
-      {/* 커스텀 네비게이션 버튼 */}
-      <button
-        className="swiper-button-prev-custom absolute left-4 md:left-8 top-1/2 -translate-y-1/2 z-10 w-12 h-12 md:w-14 md:h-14 bg-blue-600 hover:bg-blue-700 rounded-full flex items-center justify-center transition-all duration-300 group shadow-lg"
-        aria-label="이전 슬라이드"
-      >
-        <svg
-          className="w-6 h-6 md:w-7 md:h-7 text-white group-hover:scale-110 transition-transform"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2.5}
-            d="M15 19l-7-7 7-7"
-          />
-        </svg>
-      </button>
-
-      <button
-        className="swiper-button-next-custom absolute right-4 md:right-8 top-1/2 -translate-y-1/2 z-10 w-12 h-12 md:w-14 md:h-14 bg-blue-600 hover:bg-blue-700 rounded-full flex items-center justify-center transition-all duration-300 group shadow-lg"
-        aria-label="다음 슬라이드"
-      >
-        <svg
-          className="w-6 h-6 md:w-7 md:h-7 text-white group-hover:scale-110 transition-transform"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2.5}
-            d="M9 5l7 7-7 7"
-          />
-        </svg>
-      </button>
     </section>
   );
 };

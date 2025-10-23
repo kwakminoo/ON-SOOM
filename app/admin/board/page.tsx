@@ -1,9 +1,22 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-// 게시글 데이터
-const notices = [
+interface Post {
+  id: number;
+  category: string;
+  title: string;
+  content: string;
+  date: string;
+  author: string;
+  views: number;
+  badge?: string;
+  badgeColor?: string;
+  isNotice: boolean;
+}
+
+// 초기 샘플 데이터 (처음 한 번만 사용)
+const initialNotices = [
   {
     id: 1,
     category: "공지사항",
@@ -510,6 +523,111 @@ https://pf.kakao.com/onsoom (예시)
 export default function NoticePage() {
   const [selectedNotice, setSelectedNotice] = useState<number | null>(null);
   const [searchTerm, setSearchTerm] = useState("");
+  const [notices, setNotices] = useState<Post[]>([]);
+  const [isWriting, setIsWriting] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [user, setUser] = useState<{ role: string } | null>(null);
+
+  // 글 작성 폼 상태
+  const [formData, setFormData] = useState({
+    category: "일반" as "공지사항" | "일반",
+    title: "",
+    content: "",
+    badge: "신규",
+    badgeColor: "bg-blue-100 text-blue-600",
+    isNotice: false,
+  });
+
+  // 로그인 사용자 확인
+  useEffect(() => {
+    const storedUser = localStorage.getItem("user");
+    if (storedUser) {
+      setUser(JSON.parse(storedUser));
+    }
+  }, []);
+
+  // 게시글 목록 불러오기
+  useEffect(() => {
+    fetchPosts();
+  }, []);
+
+  const fetchPosts = async () => {
+    try {
+      const response = await fetch("/api/admin/posts");
+      const data = await response.json();
+
+      if (response.ok) {
+        setNotices(data.data || []);
+      }
+    } catch (error) {
+      console.error("Failed to fetch posts:", error);
+    }
+  };
+
+  // 글 작성 제출
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsLoading(true);
+
+    try {
+      const response = await fetch("/api/admin/posts", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        alert("게시글이 작성되었습니다");
+        setIsWriting(false);
+        // 폼 초기화
+        setFormData({
+          category: "일반",
+          title: "",
+          content: "",
+          badge: "신규",
+          badgeColor: "bg-blue-100 text-blue-600",
+          isNotice: false,
+        });
+        // 목록 새로고침
+        fetchPosts();
+      } else {
+        alert(data.message || "게시글 작성에 실패했습니다");
+      }
+    } catch (error) {
+      console.error("Submit error:", error);
+      alert("네트워크 오류가 발생했습니다");
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  // 다운로드
+  const handleDownload = async (format: "json" | "csv") => {
+    try {
+      const response = await fetch(`/api/admin/posts/download?format=${format}`);
+
+      if (response.ok) {
+        const blob = await response.blob();
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = `posts_${new Date().toISOString().split("T")[0]}.${format}`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        window.URL.revokeObjectURL(url);
+      } else {
+        alert("다운로드에 실패했습니다");
+      }
+    } catch (error) {
+      console.error("Download error:", error);
+      alert("다운로드 중 오류가 발생했습니다");
+    }
+  };
 
   // 공지사항과 일반 게시글 분리
   const noticePosts = notices.filter((notice) => notice.isNotice);
@@ -530,6 +648,41 @@ export default function NoticePage() {
     setSelectedNotice(null);
   };
 
+  // 개별 게시글 다운로드
+  const handleDownloadPost = async (postId: number) => {
+    try {
+      const response = await fetch(`/api/admin/posts/${postId}/download`);
+
+      if (response.ok) {
+        const blob = await response.blob();
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        
+        // Content-Disposition 헤더에서 파일명 추출
+        const contentDisposition = response.headers.get("Content-Disposition");
+        let filename = `post_${postId}.txt`;
+        if (contentDisposition) {
+          const filenameMatch = contentDisposition.match(/filename\*?=['"]?(?:UTF-\d['"]*)?([^;\r\n"']*)['"]?;?/);
+          if (filenameMatch && filenameMatch[1]) {
+            filename = decodeURIComponent(filenameMatch[1]);
+          }
+        }
+        
+        a.download = filename;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        window.URL.revokeObjectURL(url);
+      } else {
+        alert("다운로드에 실패했습니다");
+      }
+    } catch (error) {
+      console.error("Download post error:", error);
+      alert("다운로드 중 오류가 발생했습니다");
+    }
+  };
+
   const selectedNoticeData = notices.find(
     (notice) => notice.id === selectedNotice
   );
@@ -547,9 +700,9 @@ export default function NoticePage() {
         </div>
 
         {/* 게시글 목록 */}
-        {!selectedNotice && (
+        {!selectedNotice && !isWriting && (
           <>
-            {/* 검색 버튼 */}
+            {/* 상단 버튼 */}
             <div className="flex flex-col sm:flex-row gap-4 mb-8">
               <div className="flex-1">
                 <input
@@ -557,17 +710,30 @@ export default function NoticePage() {
                   placeholder="제목 또는 내용으로 검색..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
+                  onKeyPress={(e) => {
+                    if (e.key === "Enter") {
+                      // 검색은 실시간으로 이미 작동하므로 엔터키만 처리
+                    }
+                  }}
                   className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-toss-500 focus:border-transparent"
                 />
               </div>
               <button
                 onClick={() => {
-                  // 검색 기능은 이미 실시간으로 작동하므로 추가 동작 없음
+                  // 검색은 실시간으로 작동하므로 버튼은 시각적 역할
                 }}
                 className="px-6 py-2 bg-toss-500 text-white rounded-lg hover:bg-toss-600 transition-colors font-medium"
               >
                 검색
               </button>
+              {user?.role === "admin" && (
+                <button
+                  onClick={() => setIsWriting(true)}
+                  className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium"
+                >
+                  글쓰기
+                </button>
+              )}
             </div>
 
             {/* 게시글 목록 테이블 */}
@@ -780,15 +946,153 @@ export default function NoticePage() {
               </div>
             </div>
 
-            {/* 목록으로 버튼 */}
-            <div className="border-t border-gray-200 px-6 md:px-10 py-6 bg-gray-50">
+            {/* 하단 버튼 */}
+            <div className="border-t border-gray-200 px-6 md:px-10 py-6 bg-gray-50 flex flex-wrap gap-3">
               <button
                 onClick={handleBackToList}
                 className="px-8 py-3 bg-gray-900 text-white text-sm font-medium hover:bg-gray-800 transition-colors rounded-lg"
               >
                 목록으로 돌아가기
               </button>
+              <button
+                onClick={() => handleDownloadPost(selectedNoticeData.id)}
+                className="px-8 py-3 bg-green-600 text-white text-sm font-medium hover:bg-green-700 transition-colors rounded-lg flex items-center gap-2"
+              >
+                <svg
+                  className="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
+                  />
+                </svg>
+                이 글 다운로드
+              </button>
             </div>
+          </div>
+        )}
+
+        {/* 글 작성 폼 */}
+        {isWriting && (
+          <div className="bg-white border border-gray-200 rounded-xl overflow-hidden">
+            <div className="border-b border-gray-200 px-6 md:px-10 py-6 bg-gray-50">
+              <h2 className="text-2xl font-medium text-gray-900">게시글 작성</h2>
+            </div>
+
+            <form onSubmit={handleSubmit} className="px-6 md:px-10 py-8">
+              <div className="space-y-6">
+                {/* 카테고리 선택 */}
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    카테고리
+                  </label>
+                  <select
+                    value={formData.category}
+                    onChange={(e) =>
+                      setFormData({
+                        ...formData,
+                        category: e.target.value as "공지사항" | "일반",
+                      })
+                    }
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-toss-500 focus:border-transparent"
+                    required
+                  >
+                    <option value="일반">일반</option>
+                    <option value="공지사항">공지사항</option>
+                  </select>
+                </div>
+
+                {/* 공지사항 여부 */}
+                <div>
+                  <label className="flex items-center">
+                    <input
+                      type="checkbox"
+                      checked={formData.isNotice}
+                      onChange={(e) =>
+                        setFormData({ ...formData, isNotice: e.target.checked })
+                      }
+                      className="rounded border-gray-300 text-toss-500 focus:ring-toss-500"
+                    />
+                    <span className="ml-2 text-sm text-gray-700">
+                      상단에 공지로 고정
+                    </span>
+                  </label>
+                </div>
+
+                {/* 제목 */}
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    제목
+                  </label>
+                  <input
+                    type="text"
+                    value={formData.title}
+                    onChange={(e) =>
+                      setFormData({ ...formData, title: e.target.value })
+                    }
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-toss-500 focus:border-transparent"
+                    placeholder="제목을 입력하세요"
+                    required
+                  />
+                </div>
+
+                {/* 배지 */}
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    배지
+                  </label>
+                  <input
+                    type="text"
+                    value={formData.badge}
+                    onChange={(e) =>
+                      setFormData({ ...formData, badge: e.target.value })
+                    }
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-toss-500 focus:border-transparent"
+                    placeholder="예: 신규, 모집중, 중요 등"
+                  />
+                </div>
+
+                {/* 내용 */}
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    내용
+                  </label>
+                  <textarea
+                    value={formData.content}
+                    onChange={(e) =>
+                      setFormData({ ...formData, content: e.target.value })
+                    }
+                    rows={15}
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-toss-500 focus:border-transparent resize-y"
+                    placeholder="내용을 입력하세요"
+                    required
+                  />
+                </div>
+
+                {/* 버튼 */}
+                <div className="flex gap-4 pt-4">
+                  <button
+                    type="submit"
+                    disabled={isLoading}
+                    className="flex-1 px-6 py-3 bg-toss-500 text-white rounded-lg hover:bg-toss-600 transition-colors font-medium disabled:opacity-50 disabled:cursor-not-allowed"
+                  >
+                    {isLoading ? "작성 중..." : "작성 완료"}
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setIsWriting(false)}
+                    className="flex-1 px-6 py-3 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition-colors font-medium"
+                  >
+                    취소
+                  </button>
+                </div>
+              </div>
+            </form>
           </div>
         )}
       </div>

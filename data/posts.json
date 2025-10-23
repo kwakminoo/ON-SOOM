@@ -1,0 +1,14 @@
+[
+  {
+    "id": 1,
+    "category": "일반",
+    "title": "TEST",
+    "content": "TEST",
+    "date": "2025.10.23",
+    "author": "관리자",
+    "views": 0,
+    "badge": "신규",
+    "badgeColor": "bg-blue-100 text-blue-600",
+    "isNotice": false
+  }
+]

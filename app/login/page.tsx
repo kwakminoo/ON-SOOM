@@ -1,6 +1,54 @@
+"use client";
+
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useState, FormEvent } from "react";
 
 export default function LoginPage() {
+  const router = useRouter();
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setError("");
+    setIsLoading(true);
+
+    try {
+      const response = await fetch("/api/auth/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ username, password }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        setError(data.message || "로그인에 실패했습니다");
+        return;
+      }
+
+      // 로그인 성공 - localStorage에 사용자 정보 저장
+      localStorage.setItem("user", JSON.stringify(data.data));
+      
+      // 관리자면 관리자 페이지로, 일반 사용자면 홈으로
+      if (data.data.role === "admin") {
+        router.push("/admin/board");
+      } else {
+        router.push("/");
+      }
+    } catch (err) {
+      console.error("Login error:", err);
+      setError("네트워크 오류가 발생했습니다. 다시 시도해주세요.");
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   return (
     <div className="min-h-screen bg-gray-50 pt-24 pb-16 flex items-center justify-center">
       <div className="max-w-md w-full mx-auto px-4 sm:px-6 lg:px-8">
@@ -12,16 +60,27 @@ export default function LoginPage() {
 
         {/* 로그인 폼 */}
         <div className="bg-white p-8 rounded-xl shadow-sm">
-          <form className="space-y-6">
+          <form onSubmit={handleSubmit} className="space-y-6">
+            {/* 에러 메시지 */}
+            {error && (
+              <div className="p-4 bg-red-50 border border-red-200 rounded-md">
+                <p className="text-sm text-red-600">{error}</p>
+              </div>
+            )}
+
             <div>
-              <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
-                이메일
+              <label htmlFor="username" className="block text-sm font-medium text-gray-700 mb-2">
+                아이디
               </label>
               <input
-                type="email"
-                id="email"
+                type="text"
+                id="username"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
                 className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-gray-900 focus:border-transparent transition-all"
-                placeholder="example@email.com"
+                placeholder="아이디를 입력하세요"
+                required
+                disabled={isLoading}
               />
             </div>
 
@@ -32,8 +91,12 @@ export default function LoginPage() {
               <input
                 type="password"
                 id="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
                 className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-gray-900 focus:border-transparent transition-all"
                 placeholder="••••••••"
+                required
+                disabled={isLoading}
               />
             </div>
 
@@ -49,9 +112,10 @@ export default function LoginPage() {
 
             <button
               type="submit"
-              className="w-full px-6 py-3 bg-gray-900 text-white rounded-md hover:bg-gray-800 transition-colors font-medium"
+              disabled={isLoading}
+              className="w-full px-6 py-3 bg-gray-900 text-white rounded-md hover:bg-gray-800 transition-colors font-medium disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              로그인
+              {isLoading ? "로그인 중..." : "로그인"}
             </button>
           </form>
 

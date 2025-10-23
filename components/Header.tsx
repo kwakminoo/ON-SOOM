@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useState, useEffect, useRef } from "react";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 interface SubMenuItem {
   name: string;
@@ -16,12 +16,28 @@ interface MenuItem {
   subMenu?: SubMenuItem[];
 }
 
+interface User {
+  username: string;
+  name: string;
+  role: "user" | "admin";
+}
+
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const [openMobileMenu, setOpenMobileMenu] = useState<string | null>(null);
+  const [user, setUser] = useState<User | null>(null);
   const pathname = usePathname();
+  const router = useRouter();
   const headerRef = useRef<HTMLDivElement>(null);
+
+  // 로그인 상태 확인
+  useEffect(() => {
+    const storedUser = localStorage.getItem("user");
+    if (storedUser) {
+      setUser(JSON.parse(storedUser));
+    }
+  }, [pathname]);
 
   // 외부 클릭 감지
   useEffect(() => {
@@ -40,7 +56,19 @@ const Header = () => {
     };
   }, []);
 
-  const navigation: MenuItem[] = [
+  // 로그아웃 처리
+  const handleLogout = async () => {
+    try {
+      await fetch("/api/auth/logout", { method: "POST" });
+      localStorage.removeItem("user");
+      setUser(null);
+      router.push("/");
+    } catch (error) {
+      console.error("Logout error:", error);
+    }
+  };
+
+  const baseNavigation: MenuItem[] = [
     {
       name: "온숨소개",
       subMenu: [
@@ -72,12 +100,18 @@ const Header = () => {
         { name: "자가진단", href: "/community/self-test" },
       ],
     },
-    //todo 관리자 탭 로그인 한 경우 보이도록 작업
-    // {
-    //   name: "관리자",
-    //   subMenu: [{ name: "게시판", href: "/admin/board" }],
-    // },
   ];
+
+  // 관리자인 경우 관리자 메뉴 추가
+  const navigation: MenuItem[] = user?.role === "admin"
+    ? [
+        ...baseNavigation,
+        {
+          name: "관리자",
+          subMenu: [{ name: "게시판", href: "/admin/board" }],
+        },
+      ]
+    : baseNavigation;
 
   const handleClick = (
     e: React.MouseEvent<HTMLAnchorElement>,
@@ -174,20 +208,36 @@ const Header = () => {
               </div>
             ))}
 
-            {/* 로그인/회원가입 */}
+            {/* 로그인/로그아웃 */}
             <div className="flex items-center gap-6 lg:gap-8 xl:gap-10 ml-4 pl-4 border-l border-gray-200">
-              <Link
-                href="/login"
-                className="text-gray-700 hover:text-toss-500 text-xs md:text-sm lg:text-base font-medium transition-colors"
-              >
-                로그인
-              </Link>
-              <Link
-                href="/signup"
-                className="text-gray-700 hover:text-toss-500 text-xs md:text-sm lg:text-base font-medium transition-colors"
-              >
-                회원가입
-              </Link>
+              {user ? (
+                <>
+                  <span className="text-gray-700 text-xs md:text-sm lg:text-base font-medium">
+                    {user.name}님
+                  </span>
+                  <button
+                    onClick={handleLogout}
+                    className="text-gray-700 hover:text-toss-500 text-xs md:text-sm lg:text-base font-medium transition-colors"
+                  >
+                    로그아웃
+                  </button>
+                </>
+              ) : (
+                <>
+                  <Link
+                    href="/login"
+                    className="text-gray-700 hover:text-toss-500 text-xs md:text-sm lg:text-base font-medium transition-colors"
+                  >
+                    로그인
+                  </Link>
+                  <Link
+                    href="/signup"
+                    className="text-gray-700 hover:text-toss-500 text-xs md:text-sm lg:text-base font-medium transition-colors"
+                  >
+                    회원가입
+                  </Link>
+                </>
+              )}
             </div>
           </nav>
 
@@ -274,20 +324,36 @@ const Header = () => {
                 </div>
               ))}
 
-              {/* 모바일 로그인/회원가입 */}
+              {/* 모바일 로그인/로그아웃 */}
               <div className="flex gap-2 px-4 pb-6 pt-6 border-t border-gray-200">
-                <Link
-                  href="/login"
-                  className="flex-1 text-center py-2.5 text-gray-700 text-sm font-medium border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
-                >
-                  로그인
-                </Link>
-                <Link
-                  href="/signup"
-                  className="flex-1 text-center py-2.5 text-gray-700 text-sm font-medium border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
-                >
-                  회원가입
-                </Link>
+                {user ? (
+                  <>
+                    <div className="flex-1 text-center py-2.5 text-gray-700 text-sm font-medium border border-gray-300 rounded-lg bg-gray-50">
+                      {user.name}님
+                    </div>
+                    <button
+                      onClick={handleLogout}
+                      className="flex-1 text-center py-2.5 text-gray-700 text-sm font-medium border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
+                    >
+                      로그아웃
+                    </button>
+                  </>
+                ) : (
+                  <>
+                    <Link
+                      href="/login"
+                      className="flex-1 text-center py-2.5 text-gray-700 text-sm font-medium border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
+                    >
+                      로그인
+                    </Link>
+                    <Link
+                      href="/signup"
+                      className="flex-1 text-center py-2.5 text-gray-700 text-sm font-medium border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
+                    >
+                      회원가입
+                    </Link>
+                  </>
+                )}
               </div>
             </div>
           </nav>

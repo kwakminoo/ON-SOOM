@@ -30,10 +30,11 @@ function readPosts(): Post[] {
 // GET - 개별 게시글 다운로드
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const postId = parseInt(params.id);
+    const { id } = await params;
+    const postId = parseInt(id);
 
     if (isNaN(postId)) {
       return NextResponse.json(

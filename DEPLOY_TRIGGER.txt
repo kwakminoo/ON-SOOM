@@ -1,7 +1,11 @@
-Deployment trigger - 2025-10-22
+Deployment trigger - 2025-10-23
 
-배너 슬라이더 및 Pretendard 폰트 적용
-- 배너 이미지 추가 및 클릭 기능 구현
-- Pretendard Variable 폰트 적용
-- 후기 섹션 스크롤 이동 기능
+로그인 기능 및 관리자 게시판 구현
+- 로그인/로그아웃 기능 (테스트 계정: test/test, master/test)
+- 관리자 게시판 글 작성 및 관리 기능
+- 개별 게시글 다운로드 기능 (.txt)
+- 배너 슬라이더 드래그 방식으로 변경 (화살표 제거)
+- Header 로그인 상태 표시
+- 관리자 메뉴 동적 표시
+- localStorage 기반 인증 (추후 DB 연동 예정)
 

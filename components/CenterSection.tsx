@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import Script from "next/script";
+import { useSearchParams } from "next/navigation";
 
 declare global {
   interface Window {
@@ -43,11 +44,30 @@ const centers = [
 ];
 
 const CenterSection = () => {
-  const [selectedCenter, setSelectedCenter] = useState(centers[0]);
+  const searchParams = useSearchParams();
+  const centerId = searchParams.get('center');
+  
+  const [selectedCenter, setSelectedCenter] = useState(() => {
+    if (centerId) {
+      const center = centers.find(c => c.id === parseInt(centerId));
+      return center || centers[0];
+    }
+    return centers[0];
+  });
   const [isMapLoaded, setIsMapLoaded] = useState(false);
   const mapRef = useRef<HTMLDivElement>(null);
   const mapInstance = useRef<any>(null);
   const markerInstance = useRef<any>(null);
+
+  // URL 파라미터가 변경되면 센터 업데이트
+  useEffect(() => {
+    if (centerId) {
+      const center = centers.find(c => c.id === parseInt(centerId));
+      if (center) {
+        setSelectedCenter(center);
+      }
+    }
+  }, [centerId]);
 
   const initializeMap = () => {
     if (!window.kakao || !window.kakao.maps) {
@@ -115,16 +135,13 @@ const CenterSection = () => {
         onLoad={() => setIsMapLoaded(true)}
         onError={() => console.error('카카오맵 스크립트 로드 실패')}
       />
-      <section className="py-16 md:py-24 bg-gray-50">
+      <section id="centers" className="py-16 md:py-24 bg-gray-50 scroll-mt-20">
         <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-8">
           {/* 섹션 헤더 */}
           <div className="mb-8 sm:mb-10 md:mb-12 lg:mb-16">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-light text-gray-900 mb-3 sm:mb-4 tracking-tight">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-semibold text-gray-900 tracking-tight">
               온숨의 공간
             </h2>
-            <p className="text-gray-600 text-sm sm:text-base md:text-lg max-w-2xl">
-              편안한 공간으로 오세요
-            </p>
           </div>
 
           {/* 공간 선택 탭 */}

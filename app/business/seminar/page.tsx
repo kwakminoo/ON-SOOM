@@ -2,40 +2,37 @@ import Link from 'next/link';
 
 export default function SeminarPage() {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white pb-16" style={{ paddingTop: '80px' }}>
       {/* 히어로 섹션 */}
-      <section className="pt-32 pb-20 px-4 bg-gradient-to-b from-purple-50 to-white">
-        <div className="max-w-5xl mx-auto text-center">
-          <div className="inline-block mb-6 px-4 py-2 bg-purple-50 text-purple-600 rounded-full text-sm font-medium">
-            Talks & Seminars
-          </div>
-          <h1 className="text-5xl md:text-6xl font-light text-gray-900 mb-6 leading-tight">
+      <section className="px-4 bg-purple-50 pb-12">
+        <div className="max-w-4xl mx-auto text-center">
+          <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-16" style={{ marginTop: '100px' }}>
             강연 및 세미나
           </h1>
-          <p className="text-xl md:text-2xl text-gray-600 font-light leading-relaxed max-w-3xl mx-auto">
+          <p className="text-center text-gray-700 text-lg font-medium mb-12 leading-relaxed">
             성장과 성찰을 나누는 온ː숨의 강연·세미나 시리즈.<br/>
             듣는 시간에서 생각하는 시간으로,<br/>
-            <span className="text-purple-600 font-medium">숨을 트고 삶이 확장됩니다.</span>
+            <span className="text-purple-600 font-bold">숨을 트고 삶이 확장됩니다.</span>
           </p>
         </div>
       </section>
 
       {/* 메인 설명 섹션 */}
-      <section className="py-20 px-4">
+      <section className="py-12 px-4">
         <div className="max-w-4xl mx-auto">
-          <div className="prose prose-lg max-w-none">
-            <p className="text-lg text-gray-700 leading-relaxed mb-6">
+          <div className="space-y-3 text-gray-700 text-lg font-medium" style={{ lineHeight: '18px' }}>
+            <p className="text-center">
               온ː숨은 <strong className="text-purple-600">'숨을 트는 순간들'</strong>을 세상과 나누기 위해 강연과 세미나를 엽니다.
             </p>
-            <p className="text-lg text-gray-700 leading-relaxed mb-6">
+            <p className="text-center">
               리더십, 회복탄력성, 마음 성장, 관계의 예술 등 다양한 주제를 다루며,
               각 분야의 코치와 심리 전문가들이 <strong className="text-gray-900">깨어 있는 삶의 태도</strong>를 이야기합니다.
             </p>
-            <p className="text-lg text-gray-700 leading-relaxed mb-6">
+            <p className="text-center">
               모든 강연은 듣는 사람의 일상 속에 변화를 불러일으키는 <strong className="text-gray-900">'성찰의 장'</strong>이 되도록 설계됩니다.
               온ː숨의 무대는 단순한 강연이 아니라, <strong className="text-purple-600">함께 생각하고 숨 쉬는 시간</strong>입니다.
             </p>
-            <p className="text-lg text-gray-700 leading-relaxed">
+            <p className="text-center">
               조직과 개인이 서로의 경험을 통해 성장할 때, 사회는 조금 더 따뜻해집니다.
             </p>
           </div>
@@ -43,9 +40,9 @@ export default function SeminarPage() {
       </section>
 
       {/* 강연 주제 섹션 */}
-      <section className="py-20 px-4 bg-gray-50">
+      <section className="py-12 px-4 bg-gray-50">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-light text-gray-900 mb-16 text-center">
+          <h2 className="text-3xl md:text-4xl font-semibold text-gray-900 mb-12 text-center">
             주요 강연 주제
           </h2>
           
@@ -114,9 +111,9 @@ export default function SeminarPage() {
       </section>
 
       {/* 강연 형식 섹션 */}
-      <section className="py-20 px-4">
+      <section className="py-12 px-4">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-light text-gray-900 mb-12 text-center">
+          <h2 className="text-3xl md:text-4xl font-semibold text-gray-900 mb-12 text-center">
             강연 형식
           </h2>
           
@@ -173,9 +170,9 @@ export default function SeminarPage() {
       </section>
 
       {/* 대상 섹션 */}
-      <section className="py-20 px-4 bg-gray-50">
+      <section className="py-12 px-4 bg-gray-50">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-light text-gray-900 mb-12 text-center">
+          <h2 className="text-3xl md:text-4xl font-semibold text-gray-900 mb-12 text-center">
             강연 대상
           </h2>
           
@@ -208,9 +205,9 @@ export default function SeminarPage() {
       </section>
 
       {/* CTA 섹션 */}
-      <section className="py-20 px-4 bg-gradient-to-b from-white to-purple-50">
+      <section className="py-12 px-4 bg-gradient-to-b from-white to-purple-50">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl md:text-4xl font-light text-gray-900 mb-6">
+          <h2 className="text-3xl md:text-4xl font-semibold text-gray-900 mb-6">
             함께 생각하고 숨 쉬는 시간
           </h2>
           <p className="text-lg text-gray-600 mb-10 max-w-2xl mx-auto">
@@ -219,7 +216,7 @@ export default function SeminarPage() {
           </p>
           <Link
             href="/consult"
-            className="inline-block bg-purple-600 text-white px-10 py-4 rounded-full text-lg font-medium hover:bg-purple-700 transition-colors shadow-lg hover:shadow-xl"
+            className="inline-block bg-purple-600 text-white px-10 py-4 rounded-xl text-lg font-bold hover:bg-purple-700 transition-colors shadow-lg hover:shadow-xl"
           >
             강연 문의하기
           </Link>

@@ -75,7 +75,7 @@ const Header = () => {
       subMenu: [
         { name: "온숨 스토리", href: "/about/story" },
         { name: "기업이념", href: "/about/vision" },
-        { name: "센터별 안내", href: "/about/centers" },
+        { name: "온숨의 공간", href: "/about/centers" },
       ],
     },
     {

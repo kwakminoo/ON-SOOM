@@ -8,6 +8,7 @@ const programs = [
   {
     id: 1,
     title: "성장 로드맵",
+    highlight: "성장 설계",
     description:
       "진로·관계·자기 방향성을 함께 설계하는 성장형 로드맵. 매주 피드백과 과제 제공.",
     color: "#262627",
@@ -20,6 +21,7 @@ const programs = [
   {
     id: 2,
     title: "통합 성장 로드맵",
+    highlight: "장기 프로젝트",
     description:
       "청년층 대상의 장기 성장 프로젝트. 코칭+과제+팔로업 시스템을 결합해 '지속적 자기 확장'을 지원.",
     color: "#262627",
@@ -32,6 +34,7 @@ const programs = [
   {
     id: 3,
     title: "라이프 로드맵",
+    highlight: "회복과 치유",
     description:
       "번아웃, 무기력, 자존감 회복을 위한 장기 로드맵. 감정일기, 리프레임 훈련 포함.",
     color: "#262627",
@@ -44,6 +47,7 @@ const programs = [
   {
     id: 4,
     title: "워크샵 로드맵",
+    highlight: "그룹 성장",
     description:
       "4~6인이 함께 참여해 '내면 대화'와 '관계 안에서의 나'를 탐색하는 집단 성장형 워크숍.",
     color: "#262627",
@@ -84,7 +88,7 @@ const ProgramSection = () => {
       if (container) {
         container.style.transform = `translateX(-${position}px)`;
 
-        const cardWidth = 344;
+        const cardWidth = 342; // 330px (카드 너비) + 12px (mx-1.5 양쪽)
         const totalWidth = cardWidth * programs.length;
 
         if (position >= totalWidth) {
@@ -122,7 +126,7 @@ const ProgramSection = () => {
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-8">
         {/* 섹션 헤더 */}
         <div className="mb-8 sm:mb-10 md:mb-12 lg:mb-16">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-light text-gray-900 mb-3 sm:mb-4 tracking-tight">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-semibold text-gray-900 mb-4 tracking-tight">
             로드맵 프로그램
           </h2>
           <p className="text-gray-600 text-sm sm:text-base md:text-lg max-w-2xl">
@@ -137,13 +141,13 @@ const ProgramSection = () => {
           {items.map((program) => (
             <Link
               key={program.uniqueId}
-              className="flex-shrink-0 w-[280px] sm:w-[300px] md:w-[320px] lg:w-[340px] mx-2 sm:mx-3 md:mx-4"
+              className="flex-shrink-0 w-[330px] mx-1.5"
               href={program.href}
               onMouseEnter={() => setHoveredId(program.uniqueId)}
               onMouseLeave={() => setHoveredId(null)}
             >
               <div
-                className="overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 rounded-2xl h-full"
+                className="overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 rounded-2xl h-[440px]"
                 style={{
                   backgroundColor:
                     hoveredId === program.uniqueId
@@ -152,7 +156,7 @@ const ProgramSection = () => {
                 }}
               >
                 {/* 이미지 */}
-                <div className="relative h-48 sm:h-52 md:h-56 lg:h-64 overflow-hidden">
+                <div className="relative h-[220px] overflow-hidden">
                   <Image
                     src={program.image}
                     alt={program.title}
@@ -162,14 +166,30 @@ const ProgramSection = () => {
                 </div>
 
                 {/* 컨텐츠 */}
-                <div className="p-6 sm:p-7 md:p-6">
+                <div className="px-6 pt-5 pb-5 h-[220px] flex flex-col">
+                  {/* 작은 텍스트 (12px) */}
+                  <p
+                    className={`text-xs ${program.textColor} opacity-70 mb-2`}
+                    style={{ fontSize: '12px' }}
+                  >
+                    {program.highlight}
+                  </p>
+                  
+                  {/* 제목 (26px) */}
                   <h3
-                    className={`text-xl sm:text-2xl md:text-3xl font-semibold ${program.textColor} mb-4`}
+                    className={`font-semibold ${program.textColor} mb-4`}
+                    style={{ fontSize: '26px', lineHeight: '1.4', letterSpacing: '-0.02em' }}
                   >
                     {program.title}
                   </h3>
+                  
+                  {/* 공간 확보 */}
+                  <div className="flex-grow"></div>
+                  
+                  {/* 설명 (16px) - 아래 정렬 */}
                   <p
-                    className={`text-sm ${program.textColor} opacity-90 leading-relaxed`}
+                    className={`${program.textColor} opacity-90 leading-relaxed`}
+                    style={{ fontSize: '16px', lineHeight: '1.4', letterSpacing: '-0.02em' }}
                   >
                     {program.description}
                   </p>

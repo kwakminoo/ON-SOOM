@@ -1,10 +1,16 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import KakaoFloatingButton from "@/components/KakaoFloatingButton";
 
-const inter = Inter({ subsets: ["latin"] });
+const pretendard = localFont({
+  src: "../public/fonts/PretendardVariable.woff2",
+  display: "swap",
+  weight: "45 920",
+  variable: "--font-pretendard",
+});
 
 export const metadata: Metadata = {
   title: "ON:SOOM - 2030 세대를 위한 심리상담",
@@ -24,12 +30,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko" className="scroll-smooth">
-      <body className={`${inter.className} relative`}>
+      <body className={`${pretendard.className} relative`}>
         <Header />
         <main className="relative">
           {children}
         </main>
         <Footer />
+        <KakaoFloatingButton />
       </body>
     </html>
   );

@@ -2,18 +2,15 @@ import Link from 'next/link';
 
 export default function CorporatePage() {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white pb-16" style={{ paddingTop: '80px' }}>
       {/* 히어로 섹션 */}
-      <section className="pt-24 sm:pt-28 md:pt-32 pb-12 sm:pb-16 md:pb-20 px-4 bg-gradient-to-b from-toss-50 to-white">
-        <div className="max-w-5xl mx-auto text-center">
-          <div className="inline-block mb-4 sm:mb-6 px-4 sm:px-5 py-2 sm:py-2.5 bg-toss-500 text-white rounded-full text-xs sm:text-sm font-bold shadow-md">
-            Corporate Coaching Program
-          </div>
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-4 sm:mb-6 leading-tight px-4">
+      <section className="px-4 bg-toss-50 pb-12">
+        <div className="max-w-4xl mx-auto text-center">
+          <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-16" style={{ marginTop: '100px' }}>
             기업 상담
           </h1>
-          <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-700 font-medium leading-relaxed max-w-3xl mx-auto px-4">
-            사람 중심의 리더십, 관계 회복, 지속 가능한 조직문화를 만드는
+          <p className="text-center text-gray-700 text-lg font-medium mb-12 leading-relaxed">
+            사람 중심의 리더십, 관계 회복, 지속 가능한 조직문화를 만드는<br/>
             온ː숨의 기업 성장 코칭 프로그램.
             <span className="block mt-2 text-toss-600 font-bold">성과보다 '숨결'을 다룹니다.</span>
           </p>
@@ -21,17 +18,17 @@ export default function CorporatePage() {
       </section>
 
       {/* 메인 설명 섹션 */}
-      <section className="py-12 sm:py-16 md:py-20 px-4">
+      <section className="py-12 px-4">
         <div className="max-w-4xl mx-auto">
-          <div className="prose prose-base sm:prose-lg max-w-none">
-            <p className="text-base sm:text-lg text-gray-700 leading-relaxed mb-4 sm:mb-6">
+          <div className="space-y-3 text-gray-700 text-lg font-medium" style={{ lineHeight: '18px' }}>
+            <p className="text-center">
               온ː숨의 기업 코칭은 조직의 성과 이전에 <strong className="text-gray-900">사람의 회복과 연결</strong>을 다룹니다.
             </p>
-            <p className="text-base sm:text-lg text-gray-700 leading-relaxed mb-4 sm:mb-6">
+            <p className="text-center">
               우리는 구성원이 스스로 동기와 가치를 발견하도록 돕고, 리더가 사람을 이해하는 리더십을 개발하도록 설계합니다.
               팀 간의 관계, 소통, 정서적 안전감 같은 <strong className="text-gray-900">'조직의 내면'</strong>을 다루는 것이 핵심입니다.
             </p>
-            <p className="text-base sm:text-lg text-gray-700 leading-relaxed">
+            <p className="text-center">
               온ː숨은 단기적인 퍼포먼스 향상보다 <strong className="text-gray-900">지속 가능한 성장 문화</strong>를 만드는 것을 목표로 합니다.
               워크숍·리더십 코칭·정기 피드백 시스템을 통해 기업이 <strong className="text-blue-600">'함께 숨 쉬는 조직'</strong>으로 변화할 수 있도록 지원합니다.
             </p>
@@ -40,9 +37,9 @@ export default function CorporatePage() {
       </section>
 
       {/* 핵심 가치 섹션 */}
-      <section className="py-12 sm:py-16 md:py-20 px-4 bg-gray-50">
+      <section className="py-12 px-4 bg-gray-50">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-light text-gray-900 mb-8 sm:mb-12 md:mb-16 text-center">
+          <h2 className="text-3xl md:text-4xl font-semibold text-gray-900 mb-12 text-center">
             온ː숨 기업 코칭의 핵심
           </h2>
           
@@ -96,9 +93,9 @@ export default function CorporatePage() {
       </section>
 
       {/* 프로그램 방법론 섹션 */}
-      <section className="py-12 sm:py-16 md:py-20 px-4">
+      <section className="py-12 px-4">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-light text-gray-900 mb-8 sm:mb-12 text-center">
+          <h2 className="text-3xl md:text-4xl font-semibold text-gray-900 mb-12 text-center">
             프로그램 구성
           </h2>
           
@@ -143,18 +140,18 @@ export default function CorporatePage() {
       </section>
 
       {/* CTA 섹션 */}
-      <section className="py-12 sm:py-16 md:py-20 px-4 bg-gradient-to-b from-white to-gray-50">
+      <section className="py-12 px-4 bg-gradient-to-b from-white to-gray-50">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-light text-gray-900 mb-4 sm:mb-6">
+          <h2 className="text-3xl md:text-4xl font-semibold text-gray-900 mb-6">
             함께 숨 쉬는 조직을 만들어갑니다
           </h2>
-          <p className="text-base sm:text-lg text-gray-600 mb-8 sm:mb-10 max-w-2xl mx-auto px-4">
+          <p className="text-lg text-gray-600 mb-10 max-w-2xl mx-auto">
             기업 코칭 프로그램에 대한 자세한 상담이 필요하신가요?
             <span className="block mt-1">온ː숨이 함께하겠습니다.</span>
           </p>
           <Link
             href="/consult"
-            className="inline-block bg-toss-500 text-white px-8 sm:px-10 md:px-12 py-3 sm:py-4 md:py-5 rounded-xl sm:rounded-2xl text-base sm:text-lg font-bold hover:bg-toss-600 transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5"
+            className="inline-block bg-toss-500 text-white px-10 py-4 rounded-xl text-lg font-bold hover:bg-toss-600 transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5"
           >
             상담 신청하기
           </Link>

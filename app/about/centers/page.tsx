@@ -1,5 +1,7 @@
 "use client";
 
+import Link from "next/link";
+
 export default function CentersPage() {
   const centers = [
     {
@@ -56,13 +58,13 @@ export default function CentersPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-white pt-24 pb-16">
+    <div className="min-h-screen bg-white pb-16" style={{ paddingTop: '80px' }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* 제목 */}
-        <h1 className="text-4xl md:text-5xl font-light text-gray-900 mb-4 text-center">
+        <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-4 text-center" style={{ marginTop: '100px' }}>
           온숨의 공간
         </h1>
-        <p className="text-center text-gray-600 mb-16">
+        <p className="text-center text-gray-600 mb-16 font-medium">
           ON ː SOOM의 공간을 방문해보세요
         </p>
 
@@ -71,33 +73,33 @@ export default function CentersPage() {
           {centers.map((center) => (
             <div
               key={center.id}
-              className="bg-white border border-gray-200 shadow-sm hover:shadow-md transition-shadow overflow-hidden"
+              className="bg-white border border-gray-200 shadow-sm hover:shadow-md transition-shadow overflow-hidden rounded-[20px]"
             >
               <div className="flex flex-col md:flex-row">
                 {/* 정보 섹션 */}
                 <div className="w-full md:w-1/2 p-6 sm:p-8 lg:p-10">
                   <div className="mb-6">
-                    <h2 className="text-xl sm:text-2xl md:text-3xl font-medium text-gray-900 mb-2">
+                    <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold text-gray-900 mb-2">
                       ON ː SOOM {center.name}
                     </h2>
-                    <p className="text-sm sm:text-base text-gray-500">{center.name} 지점</p>
+                    <p className="text-sm sm:text-base text-gray-500 font-medium">{center.name} 지점</p>
                   </div>
 
-                  <div className="space-y-4 sm:space-y-5 text-sm sm:text-base text-gray-700">
+                  <div className="space-y-4 sm:space-y-5 text-sm sm:text-base text-gray-700 font-medium">
                     <div className="flex items-start">
-                      <span className="font-medium w-20 sm:w-24 flex-shrink-0 text-gray-900">
+                      <span className="font-semibold w-20 sm:w-24 flex-shrink-0 text-gray-900">
                         📍 주소
                       </span>
                       <span className="break-words">{center.address}</span>
                     </div>
                     <div className="flex items-start">
-                      <span className="font-medium w-20 sm:w-24 flex-shrink-0 text-gray-900">
+                      <span className="font-semibold w-20 sm:w-24 flex-shrink-0 text-gray-900">
                         📞 전화
                       </span>
                       <a href={`tel:${center.phone}`} className="hover:text-gray-900 transition-colors">{center.phone}</a>
                     </div>
                     <div className="flex items-start">
-                      <span className="font-medium w-20 sm:w-24 flex-shrink-0 text-gray-900">
+                      <span className="font-semibold w-20 sm:w-24 flex-shrink-0 text-gray-900">
                         🕐 운영시간
                       </span>
                       <div>
@@ -106,7 +108,7 @@ export default function CentersPage() {
                       </div>
                     </div>
                     <div className="flex items-start">
-                      <span className="font-medium w-20 sm:w-24 flex-shrink-0 text-gray-900">
+                      <span className="font-semibold w-20 sm:w-24 flex-shrink-0 text-gray-900">
                         🚇 오시는 길
                       </span>
                       <div>
@@ -120,9 +122,9 @@ export default function CentersPage() {
                   </div>
 
                   <div className="mt-6 sm:mt-8 pt-4 sm:pt-6 border-t border-gray-200">
-                    <button className="w-full sm:w-auto px-6 py-3 bg-gray-900 text-white text-sm sm:text-base rounded-md hover:bg-gray-800 transition-colors font-medium">
+                    <Link href={`/?center=${center.id}#centers`} className="inline-block w-full sm:w-auto px-6 py-3 bg-gray-900 text-white text-sm sm:text-base rounded-[20px] hover:bg-gray-800 transition-colors font-medium text-center">
                       지도 보기
-                    </button>
+                    </Link>
                   </div>
                 </div>
 
@@ -156,19 +158,19 @@ export default function CentersPage() {
         </div>
 
         {/* 문의 안내 */}
-        <div className="mt-16 text-center py-8 sm:py-10 md:py-12 px-4 sm:px-6 bg-gradient-to-r from-blue-50 to-purple-50 rounded-xl">
-          <h3 className="text-xl sm:text-2xl font-medium text-gray-900 mb-3">
-            센터 방문 문의
+        <div className="mt-16 text-center py-8 sm:py-10 md:py-12 px-4 sm:px-6 bg-gradient-to-r from-blue-50 to-purple-50 rounded-[20px]">
+          <h3 className="text-xl sm:text-2xl font-semibold text-gray-900 mb-3">
+            방문 문의
           </h3>
-          <p className="text-sm sm:text-base text-gray-600 mb-2">
-            센터 이용 및 프로그램 상담을 원하시나요?
+          <p className="text-sm sm:text-base text-gray-600 mb-2 font-medium">
+            센터 이용 및 프로그램 신청을 원하시나요?
           </p>
-          <p className="text-xs sm:text-sm text-gray-500 mb-6">
+          <p className="text-xs sm:text-sm text-gray-500 mb-6 font-medium">
             이메일: info@onsoom.kr | 대표전화: 02-0000-0000
           </p>
-          <button className="w-full sm:w-auto px-8 py-3 bg-gray-900 text-white text-sm sm:text-base rounded-md hover:bg-gray-800 transition-colors font-medium">
-            상담 신청하기
-          </button>
+          <Link href="/programs/apply" className="inline-block w-full sm:w-auto px-8 py-3 bg-gray-900 text-white text-sm sm:text-base rounded-[20px] hover:bg-gray-800 transition-colors font-medium">
+            신청하기
+          </Link>
         </div>
       </div>
     </div>

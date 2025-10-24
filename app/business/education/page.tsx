@@ -2,39 +2,36 @@ import Link from 'next/link';
 
 export default function EducationPage() {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white pb-16" style={{ paddingTop: '80px' }}>
       {/* 히어로 섹션 */}
-      <section className="pt-32 pb-20 px-4 bg-gradient-to-b from-green-50 to-white">
-        <div className="max-w-5xl mx-auto text-center">
-          <div className="inline-block mb-6 px-4 py-2 bg-green-50 text-green-600 rounded-full text-sm font-medium">
-            Youth & Campus Growth Program
-          </div>
-          <h1 className="text-5xl md:text-6xl font-light text-gray-900 mb-6 leading-tight">
+      <section className="px-4 bg-green-50 pb-12">
+        <div className="max-w-4xl mx-auto text-center">
+          <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-16" style={{ marginTop: '100px' }}>
             교육기관 상담
           </h1>
-          <p className="text-xl md:text-2xl text-gray-600 font-light leading-relaxed max-w-3xl mx-auto">
+          <p className="text-center text-gray-700 text-lg font-medium mb-12 leading-relaxed">
             청년의 내면을 밝히고 방향을 찾는<br/>
             온ː숨의 교육기관 연계 성장 코칭.<br/>
-            <span className="text-green-600 font-medium">자신을 이해하는 것이 진로의 시작입니다.</span>
+            <span className="text-green-600 font-bold">자신을 이해하는 것이 진로의 시작입니다.</span>
           </p>
         </div>
       </section>
 
       {/* 메인 설명 섹션 */}
-      <section className="py-20 px-4">
+      <section className="py-12 px-4">
         <div className="max-w-4xl mx-auto">
-          <div className="prose prose-lg max-w-none">
-            <p className="text-lg text-gray-700 leading-relaxed mb-6">
+          <div className="space-y-3 text-gray-700 text-lg font-medium" style={{ lineHeight: '18px' }}>
+            <p className="text-center">
               온ː숨은 청년과 학생들이 <strong className="text-gray-900">스스로의 내면을 이해하고</strong>, 자신만의 길을 설계하는 힘을 기르도록 돕습니다.
             </p>
-            <p className="text-lg text-gray-700 leading-relaxed mb-6">
+            <p className="text-center">
               학교·대학·청년단체와 협력하여 <strong className="text-gray-900">진로·자존감·관계성장</strong> 중심의 코칭 프로그램을 제공합니다.
               단순한 상담이 아니라, <strong className="text-green-600">'왜 공부하는가', '어떤 사람이 되고 싶은가'</strong>를 함께 탐구하는 성찰형 커리큘럼입니다.
             </p>
-            <p className="text-lg text-gray-700 leading-relaxed mb-6">
+            <p className="text-center">
               학생들이 비교와 불안을 넘어 <strong className="text-gray-900">자기 가능성의 숨결</strong>을 믿게 하는 것, 그것이 온ː숨의 교육 철학입니다.
             </p>
-            <p className="text-lg text-gray-700 leading-relaxed">
+            <p className="text-center">
               우리는 <strong className="text-green-600">한 세대가 자기 자신과의 관계를 회복</strong>할 때, 사회 전체의 성장 기반이 단단해진다고 믿습니다.
             </p>
           </div>
@@ -42,9 +39,9 @@ export default function EducationPage() {
       </section>
 
       {/* 핵심 가치 섹션 */}
-      <section className="py-20 px-4 bg-gray-50">
+      <section className="py-12 px-4 bg-gray-50">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-light text-gray-900 mb-16 text-center">
+          <h2 className="text-3xl md:text-4xl font-semibold text-gray-900 mb-12 text-center">
             온ː숨 교육 프로그램의 핵심
           </h2>
           
@@ -98,9 +95,9 @@ export default function EducationPage() {
       </section>
 
       {/* 대상 기관 섹션 */}
-      <section className="py-20 px-4">
+      <section className="py-12 px-4">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-light text-gray-900 mb-12 text-center">
+          <h2 className="text-3xl md:text-4xl font-semibold text-gray-900 mb-12 text-center">
             협력 대상 기관
           </h2>
           
@@ -133,9 +130,9 @@ export default function EducationPage() {
       </section>
 
       {/* 프로그램 구성 섹션 */}
-      <section className="py-20 px-4 bg-gray-50">
+      <section className="py-12 px-4 bg-gray-50">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-light text-gray-900 mb-12 text-center">
+          <h2 className="text-3xl md:text-4xl font-semibold text-gray-900 mb-12 text-center">
             프로그램 커리큘럼
           </h2>
           
@@ -192,9 +189,9 @@ export default function EducationPage() {
       </section>
 
       {/* CTA 섹션 */}
-      <section className="py-20 px-4 bg-gradient-to-b from-white to-green-50">
+      <section className="py-12 px-4 bg-gradient-to-b from-white to-green-50">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl md:text-4xl font-light text-gray-900 mb-6">
+          <h2 className="text-3xl md:text-4xl font-semibold text-gray-900 mb-6">
             한 세대의 성장을 함께 만들어갑니다
           </h2>
           <p className="text-lg text-gray-600 mb-10 max-w-2xl mx-auto">
@@ -203,7 +200,7 @@ export default function EducationPage() {
           </p>
           <Link
             href="/consult"
-            className="inline-block bg-green-600 text-white px-10 py-4 rounded-full text-lg font-medium hover:bg-green-700 transition-colors shadow-lg hover:shadow-xl"
+            className="inline-block bg-green-600 text-white px-10 py-4 rounded-xl text-lg font-bold hover:bg-green-700 transition-colors shadow-lg hover:shadow-xl"
           >
             상담 신청하기
           </Link>

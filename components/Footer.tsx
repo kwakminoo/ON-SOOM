@@ -34,23 +34,23 @@ const Footer = () => {
           <div>
             <h4 className="text-white font-light mb-4 sm:mb-6 text-xs sm:text-sm uppercase tracking-wider">서비스</h4>
             <ul className="space-y-2 sm:space-y-3 text-xs sm:text-sm">
-              <li><Link href="/programs/individual" className="hover:text-white transition-colors font-light">개인상담</Link></li>
-              <li><Link href="/programs/couple" className="hover:text-white transition-colors font-light">커플상담</Link></li>
-              <li><Link href="/programs/family" className="hover:text-white transition-colors font-light">가족상담</Link></li>
-              <li><Link href="/tests" className="hover:text-white transition-colors font-light">심리검사</Link></li>
-              <li><Link href="/programs/online" className="hover:text-white transition-colors font-light">온라인상담</Link></li>
+              <li><Link href="/programs" className="hover:text-white transition-colors font-light">로드맵 프로그램</Link></li>
+              <li><Link href="/programs/apply" className="hover:text-white transition-colors font-light">프로그램 신청</Link></li>
+              <li><Link href="/consult" className="hover:text-white transition-colors font-light">상담 신청</Link></li>
+              <li><Link href="/about/centers" className="hover:text-white transition-colors font-light">센터 안내</Link></li>
+              <li><Link href="/about" className="hover:text-white transition-colors font-light">회사 소개</Link></li>
             </ul>
           </div>
 
           {/* 고객지원 */}
           <div>
-            <h4 className="text-white font-light mb-4 sm:mb-6 text-xs sm:text-sm uppercase tracking-wider">고객지원</h4>
+            <h4 className="text-white font-light mb-4 sm:mb-6 text-xs sm:text-sm uppercase tracking-wider">커뮤니티</h4>
             <ul className="space-y-2 sm:space-y-3 text-xs sm:text-sm">
-              <li><Link href="/faq" className="hover:text-white transition-colors font-light">자주 묻는 질문</Link></li>
-              <li><Link href="/reviews" className="hover:text-white transition-colors font-light">상담 후기</Link></li>
-              <li><Link href="/events" className="hover:text-white transition-colors font-light">이벤트</Link></li>
-              <li><Link href="/blog" className="hover:text-white transition-colors font-light">전문가 칼럼</Link></li>
-              <li><Link href="/consult" className="hover:text-white transition-colors font-light">신청 문의</Link></li>
+              <li><Link href="/community/faq" className="hover:text-white transition-colors font-light">자주 묻는 질문</Link></li>
+              <li><Link href="/community/notice" className="hover:text-white transition-colors font-light">공지사항</Link></li>
+              <li><Link href="/community/self-test" className="hover:text-white transition-colors font-light">자가진단</Link></li>
+              <li><Link href="/about/vision" className="hover:text-white transition-colors font-light">비전</Link></li>
+              <li><Link href="/about/story" className="hover:text-white transition-colors font-light">스토리</Link></li>
             </ul>
           </div>
 
@@ -80,13 +80,13 @@ const Footer = () => {
                   <div className="grid md:grid-cols-2 gap-6 sm:gap-8 mb-6 sm:mb-8">
                     <div className="text-xs sm:text-sm font-light">
                       <p className="mb-1 sm:mb-2">
-                        (주)온숨 | 대표: 홍길동 | 사업자등록번호: 123-45-67890
+                        (주)온숨 | 대표: 정지은 | 사업자등록번호: 123-45-67890
                       </p>
                       <p>
-                        서울시 강남구 테헤란로 123, 4층
+                        서울특별시 마포구 서교동 354-8 호 LA
                       </p>
                       <p>
-                        통신판매업신고: 2024-서울강남-01234
+                        통신판매업신고: 2024-서울마포-01234
                       </p>
                     </div>
                     <div className="flex md:justify-end space-x-6 sm:space-x-8 text-xs sm:text-sm">
@@ -98,9 +98,22 @@ const Footer = () => {
                       </Link>
                     </div>
                   </div>
-                  <p className="text-xs sm:text-sm text-gray-500 font-light">
-                    © 2024 ON:SOOM. All rights reserved.
-                  </p>
+                  <div className="flex flex-wrap items-center justify-between gap-4">
+                    <p className="text-xs sm:text-sm text-gray-500 font-light">
+                      © 2024 ON:SOOM. All rights reserved.
+                    </p>
+                    <p className="text-xs sm:text-sm text-gray-500 font-light">
+                      Designed by{" "}
+                      <a 
+                        href="https://www.freepik.com" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="hover:text-gray-400 transition-colors"
+                      >
+                        Freepik
+                      </a>
+                    </p>
+                  </div>
                 </div>
       </div>
     </footer>

@@ -570,8 +570,8 @@ export default function NoticePage() {
               </button>
             </div>
 
-            {/* 게시글 목록 테이블 */}
-            <div className="bg-white border border-gray-200 rounded-lg overflow-hidden">
+            {/* 게시글 목록 - 데스크톱 테이블 뷰 */}
+            <div className="hidden md:block bg-white border border-gray-200 rounded-lg overflow-hidden">
               {/* 테이블 헤더 */}
               <div className="bg-gray-50 border-b border-gray-200">
                 <div className="grid grid-cols-12 gap-4 px-6 py-3 text-sm font-medium text-gray-700">
@@ -629,14 +629,14 @@ export default function NoticePage() {
                       : "게시글이 없습니다."}
                   </div>
                 ) : (
-                  filteredGeneralPosts.map((post, index) => (
+                  filteredGeneralPosts.map((post) => (
                     <div
                       key={post.id}
                       onClick={() => handleNoticeClick(post.id)}
                       className="grid grid-cols-12 gap-4 px-6 py-4 hover:bg-gray-50 cursor-pointer transition-colors"
                     >
                       <div className="col-span-1 text-center text-sm text-gray-600">
-                        <span className="inline-block px-2 py-1 bg-gray-500 text-white text-xs font-bold rounded ml-2">
+                        <span className="inline-block px-2 py-1 bg-gray-500 text-white text-xs font-bold rounded">
                           일반
                         </span>
                       </div>
@@ -665,6 +665,67 @@ export default function NoticePage() {
                   ))
                 )}
               </div>
+            </div>
+
+            {/* 게시글 목록 - 모바일 카드 뷰 */}
+            <div className="md:hidden space-y-3">
+              {/* 공지사항 */}
+              {noticePosts.map((notice) => (
+                <div
+                  key={notice.id}
+                  onClick={() => handleNoticeClick(notice.id)}
+                  className="bg-orange-50 border-l-4 border-orange-400 rounded-r-lg p-4 cursor-pointer hover:bg-orange-100 transition-colors"
+                >
+                  <div className="flex items-start justify-between mb-2">
+                    <span className="inline-block px-2 py-1 bg-orange-500 text-white text-xs font-bold rounded">
+                      공지
+                    </span>
+                    <span className={`inline-block px-2 py-1 rounded text-xs font-medium ${notice.badgeColor}`}>
+                      {notice.badge}
+                    </span>
+                  </div>
+                  <h3 className="text-sm font-medium text-gray-900 mb-2 line-clamp-2">
+                    {notice.title}
+                  </h3>
+                  <div className="flex items-center justify-between text-xs text-gray-600">
+                    <span>{notice.date}</span>
+                    <span>조회 {notice.views}</span>
+                  </div>
+                </div>
+              ))}
+
+              {/* 일반 게시글 */}
+              {filteredGeneralPosts.length === 0 ? (
+                <div className="bg-white border border-gray-200 rounded-lg p-8 text-center text-gray-500 text-sm">
+                  {searchTerm
+                    ? "검색 결과가 없습니다."
+                    : "게시글이 없습니다."}
+                </div>
+              ) : (
+                filteredGeneralPosts.map((post) => (
+                  <div
+                    key={post.id}
+                    onClick={() => handleNoticeClick(post.id)}
+                    className="bg-white border border-gray-200 rounded-lg p-4 cursor-pointer hover:bg-gray-50 transition-colors"
+                  >
+                    <div className="flex items-start justify-between mb-2">
+                      <span className="inline-block px-2 py-1 bg-gray-500 text-white text-xs font-bold rounded">
+                        일반
+                      </span>
+                      <span className={`inline-block px-2 py-1 rounded text-xs font-medium ${post.badgeColor}`}>
+                        {post.badge}
+                      </span>
+                    </div>
+                    <h3 className="text-sm font-medium text-gray-900 mb-2 line-clamp-2">
+                      {post.title}
+                    </h3>
+                    <div className="flex items-center justify-between text-xs text-gray-600">
+                      <span>{post.date}</span>
+                      <span>조회 {post.views}</span>
+                    </div>
+                  </div>
+                ))
+              )}
             </div>
 
             {/* 페이지네이션 (간단한 형태) */}

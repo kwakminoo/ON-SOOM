@@ -12,6 +12,7 @@ const nextConfig: NextConfig = {
         hostname: "via.placeholder.com",
       },
     ],
+    qualities: [75, 90, 100],
   },
 };
 

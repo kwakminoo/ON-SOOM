@@ -71,33 +71,33 @@ export default function CentersPage() {
           {centers.map((center) => (
             <div
               key={center.id}
-              className="bg-white border border-gray-200 shadow-sm hover:shadow-md transition-shadow"
+              className="bg-white border border-gray-200 shadow-sm hover:shadow-md transition-shadow overflow-hidden"
             >
-              <div className="flex flex-row overflow-hidden">
-                {/* 왼쪽: 정보 (50%) */}
-                <div className="w-1/2 p-8 lg:p-10">
+              <div className="flex flex-col md:flex-row">
+                {/* 정보 섹션 */}
+                <div className="w-full md:w-1/2 p-6 sm:p-8 lg:p-10">
                   <div className="mb-6">
-                    <h2 className="text-2xl md:text-3xl font-medium text-gray-900 mb-2">
+                    <h2 className="text-xl sm:text-2xl md:text-3xl font-medium text-gray-900 mb-2">
                       ON ː SOOM {center.name}
                     </h2>
-                    <p className="text-gray-500">{center.name} 지점</p>
+                    <p className="text-sm sm:text-base text-gray-500">{center.name} 지점</p>
                   </div>
 
-                  <div className="space-y-5 text-gray-700">
+                  <div className="space-y-4 sm:space-y-5 text-sm sm:text-base text-gray-700">
                     <div className="flex items-start">
-                      <span className="font-medium w-24 flex-shrink-0 text-gray-900">
+                      <span className="font-medium w-20 sm:w-24 flex-shrink-0 text-gray-900">
                         📍 주소
                       </span>
-                      <span>{center.address}</span>
+                      <span className="break-words">{center.address}</span>
                     </div>
                     <div className="flex items-start">
-                      <span className="font-medium w-24 flex-shrink-0 text-gray-900">
+                      <span className="font-medium w-20 sm:w-24 flex-shrink-0 text-gray-900">
                         📞 전화
                       </span>
-                      <span>{center.phone}</span>
+                      <a href={`tel:${center.phone}`} className="hover:text-gray-900 transition-colors">{center.phone}</a>
                     </div>
                     <div className="flex items-start">
-                      <span className="font-medium w-24 flex-shrink-0 text-gray-900">
+                      <span className="font-medium w-20 sm:w-24 flex-shrink-0 text-gray-900">
                         🕐 운영시간
                       </span>
                       <div>
@@ -106,7 +106,7 @@ export default function CentersPage() {
                       </div>
                     </div>
                     <div className="flex items-start">
-                      <span className="font-medium w-24 flex-shrink-0 text-gray-900">
+                      <span className="font-medium w-20 sm:w-24 flex-shrink-0 text-gray-900">
                         🚇 오시는 길
                       </span>
                       <div>
@@ -119,15 +119,15 @@ export default function CentersPage() {
                     </div>
                   </div>
 
-                  <div className="mt-8 pt-6 border-t border-gray-200">
-                    <button className="px-6 py-3 bg-gray-900 text-white rounded-md hover:bg-gray-800 transition-colors font-medium">
+                  <div className="mt-6 sm:mt-8 pt-4 sm:pt-6 border-t border-gray-200">
+                    <button className="w-full sm:w-auto px-6 py-3 bg-gray-900 text-white text-sm sm:text-base rounded-md hover:bg-gray-800 transition-colors font-medium">
                       지도 보기
                     </button>
                   </div>
                 </div>
 
-                {/* 오른쪽: 이미지 (50%) */}
-                <div className="w-1/2 h-auto min-h-[400px] bg-gray-100 flex-shrink-0">
+                {/* 이미지 섹션 */}
+                <div className="w-full md:w-1/2 h-64 sm:h-80 md:h-auto md:min-h-[400px] bg-gray-100 flex-shrink-0">
                   <img
                     src={center.image}
                     alt={`${center.name} 센터`}
@@ -140,9 +140,9 @@ export default function CentersPage() {
                         parent.innerHTML = `
                           <div class="w-full h-full flex items-center justify-center bg-gradient-to-br ${center.tagColor.replace('text-', 'from-').replace('-800', '-100')} to-gray-100">
                             <div class="text-center p-8">
-                              <div class="text-6xl mb-4">🏢</div>
-                              <p class="text-lg text-gray-700 font-medium">${center.name} 지점</p>
-                              <p class="text-sm text-gray-500 mt-2">이미지 준비중</p>
+                              <div class="text-4xl sm:text-5xl md:text-6xl mb-4">🏢</div>
+                              <p class="text-base sm:text-lg text-gray-700 font-medium">${center.name} 지점</p>
+                              <p class="text-xs sm:text-sm text-gray-500 mt-2">이미지 준비중</p>
                             </div>
                           </div>
                         `;
@@ -156,17 +156,17 @@ export default function CentersPage() {
         </div>
 
         {/* 문의 안내 */}
-        <div className="mt-16 text-center py-12 bg-gradient-to-r from-blue-50 to-purple-50 rounded-xl">
-          <h3 className="text-2xl font-medium text-gray-900 mb-3">
+        <div className="mt-16 text-center py-8 sm:py-10 md:py-12 px-4 sm:px-6 bg-gradient-to-r from-blue-50 to-purple-50 rounded-xl">
+          <h3 className="text-xl sm:text-2xl font-medium text-gray-900 mb-3">
             센터 방문 문의
           </h3>
-          <p className="text-gray-600 mb-2">
+          <p className="text-sm sm:text-base text-gray-600 mb-2">
             센터 이용 및 프로그램 상담을 원하시나요?
           </p>
-          <p className="text-sm text-gray-500 mb-6">
+          <p className="text-xs sm:text-sm text-gray-500 mb-6">
             이메일: info@onsoom.kr | 대표전화: 02-0000-0000
           </p>
-          <button className="px-8 py-3 bg-gray-900 text-white rounded-md hover:bg-gray-800 transition-colors font-medium">
+          <button className="w-full sm:w-auto px-8 py-3 bg-gray-900 text-white text-sm sm:text-base rounded-md hover:bg-gray-800 transition-colors font-medium">
             상담 신청하기
           </button>
         </div>

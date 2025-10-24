@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import HeroSlider from "@/components/HeroSlider";
 import QuickConsult from "@/components/QuickConsult";
 import ProgramSection from "@/components/ProgramSection";
@@ -12,7 +13,9 @@ export default function Home() {
       <VisionSection />
       <ProgramSection />
       <TestimonialSection />
-      <CenterSection />
+      <Suspense fallback={<div className="py-16 md:py-24 bg-gray-50" />}>
+        <CenterSection />
+      </Suspense>
       <QuickConsult />
     </div>
   );

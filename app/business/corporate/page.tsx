@@ -2,25 +2,25 @@ import Link from 'next/link';
 
 export default function CorporatePage() {
   return (
-    <div className="min-h-screen bg-white pb-20" style={{ paddingTop: '80px' }}>
+    <div className="min-h-screen bg-white pb-12 sm:pb-20 pt-16 sm:pt-20">
       {/* 히어로 섹션 */}
-      <section className="px-4 bg-toss-50 pb-8" style={{ marginTop: '-80px', paddingTop: '80px' }}>
+      <section className="px-4 bg-toss-50 pb-6 sm:pb-8 -mt-16 sm:-mt-20 pt-16 sm:pt-20">
         <div className="max-w-4xl mx-auto text-center">
-          <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 text-center" style={{ marginTop: '80px', marginBottom: '50px' }}>
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-gray-900 text-center mt-12 sm:mt-16 md:mt-20 mb-8 sm:mb-10 md:mb-12">
             기업 상담
           </h1>
-          <p className="text-center text-gray-700 text-lg font-medium mb-12 leading-relaxed">
-            사람 중심의 리더십, 관계 회복, 지속 가능한 조직문화를 만드는<br/>
+          <p className="text-center text-gray-700 text-base sm:text-lg font-medium mb-8 sm:mb-10 md:mb-12 leading-relaxed px-4">
+            사람 중심의 리더십, 관계 회복, 지속 가능한 조직문화를 만드는<br className="hidden sm:block"/>
             온ː숨의 기업 성장 코칭 프로그램.
-            <span className="block mt-2 text-toss-600 font-bold">성과보다 '숨결'을 다룹니다.</span>
+            <span className="block mt-3 sm:mt-2 text-toss-600 font-bold">성과보다 '숨결'을 다룹니다.</span>
           </p>
         </div>
       </section>
 
       {/* 메인 설명 섹션 */}
-      <section className="py-12 px-4">
+      <section className="py-8 sm:py-10 md:py-12 px-4">
         <div className="max-w-4xl mx-auto">
-          <div className="space-y-3 text-gray-700 text-lg font-medium" style={{ lineHeight: '140%' }}>
+          <div className="space-y-3 sm:space-y-4 text-gray-700 text-base sm:text-lg font-medium leading-relaxed">
             <p className="text-center">
               온ː숨의 기업 코칭은 조직의 성과 이전에 <strong className="text-gray-900">사람의 회복과 연결</strong>을 다룹니다.
             </p>

@@ -135,14 +135,14 @@ export default function SelfTestPage() {
   // 검사 선택 화면
   if (!selectedTest) {
     return (
-      <div className="min-h-screen bg-gradient-to-b from-white to-toss-50 pb-20" style={{ paddingTop: '80px' }}>
+      <div className="min-h-screen bg-gradient-to-b from-white to-toss-50 pb-12 sm:pb-20 pt-16 sm:pt-20">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* 헤더 */}
-          <div className="text-center" style={{ marginTop: '80px', marginBottom: '50px' }}>
-            <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-6">
+          <div className="text-center mt-12 sm:mt-16 md:mt-20 mb-8 sm:mb-10 md:mb-12">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-gray-900 mb-4 sm:mb-6">
               자가진단 테스트
             </h1>
-            <p className="text-lg font-medium text-gray-700">
+            <p className="text-base sm:text-lg font-medium text-gray-700">
               나의 현재 상태를 점검하고 필요한 도움을 찾아보세요
             </p>
             <div className="mt-6 inline-flex items-center gap-2 px-4 py-2 bg-toss-50 text-toss-600 rounded-full text-sm font-medium">

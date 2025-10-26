@@ -156,11 +156,11 @@ export default function ConsultPage() {
       <section className="py-16 md:py-24 bg-gray-50">
         <div className="max-w-4xl mx-auto px-6 sm:px-8 lg:px-8">
           {/* 페이지 헤더 */}
-          <div className="text-center mb-8 sm:mb-10 md:mb-12 lg:mb-16">
-            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-light text-gray-900 mb-3 sm:mb-4 tracking-tight" style={{ marginTop: '80px', marginBottom: '50px' }}>
+          <div className="text-center mt-12 sm:mt-16 md:mt-20 mb-8 sm:mb-10 md:mb-12 lg:mb-16">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-gray-900 mb-4 sm:mb-6 tracking-tight">
               프로그램 신청하기
             </h1>
-            <p className="text-gray-600 text-sm sm:text-base md:text-lg">
+            <p className="text-gray-700 text-base sm:text-lg font-medium">
               나에게 맞는 프로그램을 선택하고 신청해보세요
             </p>
           </div>

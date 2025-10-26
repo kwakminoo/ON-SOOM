@@ -2,14 +2,14 @@ import Link from 'next/link';
 
 export default function EducationPage() {
   return (
-    <div className="min-h-screen bg-white pb-20" style={{ paddingTop: '80px' }}>
+    <div className="min-h-screen bg-white pb-12 sm:pb-20 pt-16 sm:pt-20">
       {/* 히어로 섹션 */}
-      <section className="px-4 bg-green-50 pb-8" style={{ marginTop: '-80px', paddingTop: '80px' }}>
+      <section className="px-4 bg-green-50 pb-6 sm:pb-8 -mt-16 sm:-mt-20 pt-16 sm:pt-20">
         <div className="max-w-4xl mx-auto text-center">
-          <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 text-center" style={{ marginTop: '80px', marginBottom: '50px' }}>
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-gray-900 text-center mt-12 sm:mt-16 md:mt-20 mb-8 sm:mb-10 md:mb-12">
             교육기관 상담
           </h1>
-          <p className="text-center text-gray-700 text-lg font-medium mb-12 leading-relaxed">
+          <p className="text-center text-gray-700 text-base sm:text-lg font-medium mb-8 sm:mb-10 md:mb-12 leading-relaxed px-4">
             청년의 내면을 밝히고 방향을 찾는<br/>
             온ː숨의 교육기관 연계 성장 코칭.<br/>
             <span className="text-green-600 font-bold">자신을 이해하는 것이 진로의 시작입니다.</span>
@@ -18,9 +18,9 @@ export default function EducationPage() {
       </section>
 
       {/* 메인 설명 섹션 */}
-      <section className="py-12 px-4">
+      <section className="py-8 sm:py-10 md:py-12 px-4">
         <div className="max-w-4xl mx-auto">
-          <div className="space-y-3 text-gray-700 text-lg font-medium" style={{ lineHeight: '140%' }}>
+          <div className="space-y-3 sm:space-y-4 text-gray-700 text-base sm:text-lg font-medium leading-relaxed">
             <p className="text-center">
               온ː숨은 청년과 학생들이 <strong className="text-gray-900">스스로의 내면을 이해하고</strong>, 자신만의 길을 설계하는 힘을 기르도록 돕습니다.
             </p>

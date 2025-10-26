@@ -2,14 +2,14 @@ import Link from 'next/link';
 
 export default function SeminarPage() {
   return (
-    <div className="min-h-screen bg-white pb-20" style={{ paddingTop: '80px' }}>
+    <div className="min-h-screen bg-white pb-12 sm:pb-20 pt-16 sm:pt-20">
       {/* 히어로 섹션 */}
-      <section className="px-4 bg-purple-50 pb-8" style={{ marginTop: '-80px', paddingTop: '80px' }}>
+      <section className="px-4 bg-purple-50 pb-6 sm:pb-8 -mt-16 sm:-mt-20 pt-16 sm:pt-20">
         <div className="max-w-4xl mx-auto text-center">
-          <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 text-center" style={{ marginTop: '80px', marginBottom: '50px' }}>
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-gray-900 text-center mt-12 sm:mt-16 md:mt-20 mb-8 sm:mb-10 md:mb-12">
             강연 및 세미나
           </h1>
-          <p className="text-center text-gray-700 text-lg font-medium mb-12 leading-relaxed">
+          <p className="text-center text-gray-700 text-base sm:text-lg font-medium mb-8 sm:mb-10 md:mb-12 leading-relaxed px-4">
             성장과 성찰을 나누는 온ː숨의 강연·세미나 시리즈.<br/>
             듣는 시간에서 생각하는 시간으로,<br/>
             <span className="text-purple-600 font-bold">숨을 트고 삶이 확장됩니다.</span>
@@ -18,9 +18,9 @@ export default function SeminarPage() {
       </section>
 
       {/* 메인 설명 섹션 */}
-      <section className="py-12 px-4">
+      <section className="py-8 sm:py-10 md:py-12 px-4">
         <div className="max-w-4xl mx-auto">
-          <div className="space-y-3 text-gray-700 text-lg font-medium" style={{ lineHeight: '140%' }}>
+          <div className="space-y-3 sm:space-y-4 text-gray-700 text-base sm:text-lg font-medium leading-relaxed">
             <p className="text-center">
               온ː숨은 <strong className="text-purple-600">'숨을 트는 순간들'</strong>을 세상과 나누기 위해 강연과 세미나를 엽니다.
             </p>

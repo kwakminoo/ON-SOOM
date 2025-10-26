@@ -52,9 +52,9 @@ const WheelPicker = ({ items, value, onChange, placeholder }: WheelPickerProps) 
   };
 
   return (
-    <div className="relative w-full h-[180px] overflow-hidden border-2 border-gray-200 rounded-xl bg-white">
+    <div className="relative w-full h-[180px] overflow-hidden border-2 border-gray-300 rounded-xl bg-white shadow-sm">
       {/* 선택 영역 표시 */}
-      <div className="absolute top-1/2 left-0 right-0 -translate-y-1/2 h-14 border-y-2 border-toss-500 bg-toss-50/30 pointer-events-none z-10" />
+      <div className="absolute top-1/2 left-0 right-0 -translate-y-1/2 h-14 border-y-2 border-toss-500 bg-toss-50/40 pointer-events-none z-10" />
       
       {/* 그라데이션 마스크 */}
       <div className="absolute top-0 left-0 right-0 h-16 bg-gradient-to-b from-white to-transparent pointer-events-none z-20" />
@@ -72,7 +72,7 @@ const WheelPicker = ({ items, value, onChange, placeholder }: WheelPickerProps) 
         }}
       >
         {items.length === 0 && placeholder && (
-          <div className="h-12 flex items-center justify-center text-gray-400 text-lg">
+          <div className="h-12 flex items-center justify-center text-gray-400 text-base font-medium">
             {placeholder}
           </div>
         )}
@@ -92,7 +92,7 @@ const WheelPicker = ({ items, value, onChange, placeholder }: WheelPickerProps) 
                 scrollSnapAlign: "center",
               }}
             >
-              <span className={`text-lg ${distance === 0 ? 'font-bold text-gray-900' : 'font-normal text-gray-600'}`}>
+              <span className={`text-lg ${distance === 0 ? 'font-extrabold text-gray-900' : 'font-medium text-gray-600'}`}>
                 {item}
               </span>
             </div>
@@ -178,24 +178,24 @@ function ApplyForm() {
   };
 
   return (
-    <div className="min-h-screen bg-white pt-24 pb-16">
+    <div className="min-h-screen bg-white pb-20" style={{ paddingTop: '80px' }}>
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* 제목 */}
-        <div className="text-center mb-12">
-          <h1 className="text-4xl md:text-5xl font-light text-gray-900 mb-4">
+        <div className="text-center" style={{ marginTop: '80px', marginBottom: '50px' }}>
+          <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-6">
             온라인 신청
           </h1>
-          <p className="text-lg text-gray-600">
+          <p className="text-lg font-medium text-gray-700">
             프로그램 참여를 위한 온라인 신청
           </p>
         </div>
 
         {/* 신청 폼 */}
         <div className="bg-white border border-gray-200 rounded-xl shadow-sm p-6 md:p-10">
-          <form onSubmit={handleSubmit} className="space-y-6">
+          <form onSubmit={handleSubmit} className="space-y-7">
             {/* 이름 입력 */}
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-base font-semibold text-gray-800 mb-3">
                 이름 <span className="text-red-500">*</span>
               </label>
               <input
@@ -203,20 +203,20 @@ function ApplyForm() {
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 placeholder="홍길동"
-                className="w-full px-4 py-3.5 border-2 border-gray-200 focus:border-toss-500 focus:ring-2 focus:ring-toss-100 focus:outline-none text-base rounded-xl transition-colors"
+                className="w-full px-4 py-4 border-2 border-gray-200 focus:border-toss-500 focus:ring-2 focus:ring-toss-100 focus:outline-none text-base font-medium rounded-xl transition-colors"
                 required
               />
             </div>
 
             {/* 성별 선택 */}
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-base font-semibold text-gray-800 mb-3">
                 성별 <span className="text-red-500">*</span>
               </label>
               <select
                 value={gender}
                 onChange={(e) => setGender(e.target.value)}
-                className="w-full px-4 py-3.5 border-2 border-gray-200 focus:border-toss-500 focus:ring-2 focus:ring-toss-100 focus:outline-none bg-white text-gray-900 text-base rounded-xl transition-colors"
+                className="w-full px-4 py-4 border-2 border-gray-200 focus:border-toss-500 focus:ring-2 focus:ring-toss-100 focus:outline-none bg-white text-gray-900 text-base font-medium rounded-xl transition-colors"
                 required
               >
                 <option value="">성별을 선택해주세요</option>
@@ -227,7 +227,7 @@ function ApplyForm() {
 
             {/* 나이 입력 */}
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-base font-semibold text-gray-800 mb-3">
                 나이 <span className="text-red-500">*</span>
               </label>
               <input
@@ -237,14 +237,14 @@ function ApplyForm() {
                 placeholder="예: 25"
                 min="1"
                 max="120"
-                className="w-full px-4 py-3.5 border-2 border-gray-200 focus:border-toss-500 focus:ring-2 focus:ring-toss-100 focus:outline-none text-base rounded-xl transition-colors"
+                className="w-full px-4 py-4 border-2 border-gray-200 focus:border-toss-500 focus:ring-2 focus:ring-toss-100 focus:outline-none text-base font-medium rounded-xl transition-colors"
                 required
               />
             </div>
 
             {/* 연락처 입력 */}
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-base font-semibold text-gray-800 mb-3">
                 연락처 <span className="text-red-500">*</span>
               </label>
               <input
@@ -252,7 +252,7 @@ function ApplyForm() {
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
                 placeholder="010-1234-5678"
-                className="w-full px-4 py-3.5 border-2 border-gray-200 focus:border-toss-500 focus:ring-2 focus:ring-toss-100 focus:outline-none text-base rounded-xl transition-colors"
+                className="w-full px-4 py-4 border-2 border-gray-200 focus:border-toss-500 focus:ring-2 focus:ring-toss-100 focus:outline-none text-base font-medium rounded-xl transition-colors"
                 pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}"
                 required
               />
@@ -260,7 +260,7 @@ function ApplyForm() {
 
             {/* 프로그램 선택 */}
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-3">
+              <label className="block text-base font-semibold text-gray-800 mb-4">
                 프로그램 선택 <span className="text-red-500">*</span>
               </label>
               <WheelPicker
@@ -273,13 +273,13 @@ function ApplyForm() {
 
             {/* 희망장소 선택 */}
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-base font-semibold text-gray-800 mb-3">
                 희망장소 <span className="text-red-500">*</span>
               </label>
               <select
                 value={center}
                 onChange={(e) => setCenter(e.target.value)}
-                className="w-full px-4 py-3.5 border-2 border-gray-200 focus:border-toss-500 focus:ring-2 focus:ring-toss-100 focus:outline-none bg-white text-gray-900 text-base rounded-xl transition-colors"
+                className="w-full px-4 py-4 border-2 border-gray-200 focus:border-toss-500 focus:ring-2 focus:ring-toss-100 focus:outline-none bg-white text-gray-900 text-base font-medium rounded-xl transition-colors"
                 required
               >
                 <option value="">희망 장소를 선택해주세요</option>
@@ -293,32 +293,32 @@ function ApplyForm() {
 
             {/* 가격 표시 */}
             {program && (
-              <div className="mt-8 p-6 bg-gray-50 rounded-xl border border-gray-200">
-                <div className="flex justify-between items-center mb-4">
-                  <span className="text-gray-700 font-medium">선택한 프로그램</span>
-                  <span className="text-gray-900 font-semibold">{program}</span>
+              <div style={{ marginTop: '32px' }} className="p-7 bg-gradient-to-br from-gray-50 to-blue-50 rounded-xl border-2 border-gray-200">
+                <div className="flex justify-between items-center mb-5">
+                  <span className="text-gray-800 font-semibold text-base">선택한 프로그램</span>
+                  <span className="text-gray-900 font-bold text-lg">{program}</span>
                 </div>
                 
-                <div className="flex justify-between items-center mb-6 pb-4 border-b border-gray-200">
-                  <span className="text-gray-700 font-medium">결제 금액</span>
+                <div className="flex justify-between items-center mb-7 pb-5 border-b-2 border-gray-200">
+                  <span className="text-gray-800 font-semibold text-base">결제 금액</span>
                   <div className="text-right">
                     {isPromoApplied && programsWithPrice[program] > 0 && (
-                      <span className="block text-sm text-gray-400 line-through mb-1">
+                      <span className="block text-base text-gray-400 line-through mb-2 font-medium">
                         {programsWithPrice[program].toLocaleString()}원
                       </span>
                     )}
-                    <span className={`text-2xl font-bold ${isPromoApplied ? 'text-toss-600' : 'text-gray-900'}`}>
+                    <span className={`text-3xl font-extrabold ${isPromoApplied ? 'text-toss-600' : 'text-gray-900'}`}>
                       {getCurrentPrice().toLocaleString()}원
                     </span>
                   </div>
                 </div>
 
                 {/* 추천코드 입력 */}
-                <div className="space-y-3">
-                  <label className="block text-sm font-medium text-gray-700">
+                <div className="space-y-4">
+                  <label className="block text-base font-semibold text-gray-800">
                     추천코드 (선택)
                   </label>
-                  <div className="flex gap-2">
+                  <div className="flex gap-3">
                     <input
                       type="text"
                       value={promoCode}
@@ -327,12 +327,12 @@ function ApplyForm() {
                         setPromoMessage("");
                       }}
                       placeholder="추천코드 입력"
-                      className="flex-1 px-4 py-3 border-2 border-gray-200 focus:border-toss-500 focus:ring-2 focus:ring-toss-100 focus:outline-none text-base rounded-xl transition-colors"
+                      className="flex-1 px-4 py-4 border-2 border-gray-200 focus:border-toss-500 focus:ring-2 focus:ring-toss-100 focus:outline-none text-base font-medium rounded-xl transition-colors"
                     />
                     <button
                       type="button"
                       onClick={handlePromoApply}
-                      className="px-6 py-3 bg-gray-900 text-white font-medium rounded-xl hover:bg-gray-800 transition-colors whitespace-nowrap"
+                      className="px-7 py-4 bg-gray-900 text-white font-bold text-base rounded-xl hover:bg-gray-800 transition-colors whitespace-nowrap"
                     >
                       적용하기
                     </button>
@@ -340,7 +340,7 @@ function ApplyForm() {
                   
                   {/* 메시지 표시 */}
                   {promoMessage && (
-                    <div className={`text-sm font-medium ${
+                    <div className={`text-base font-semibold ${
                       promoMessage.includes('적용') 
                         ? 'text-toss-600' 
                         : promoMessage.includes('확인')
@@ -357,18 +357,19 @@ function ApplyForm() {
             {/* 제출 버튼 */}
             <button
               type="submit"
-              className="w-full bg-toss-500 text-white py-4 text-base md:text-lg font-bold hover:bg-toss-600 transition-all rounded-xl mt-6 shadow-md hover:shadow-lg"
+              className="w-full bg-toss-500 text-white py-5 text-lg font-extrabold hover:bg-toss-600 transition-all rounded-xl shadow-md hover:shadow-lg"
+              style={{ marginTop: '40px' }}
             >
               신청하기
             </button>
           </form>
 
           {/* 안내 텍스트 */}
-          <div className="mt-8 pt-6 border-t border-gray-100">
-            <p className="text-center text-sm text-gray-600">
-              ⏱️ 담당자가 <span className="text-toss-600 font-medium">24시간 내</span> 연락드립니다
+          <div style={{ marginTop: '36px', paddingTop: '28px' }} className="border-t-2 border-gray-200">
+            <p className="text-center text-base font-semibold text-gray-700">
+              ⏱️ 담당자가 <span className="text-toss-600 font-extrabold">24시간 내</span> 연락드립니다
             </p>
-            <p className="text-center text-xs text-gray-500 mt-2">
+            <p className="text-center text-sm font-medium text-gray-600" style={{ marginTop: '12px' }}>
               문의사항이 있으시면 02-1234-5678로 연락주세요
             </p>
           </div>
@@ -384,8 +385,8 @@ export default function ApplyPage() {
     <Suspense fallback={
       <div className="min-h-screen bg-white pt-24 pb-16 flex items-center justify-center">
         <div className="text-center">
-          <div className="inline-block animate-spin rounded-full h-12 w-12 border-4 border-gray-200 border-t-toss-500 mb-4"></div>
-          <p className="text-gray-600">로딩 중...</p>
+          <div className="inline-block animate-spin rounded-full h-14 w-14 border-4 border-gray-200 border-t-toss-500 mb-5"></div>
+          <p className="text-lg font-semibold text-gray-700">로딩 중...</p>
         </div>
       </div>
     }>

@@ -7,55 +7,59 @@ import Link from "next/link";
 const programs = [
   {
     id: 1,
-    title: "성장 로드맵",
-    highlight: "성장 설계",
+    title: "Self Roadmap",
+    highlight: "자기 인식",
     description:
-      "진로·관계·자기 방향성을 함께 설계하는 성장형 로드맵. 매주 피드백과 과제 제공.",
+      "목표와 감정을 명확히 인식하도록 돕는 1:1 로드맵. 자기 인식과 감정 정리를 중심으로 진행합니다.",
     color: "#262627",
     hoverColor: "#3d58ac",
     textColor: "text-white",
     href: "/programs",
     image:
       "https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?w=400&h=300&fit=crop",
+    cardColor: "from-blue-50 to-indigo-50",
   },
   {
     id: 2,
-    title: "통합 성장 로드맵",
-    highlight: "장기 프로젝트",
+    title: "Self-growth Roadmap",
+    highlight: "성장 설계",
     description:
-      "청년층 대상의 장기 성장 프로젝트. 코칭+과제+팔로업 시스템을 결합해 '지속적 자기 확장'을 지원.",
+      "진로·관계·자기 방향성을 함께 설계하는 성장형 로드맵. 매주 피드백과 과제를 제공합니다.",
     color: "#262627",
     hoverColor: "#3d58ac",
     textColor: "text-white",
     href: "/programs",
     image:
       "https://images.unsplash.com/photo-1588196749597-9ff075ee6b5b?w=400&h=300&fit=crop",
+    cardColor: "from-emerald-50 to-teal-50",
   },
   {
     id: 3,
-    title: "라이프 로드맵",
+    title: "Life Roadmap",
     highlight: "회복과 치유",
     description:
-      "번아웃, 무기력, 자존감 회복을 위한 장기 로드맵. 감정일기, 리프레임 훈련 포함.",
+      "번아웃, 무기력, 자존감 회복을 위한 장기 로드맵. 감정일기와 리프레임 훈련이 포함됩니다.",
     color: "#262627",
     hoverColor: "#3d58ac",
     textColor: "text-white",
     href: "/programs",
     image:
       "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=400&h=300&fit=crop",
+    cardColor: "from-amber-50 to-orange-50",
   },
   {
     id: 4,
-    title: "워크샵 로드맵",
+    title: "Workshop Roadmap",
     highlight: "그룹 성장",
     description:
-      "4~6인이 함께 참여해 '내면 대화'와 '관계 안에서의 나'를 탐색하는 집단 성장형 워크숍.",
+      "4~6인이 함께 참여해 '내면 대화'와 '관계 안에서의 나'를 탐색하는 집단 성장형 워크숍입니다.",
     color: "#262627",
     hoverColor: "#3d58ac",
     textColor: "text-white",
     href: "/programs",
     image:
       "https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=400&h=300&fit=crop",
+    cardColor: "from-rose-50 to-pink-50",
   },
 ];
 
@@ -86,14 +90,16 @@ const ProgramSection = () => {
       position += speed;
 
       if (container) {
-        container.style.transform = `translateX(-${position}px)`;
+        // Subpixel 렌더링 방지를 위해 정수로 반올림 + GPU 가속을 위해 translate3d 사용
+        const roundedPosition = Math.round(position);
+        container.style.transform = `translate3d(-${roundedPosition}px, 0, 0)`;
 
         const cardWidth = 342; // 330px (카드 너비) + 12px (mx-1.5 양쪽)
         const totalWidth = cardWidth * programs.length;
 
         if (position >= totalWidth) {
           position = 0;
-          container.style.transform = `translateX(0)`;
+          container.style.transform = `translate3d(0, 0, 0)`;
 
           setItems((prev) => {
             const newItems = [...prev.slice(4)];
@@ -137,7 +143,16 @@ const ProgramSection = () => {
 
       {/* 무한 스크롤 컨테이너 */}
       <div className="relative overflow-hidden">
-        <div ref={scrollRef} className="flex" style={{ transition: "none" }}>
+        <div 
+          ref={scrollRef} 
+          className="flex" 
+          style={{ 
+            transition: "none",
+            willChange: "transform",
+            backfaceVisibility: "hidden",
+            perspective: 1000,
+          }}
+        >
           {items.map((program) => (
             <Link
               key={program.uniqueId}
@@ -153,6 +168,8 @@ const ProgramSection = () => {
                     hoveredId === program.uniqueId
                       ? program.hoverColor
                       : program.color,
+                  backfaceVisibility: "hidden",
+                  transform: "translateZ(0)",
                 }}
               >
                 {/* 이미지 */}
@@ -166,19 +183,35 @@ const ProgramSection = () => {
                 </div>
 
                 {/* 컨텐츠 */}
-                <div className="px-6 pt-5 pb-5 h-[220px] flex flex-col">
+                <div 
+                  className={`px-6 pt-5 pb-5 h-[220px] flex flex-col bg-gradient-to-br ${program.cardColor}`}
+                  style={{
+                    backfaceVisibility: "hidden",
+                    transform: "translateZ(0)",
+                  }}
+                >
                   {/* 작은 텍스트 (12px) */}
                   <p
-                    className={`text-xs ${program.textColor} opacity-70 mb-2`}
-                    style={{ fontSize: '12px' }}
+                    className="text-xs text-gray-600 opacity-70 mb-2"
+                    style={{ 
+                      fontSize: '12px',
+                      WebkitFontSmoothing: 'antialiased',
+                      MozOsxFontSmoothing: 'grayscale',
+                    }}
                   >
                     {program.highlight}
                   </p>
                   
                   {/* 제목 (26px) */}
                   <h3
-                    className={`font-semibold ${program.textColor} mb-4`}
-                    style={{ fontSize: '26px', lineHeight: '1.4', letterSpacing: '-0.02em' }}
+                    className="font-semibold text-gray-900 mb-4"
+                    style={{ 
+                      fontSize: '26px', 
+                      lineHeight: '1.4', 
+                      letterSpacing: '-0.02em',
+                      WebkitFontSmoothing: 'antialiased',
+                      MozOsxFontSmoothing: 'grayscale',
+                    }}
                   >
                     {program.title}
                   </h3>
@@ -188,8 +221,14 @@ const ProgramSection = () => {
                   
                   {/* 설명 (16px) - 아래 정렬 */}
                   <p
-                    className={`${program.textColor} opacity-90 leading-relaxed`}
-                    style={{ fontSize: '16px', lineHeight: '1.4', letterSpacing: '-0.02em' }}
+                    className="text-gray-700 opacity-90 leading-relaxed"
+                    style={{ 
+                      fontSize: '16px', 
+                      lineHeight: '1.4', 
+                      letterSpacing: '-0.02em',
+                      WebkitFontSmoothing: 'antialiased',
+                      MozOsxFontSmoothing: 'grayscale',
+                    }}
                   >
                     {program.description}
                   </p>

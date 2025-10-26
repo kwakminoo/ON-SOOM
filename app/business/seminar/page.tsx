@@ -2,11 +2,11 @@ import Link from 'next/link';
 
 export default function SeminarPage() {
   return (
-    <div className="min-h-screen bg-white pb-16" style={{ paddingTop: '80px' }}>
+    <div className="min-h-screen bg-white pb-20" style={{ paddingTop: '80px' }}>
       {/* 히어로 섹션 */}
-      <section className="px-4 bg-purple-50 pb-12">
+      <section className="px-4 bg-purple-50 pb-8" style={{ marginTop: '-80px', paddingTop: '80px' }}>
         <div className="max-w-4xl mx-auto text-center">
-          <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-16" style={{ marginTop: '100px' }}>
+          <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 text-center" style={{ marginTop: '80px', marginBottom: '50px' }}>
             강연 및 세미나
           </h1>
           <p className="text-center text-gray-700 text-lg font-medium mb-12 leading-relaxed">
@@ -20,20 +20,21 @@ export default function SeminarPage() {
       {/* 메인 설명 섹션 */}
       <section className="py-12 px-4">
         <div className="max-w-4xl mx-auto">
-          <div className="space-y-3 text-gray-700 text-lg font-medium" style={{ lineHeight: '18px' }}>
+          <div className="space-y-3 text-gray-700 text-lg font-medium" style={{ lineHeight: '140%' }}>
             <p className="text-center">
               온ː숨은 <strong className="text-purple-600">'숨을 트는 순간들'</strong>을 세상과 나누기 위해 강연과 세미나를 엽니다.
             </p>
             <p className="text-center">
-              리더십, 회복탄력성, 마음 성장, 관계의 예술 등 다양한 주제를 다루며,
+              리더십, 회복탄력성, 마음 성장, 관계의 예술 등 다양한 주제를 다루며,<br/>
               각 분야의 코치와 심리 전문가들이 <strong className="text-gray-900">깨어 있는 삶의 태도</strong>를 이야기합니다.
             </p>
             <p className="text-center">
-              모든 강연은 듣는 사람의 일상 속에 변화를 불러일으키는 <strong className="text-gray-900">'성찰의 장'</strong>이 되도록 설계됩니다.
+              모든 강연은 듣는 사람의 일상 속에 변화를 불러일으키는 <strong className="text-gray-900">'성찰의 장'</strong>이 되도록 설계됩니다.<br/>
               온ː숨의 무대는 단순한 강연이 아니라, <strong className="text-purple-600">함께 생각하고 숨 쉬는 시간</strong>입니다.
             </p>
             <p className="text-center">
-              조직과 개인이 서로의 경험을 통해 성장할 때, 사회는 조금 더 따뜻해집니다.
+              조직과 개인이 서로의 경험을 통해 성장할 때,<br/>
+              사회는 조금 더 따뜻해집니다.
             </p>
           </div>
         </div>

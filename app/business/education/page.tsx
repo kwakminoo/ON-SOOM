@@ -2,11 +2,11 @@ import Link from 'next/link';
 
 export default function EducationPage() {
   return (
-    <div className="min-h-screen bg-white pb-16" style={{ paddingTop: '80px' }}>
+    <div className="min-h-screen bg-white pb-20" style={{ paddingTop: '80px' }}>
       {/* 히어로 섹션 */}
-      <section className="px-4 bg-green-50 pb-12">
+      <section className="px-4 bg-green-50 pb-8" style={{ marginTop: '-80px', paddingTop: '80px' }}>
         <div className="max-w-4xl mx-auto text-center">
-          <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-16" style={{ marginTop: '100px' }}>
+          <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 text-center" style={{ marginTop: '80px', marginBottom: '50px' }}>
             교육기관 상담
           </h1>
           <p className="text-center text-gray-700 text-lg font-medium mb-12 leading-relaxed">
@@ -20,19 +20,21 @@ export default function EducationPage() {
       {/* 메인 설명 섹션 */}
       <section className="py-12 px-4">
         <div className="max-w-4xl mx-auto">
-          <div className="space-y-3 text-gray-700 text-lg font-medium" style={{ lineHeight: '18px' }}>
+          <div className="space-y-3 text-gray-700 text-lg font-medium" style={{ lineHeight: '140%' }}>
             <p className="text-center">
               온ː숨은 청년과 학생들이 <strong className="text-gray-900">스스로의 내면을 이해하고</strong>, 자신만의 길을 설계하는 힘을 기르도록 돕습니다.
             </p>
             <p className="text-center">
-              학교·대학·청년단체와 협력하여 <strong className="text-gray-900">진로·자존감·관계성장</strong> 중심의 코칭 프로그램을 제공합니다.
+              학교·대학·청년단체와 협력하여 <strong className="text-gray-900">진로·자존감·관계성장</strong> 중심의 코칭 프로그램을 제공합니다.<br/>
               단순한 상담이 아니라, <strong className="text-green-600">'왜 공부하는가', '어떤 사람이 되고 싶은가'</strong>를 함께 탐구하는 성찰형 커리큘럼입니다.
             </p>
             <p className="text-center">
-              학생들이 비교와 불안을 넘어 <strong className="text-gray-900">자기 가능성의 숨결</strong>을 믿게 하는 것, 그것이 온ː숨의 교육 철학입니다.
+              학생들이 비교와 불안을 넘어 <strong className="text-gray-900">자기 가능성의 숨결</strong>을 믿게 하는 것,<br/>
+              그것이 온ː숨의 교육 철학입니다.
             </p>
             <p className="text-center">
-              우리는 <strong className="text-green-600">한 세대가 자기 자신과의 관계를 회복</strong>할 때, 사회 전체의 성장 기반이 단단해진다고 믿습니다.
+              우리는 <strong className="text-green-600">한 세대가 자기 자신과의 관계를 회복</strong>할 때,<br/>
+              사회 전체의 성장 기반이 단단해진다고 믿습니다.
             </p>
           </div>
         </div>

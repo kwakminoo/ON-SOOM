@@ -50,12 +50,12 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 pt-24 pb-16 flex items-center justify-center">
+    <div className="min-h-screen bg-gray-50 pb-20 flex items-center justify-center" style={{ paddingTop: '80px' }}>
       <div className="max-w-md w-full mx-auto px-4 sm:px-6 lg:px-8">
         {/* 로고/제목 */}
-        <div className="text-center mb-8">
-          <h1 className="text-3xl font-light text-gray-900 mb-2">로그인</h1>
-          <p className="text-gray-600">ON ː SOOM에 오신 것을 환영합니다</p>
+        <div className="text-center mb-10">
+          <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-6">로그인</h1>
+          <p className="text-lg font-medium text-gray-700">ON ː SOOM에 오신 것을 환영합니다</p>
         </div>
 
         {/* 로그인 폼 */}

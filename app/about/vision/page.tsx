@@ -2,10 +2,10 @@ import Image from "next/image";
 
 export default function VisionPage() {
   return (
-    <div className="min-h-screen bg-white pb-16" style={{ paddingTop: '80px' }}>
+    <div className="min-h-screen bg-white pb-20" style={{ paddingTop: '80px' }}>
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* 제목 */}
-        <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-16 text-center" style={{ marginTop: '100px' }}>
+        <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 text-center" style={{ marginTop: '80px', marginBottom: '50px' }}>
           기업 이념
         </h1>
 

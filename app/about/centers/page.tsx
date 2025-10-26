@@ -58,10 +58,10 @@ export default function CentersPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-white pb-16" style={{ paddingTop: '80px' }}>
+    <div className="min-h-screen bg-white pb-20" style={{ paddingTop: '80px' }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* 제목 */}
-        <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-4 text-center" style={{ marginTop: '100px' }}>
+        <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 text-center" style={{ marginTop: '80px', marginBottom: '50px' }}>
           온숨의 공간
         </h1>
         <p className="text-center text-gray-600 mb-16 font-medium">

@@ -2,9 +2,14 @@
 
 const KakaoFloatingButton = () => {
   const handleClick = () => {
-    // 나중에 카카오톡 1대1 채팅 URL로 변경
-    console.log("카카오톡 버튼 클릭");
-    // window.open("카카오톡 채팅 URL", "_blank");
+    // 카카오톡 채널 1:1 채팅 URL
+    // 방법 1: 직접 채팅방으로 이동 (권장)
+    const kakaoChannelUrl = process.env.NEXT_PUBLIC_KAKAO_CHANNEL_URL || "http://pf.kakao.com/_xjAxexj/chat";
+    
+    // 방법 2: 채널 홈으로 이동 후 채팅 버튼 클릭 유도
+    // const kakaoChannelUrl = process.env.NEXT_PUBLIC_KAKAO_CHANNEL_URL || "http://pf.kakao.com/_xjAxexj";
+    
+    window.open(kakaoChannelUrl, "_blank");
   };
 
   return (
@@ -35,4 +40,5 @@ const KakaoFloatingButton = () => {
 };
 
 export default KakaoFloatingButton;
+
 

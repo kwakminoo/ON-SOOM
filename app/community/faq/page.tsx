@@ -74,14 +74,14 @@ export default function CommunityFAQPage() {
   };
 
   return (
-    <div className="min-h-screen bg-white pt-24 pb-16">
+    <div className="min-h-screen bg-white pb-20" style={{ paddingTop: '80px' }}>
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* 제목 */}
-        <div className="text-center mb-12">
-          <h1 className="text-4xl md:text-5xl font-light text-gray-900 mb-4">
+        <div className="text-center" style={{ marginTop: '80px', marginBottom: '50px' }}>
+          <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-6">
             자주 묻는 질문
           </h1>
-          <p className="text-gray-600">
+          <p className="text-lg font-medium text-gray-700">
             궁금하신 내용을 찾아보세요
           </p>
         </div>

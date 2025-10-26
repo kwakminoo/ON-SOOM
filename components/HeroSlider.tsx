@@ -19,7 +19,7 @@ const bannerSlides = [
     buttonImage: "/pc1_botton.png",
     title: "온숨심리상담센터 - 프로그램 안내",
     link: "/programs",
-    buttonPosition: "right-[5%] bottom-[9%] md:right-[6%] md:bottom-[11%] lg:right-[7%] lg:bottom-[13%] xl:right-[8%] xl:bottom-[14%]", // 반응형 위치, 더 아래로
+    buttonPosition: "right-[3%] bottom-[9%] md:right-[4%] md:bottom-[11%] lg:right-[5%] lg:bottom-[13%] xl:right-[6%] xl:bottom-[14%]", // 왼쪽으로 약간 이동
     buttonSize: "w-[18vw] min-w-[180px] max-w-[400px]", // 화면 너비의 18%, 최소 180px, 최대 400px
   },
   {
@@ -29,7 +29,7 @@ const bannerSlides = [
     buttonImage: "/pc2_botton.png",
     title: "온숨심리상담센터 - 후기",
     link: "#testimonials",
-    buttonPosition: "left-[5%] bottom-[14%] md:left-[6%] md:bottom-[16%] lg:left-[7%] lg:bottom-[18%] xl:left-[8%] xl:bottom-[19%]", // 왼쪽 정렬, 아래로
+    buttonPosition: "left-[2%] bottom-[14%] md:left-[3%] md:bottom-[16%] lg:left-[4%] lg:bottom-[18%] xl:left-[5%] xl:bottom-[19%]", // 더 왼쪽으로 이동
     buttonSize: "w-[19vw] min-w-[190px] max-w-[430px]", // 화면 너비의 19%, 최소 190px, 최대 430px
   },
   {

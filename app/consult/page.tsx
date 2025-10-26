@@ -157,7 +157,7 @@ export default function ConsultPage() {
         <div className="max-w-4xl mx-auto px-6 sm:px-8 lg:px-8">
           {/* 페이지 헤더 */}
           <div className="text-center mb-8 sm:mb-10 md:mb-12 lg:mb-16">
-            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-light text-gray-900 mb-3 sm:mb-4 tracking-tight">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-light text-gray-900 mb-3 sm:mb-4 tracking-tight" style={{ marginTop: '80px', marginBottom: '50px' }}>
               프로그램 신청하기
             </h1>
             <p className="text-gray-600 text-sm sm:text-base md:text-lg">

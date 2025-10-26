@@ -2,12 +2,12 @@ import Link from "next/link";
 
 export default function SignupPage() {
   return (
-    <div className="min-h-screen bg-gray-50 pt-24 pb-16">
+    <div className="min-h-screen bg-gray-50 pb-20" style={{ paddingTop: '80px' }}>
       <div className="max-w-md w-full mx-auto px-4 sm:px-6 lg:px-8">
         {/* 로고/제목 */}
-        <div className="text-center mb-8">
-          <h1 className="text-3xl font-light text-gray-900 mb-2">회원가입</h1>
-          <p className="text-gray-600">ON ː SOOM과 함께 성장을 시작하세요</p>
+        <div className="text-center" style={{ marginTop: '80px', marginBottom: '50px' }}>
+          <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-6">회원가입</h1>
+          <p className="text-lg font-medium text-gray-700">ON ː SOOM과 함께 성장을 시작하세요</p>
         </div>
 
         {/* 회원가입 폼 */}

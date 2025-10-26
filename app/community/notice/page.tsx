@@ -535,13 +535,13 @@ export default function NoticePage() {
   );
 
   return (
-    <div className="min-h-screen bg-white pt-24 pb-16">
+    <div className="min-h-screen bg-white pb-20" style={{ paddingTop: '80px' }}>
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="mb-12">
-          <h1 className="text-4xl md:text-5xl font-light text-gray-900 mb-4 text-center">
+        <div className="text-center" style={{ marginTop: '80px', marginBottom: '50px' }}>
+          <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-6">
             공지사항
           </h1>
-          <p className="text-center text-gray-600">
+          <p className="text-center text-lg font-medium text-gray-700">
             ON ː SOOM의 소식을 확인하세요
           </p>
         </div>

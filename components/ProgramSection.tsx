@@ -143,14 +143,15 @@ const ProgramSection = () => {
 
       {/* 무한 스크롤 컨테이너 */}
       <div className="relative overflow-hidden">
-        <div 
-          ref={scrollRef} 
-          className="flex" 
-          style={{ 
+        <div
+          ref={scrollRef}
+          className="flex"
+          style={{
             transition: "none",
             willChange: "transform",
             backfaceVisibility: "hidden",
             perspective: 1000,
+            paddingBottom: 80,
           }}
         >
           {items.map((program) => (
@@ -183,7 +184,7 @@ const ProgramSection = () => {
                 </div>
 
                 {/* 컨텐츠 */}
-                <div 
+                <div
                   className={`px-6 pt-5 pb-5 h-[220px] flex flex-col bg-gradient-to-br ${program.cardColor}`}
                   style={{
                     backfaceVisibility: "hidden",
@@ -193,41 +194,41 @@ const ProgramSection = () => {
                   {/* 작은 텍스트 (12px) */}
                   <p
                     className="text-xs text-gray-600 opacity-70 mb-2"
-                    style={{ 
-                      fontSize: '12px',
-                      WebkitFontSmoothing: 'antialiased',
-                      MozOsxFontSmoothing: 'grayscale',
+                    style={{
+                      fontSize: "12px",
+                      WebkitFontSmoothing: "antialiased",
+                      MozOsxFontSmoothing: "grayscale",
                     }}
                   >
                     {program.highlight}
                   </p>
-                  
+
                   {/* 제목 (26px) */}
                   <h3
                     className="font-semibold text-gray-900 mb-4"
-                    style={{ 
-                      fontSize: '26px', 
-                      lineHeight: '1.4', 
-                      letterSpacing: '-0.02em',
-                      WebkitFontSmoothing: 'antialiased',
-                      MozOsxFontSmoothing: 'grayscale',
+                    style={{
+                      fontSize: "26px",
+                      lineHeight: "1.4",
+                      letterSpacing: "-0.02em",
+                      WebkitFontSmoothing: "antialiased",
+                      MozOsxFontSmoothing: "grayscale",
                     }}
                   >
                     {program.title}
                   </h3>
-                  
+
                   {/* 공간 확보 */}
                   <div className="flex-grow"></div>
-                  
+
                   {/* 설명 (16px) - 아래 정렬 */}
                   <p
                     className="text-gray-700 opacity-90 leading-relaxed"
-                    style={{ 
-                      fontSize: '16px', 
-                      lineHeight: '1.4', 
-                      letterSpacing: '-0.02em',
-                      WebkitFontSmoothing: 'antialiased',
-                      MozOsxFontSmoothing: 'grayscale',
+                    style={{
+                      fontSize: "16px",
+                      lineHeight: "1.4",
+                      letterSpacing: "-0.02em",
+                      WebkitFontSmoothing: "antialiased",
+                      MozOsxFontSmoothing: "grayscale",
                     }}
                   >
                     {program.description}

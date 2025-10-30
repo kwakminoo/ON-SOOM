@@ -13,12 +13,12 @@ const pretendard = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "ON:SOOM - 2030 세대를 위한 심리상담",
-  description: "2030 세대의 마음 건강을 위한 전문 심리상담 서비스. 온라인/오프라인 상담, 심리검사, 커플/가족 상담을 제공합니다.",
-  keywords: "심리상담, 2030상담, 청년상담, 커플상담, 심리검사, 온라인상담",
+  title: "ON:SOOM",
+  description: "개인 및 기업 교육, 교육기관 강사 파견을 제공하는 교육 컨설팅 전문 기업",
+  keywords: "교육컨설팅, 기업교육, 개인교육, 강사파견",
   openGraph: {
     title: "ON:SOOM",
-    description: "2030 세대의 마음 건강을 위한 전문 심리상담 서비스",
+    description: "개인 및 기업 교육, 교육기관 강사 파견을 제공하는 교육 컨설팅 전문 기업",
     type: "website",
   },
 };

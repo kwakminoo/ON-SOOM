@@ -257,7 +257,7 @@ export default function ConsultPage() {
                   <option value="홍대 1호점">홍대 1호점</option>
                   <option value="홍대 2호점">홍대 2호점</option>
                   <option value="구로점">구로점</option>
-                  <option value="온라인">온라인</option>
+                  <option value="기타">기타</option>
                 </select>
               </div>
 

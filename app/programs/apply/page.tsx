@@ -127,7 +127,7 @@ function ApplyForm() {
     "Self Roadmap": 80000,
     "Self-growth Roadmap": 400000,
     "Life Roadmap": 650000,
-    "Life-growth Roadmap": 1000000,
+    "Life-growth Roadmap": 3000000,
     "Workshop Roadmap": 40000,
   };
 

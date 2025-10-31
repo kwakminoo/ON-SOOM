@@ -34,7 +34,7 @@ export default function ProgramsPage() {
     },
     {
       title: "Life-growth Roadmap",
-      subtitle: "3개월 과정 • 1,000,000원",
+      subtitle: "3개월 과정 • 3,000,000원",
       description:
         "청년층 대상 장기 성장 프로젝트. 코칭+과제+팔로업 시스템을 결합해 지속적 자기 확장을 지원합니다.",
       icon: "🚀",

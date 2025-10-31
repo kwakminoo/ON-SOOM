@@ -78,7 +78,7 @@ const TestimonialSection = () => {
             후기
           </h2>
           <p className="text-gray-600 text-sm sm:text-base md:text-lg max-w-2xl">
-            상담을 통해 변화를 경험한 2030 세대의 이야기
+            코칭을 통해 변화를 경험한 고객들의 이야기
           </p>
         </div>
 

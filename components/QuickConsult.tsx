@@ -13,7 +13,7 @@ const QuickConsult = () => {
     "홍대 1호",
     "홍대 2호",
     "구로",
-    "온라인상담",
+    "기타",
   ];
 
   const handleSubmit = (e: React.FormEvent) => {

@@ -1,5 +1,39 @@
 [
   {
+    "id": 3,
+    "category": "일반",
+    "title": "숫자 테스ㅡ트",
+    "content": "1",
+    "date": "2025.11.04",
+    "author": "관리자",
+    "views": 0,
+    "badge": "신규",
+    "badgeColor": "bg-blue-100 text-blue-600",
+    "isNotice": false,
+    "files": []
+  },
+  {
+    "id": 2,
+    "category": "일반",
+    "title": "이미지 테스트",
+    "content": "dlawll xptmsxm",
+    "date": "2025.11.04",
+    "author": "관리자",
+    "views": 0,
+    "badge": "신규",
+    "badgeColor": "bg-blue-100 text-blue-600",
+    "isNotice": false,
+    "files": [
+      {
+        "filename": "GooRo_1762263816272.svg",
+        "originalName": "GooRo.svg",
+        "size": 26019,
+        "mimetype": "image/svg+xml",
+        "url": "/uploads/GooRo_1762263816272.svg"
+      }
+    ]
+  },
+  {
     "id": 1,
     "category": "일반",
     "title": "TEST",

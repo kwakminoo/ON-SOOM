@@ -553,7 +553,6 @@ export default function NoticePage() {
   // 파일 업로드 상태
   const [uploadingFiles, setUploadingFiles] = useState(false);
   const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
-
   // 로그인 사용자 확인
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
@@ -591,7 +590,6 @@ export default function NoticePage() {
       window.removeEventListener("boardNavigation", handleBoardNavigation);
     };
   }, []);
-
   const fetchPosts = async () => {
     try {
       const response = await fetch("/api/admin/posts");
@@ -677,7 +675,6 @@ export default function NoticePage() {
     const i = Math.floor(Math.log(bytes) / Math.log(k));
     return Math.round(bytes / Math.pow(k, i) * 100) / 100 + " " + sizes[i];
   };
-
   // 글 작성 제출
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -858,10 +855,9 @@ export default function NoticePage() {
               <div className="bg-gray-50 border-b border-gray-200">
                 <div className="grid grid-cols-12 gap-4 px-6 py-3 text-sm font-medium text-gray-700">
                   <div className="col-span-1 text-center">번호</div>
-                  <div className="col-span-6">제목</div>
+                  <div className="col-span-8">제목</div>
                   <div className="col-span-2 text-center">작성자</div>
-                  <div className="col-span-2 text-center">작성일</div>
-                  <div className="col-span-1 text-center">조회</div>
+                  <div className="col-span-1 text-center">작성일</div>
                 </div>
               </div>
 
@@ -879,26 +875,16 @@ export default function NoticePage() {
                         공지
                       </span>
                     </div>
-                    <div className="col-span-6">
-                      <div className="flex items-center gap-2">
-                        <span className="text-sm font-medium text-gray-900 hover:text-orange-600 transition-colors">
-                          {notice.title}
-                        </span>
-                        <span
-                          className={`inline-block px-2 py-1 rounded text-xs font-medium ${notice.badgeColor}`}
-                        >
-                          {notice.badge}
-                        </span>
-                      </div>
+                    <div className="col-span-8">
+                      <span className="text-sm font-medium text-gray-900 hover:text-orange-600 transition-colors">
+                        {notice.title}
+                      </span>
                     </div>
                     <div className="col-span-2 text-center text-sm text-gray-600">
                       {notice.author}
                     </div>
-                    <div className="col-span-2 text-center text-sm text-gray-600">
-                      {notice.date}
-                    </div>
                     <div className="col-span-1 text-center text-sm text-gray-600">
-                      {notice.views}
+                      {notice.date}
                     </div>
                   </div>
                 ))}
@@ -918,28 +904,18 @@ export default function NoticePage() {
                       className="grid grid-cols-12 gap-4 px-6 py-4 hover:bg-gray-50 cursor-pointer transition-colors"
                     >
                       <div className="col-span-1 text-center text-sm text-gray-600">
-                        {filteredGeneralPosts.length - index}
+                        {index + 1}
                       </div>
-                      <div className="col-span-6">
-                        <div className="flex items-center gap-2">
-                          <span className="text-sm font-medium text-gray-900 hover:text-toss-600 transition-colors">
-                            {post.title}
-                          </span>
-                          <span
-                            className={`inline-block px-2 py-1 rounded text-xs font-medium ${post.badgeColor}`}
-                          >
-                            {post.badge}
-                          </span>
-                        </div>
+                      <div className="col-span-8">
+                        <span className="text-sm font-medium text-gray-900 hover:text-toss-600 transition-colors">
+                          {post.title}
+                        </span>
                       </div>
                       <div className="col-span-2 text-center text-sm text-gray-600">
                         {post.author}
                       </div>
-                      <div className="col-span-2 text-center text-sm text-gray-600">
-                        {post.date}
-                      </div>
                       <div className="col-span-1 text-center text-sm text-gray-600">
-                        {post.views}
+                        {post.date}
                       </div>
                     </div>
                   ))
@@ -975,18 +951,6 @@ export default function NoticePage() {
           <div className="bg-white border border-gray-200 rounded-xl overflow-hidden">
             {/* 게시글 헤더 */}
             <div className="border-b border-gray-200 px-6 md:px-10 py-8 bg-gray-50">
-              {/* 배지와 카테고리 */}
-              <div className="flex items-center gap-2 mb-4">
-                <span
-                  className={`inline-block px-3 py-1 rounded-full text-xs font-medium ${selectedNoticeData.badgeColor}`}
-                >
-                  {selectedNoticeData.badge}
-                </span>
-                <span className="text-sm text-gray-500">
-                  {selectedNoticeData.category}
-                </span>
-              </div>
-
               {/* 제목 */}
               <h2 className="text-2xl md:text-3xl font-medium text-gray-900 mb-4">
                 {selectedNoticeData.title}
@@ -1026,29 +990,6 @@ export default function NoticePage() {
                     />
                   </svg>
                   {selectedNoticeData.date}
-                </span>
-                <span>•</span>
-                <span className="flex items-center gap-1">
-                  <svg
-                    className="w-4 h-4"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
-                    />
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
-                    />
-                  </svg>
-                  {selectedNoticeData.views.toLocaleString()}
                 </span>
               </div>
             </div>
@@ -1129,8 +1070,8 @@ export default function NoticePage() {
                       </button>
                     ))}
                   </div>
-                </div>
-              )}
+                  </div>
+                )}
             </div>
 
             {/* 하단 버튼 */}

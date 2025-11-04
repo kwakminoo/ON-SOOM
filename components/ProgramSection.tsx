@@ -9,8 +9,7 @@ const programs = [
     id: 1,
     title: "Self Roadmap",
     highlight: "자기 인식",
-    description:
-      "목표와 감정을 명확히 인식하도록 돕는 1:1 로드맵. 자기 인식과 감정 정리를 중심으로 진행합니다.",
+    description: "현상 인지와 단기 목표 설정을 중심으로 진행합니다.",
     color: "#262627",
     hoverColor: "#3d58ac",
     textColor: "text-white",
@@ -22,9 +21,9 @@ const programs = [
   {
     id: 2,
     title: "Self-growth Roadmap",
-    highlight: "성장 설계",
+    highlight: "성장",
     description:
-      "진로·관계·자기 방향성을 함께 설계하는 성장형 로드맵. 매주 피드백과 과제를 제공합니다.",
+      "목표를 명확히 인식하도록 돕는 로드맵.\n 다양한 자기 인지를 목표로 진행됩니다.",
     color: "#262627",
     hoverColor: "#3d58ac",
     textColor: "text-white",
@@ -36,9 +35,8 @@ const programs = [
   {
     id: 3,
     title: "Life Roadmap",
-    highlight: "회복과 치유",
-    description:
-      "번아웃, 무기력, 자존감 회복을 위한 장기 로드맵. 감정일기와 리프레임 훈련이 포함됩니다.",
+    highlight: "설계",
+    description: "미래의 방향성을 함께 설계하기 위한 성장형 로드맵.",
     color: "#262627",
     hoverColor: "#3d58ac",
     textColor: "text-white",
@@ -185,7 +183,7 @@ const ProgramSection = () => {
 
                 {/* 컨텐츠 */}
                 <div
-                  className={`px-6 pt-5 pb-5 h-[220px] flex flex-col bg-gradient-to-br ${program.cardColor}`}
+                  className="px-6 pt-5 pb-5 h-[220px] flex flex-col"
                   style={{
                     backfaceVisibility: "hidden",
                     transform: "translateZ(0)",
@@ -193,9 +191,10 @@ const ProgramSection = () => {
                 >
                   {/* 작은 텍스트 (12px) */}
                   <p
-                    className="text-xs text-gray-600 opacity-70 mb-2"
+                    className="text-xs opacity-70 mb-2"
                     style={{
                       fontSize: "12px",
+                      color: "#ffffff",
                       WebkitFontSmoothing: "antialiased",
                       MozOsxFontSmoothing: "grayscale",
                     }}
@@ -205,11 +204,12 @@ const ProgramSection = () => {
 
                   {/* 제목 (26px) */}
                   <h3
-                    className="font-semibold text-gray-900 mb-4"
+                    className="font-semibold mb-4"
                     style={{
                       fontSize: "26px",
                       lineHeight: "1.4",
                       letterSpacing: "-0.02em",
+                      color: "#ffffff",
                       WebkitFontSmoothing: "antialiased",
                       MozOsxFontSmoothing: "grayscale",
                     }}
@@ -222,11 +222,12 @@ const ProgramSection = () => {
 
                   {/* 설명 (16px) - 아래 정렬 */}
                   <p
-                    className="text-gray-700 opacity-90 leading-relaxed"
+                    className="opacity-90 leading-relaxed"
                     style={{
                       fontSize: "16px",
                       lineHeight: "1.4",
                       letterSpacing: "-0.02em",
+                      color: "#ffffff",
                       WebkitFontSmoothing: "antialiased",
                       MozOsxFontSmoothing: "grayscale",
                     }}

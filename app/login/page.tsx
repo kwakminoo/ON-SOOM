@@ -34,7 +34,7 @@ export default function LoginPage() {
 
       // 로그인 성공 - localStorage에 사용자 정보 저장
       localStorage.setItem("user", JSON.stringify(data.data));
-      
+
       // 관리자면 관리자 페이지로, 일반 사용자면 홈으로
       if (data.data.role === "admin") {
         router.push("/admin/board");
@@ -54,8 +54,12 @@ export default function LoginPage() {
       <div className="max-w-md w-full mx-auto px-4 sm:px-6 lg:px-8">
         {/* 로고/제목 */}
         <div className="text-center mb-8 sm:mb-10">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-gray-900 mb-4 sm:mb-6">로그인</h1>
-          <p className="text-base sm:text-lg font-medium text-gray-700">ON ː SOOM에 오신 것을 환영합니다</p>
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-gray-900 mb-4 sm:mb-6">
+            로그인
+          </h1>
+          <p className="text-base sm:text-lg font-medium text-gray-700">
+            ON ː SOOM에 오신 것을 환영합니다
+          </p>
         </div>
 
         {/* 로그인 폼 */}
@@ -69,7 +73,10 @@ export default function LoginPage() {
             )}
 
             <div>
-              <label htmlFor="username" className="block text-sm font-medium text-gray-700 mb-2">
+              <label
+                htmlFor="username"
+                className="block text-sm font-medium text-gray-700 mb-2"
+              >
                 아이디
               </label>
               <input
@@ -85,7 +92,10 @@ export default function LoginPage() {
             </div>
 
             <div>
-              <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-2">
+              <label
+                htmlFor="password"
+                className="block text-sm font-medium text-gray-700 mb-2"
+              >
                 비밀번호
               </label>
               <input
@@ -102,10 +112,18 @@ export default function LoginPage() {
 
             <div className="flex items-center justify-between">
               <label className="flex items-center">
-                <input type="checkbox" className="rounded border-gray-300 text-gray-900 focus:ring-gray-900" />
-                <span className="ml-2 text-sm text-gray-600">로그인 상태 유지</span>
+                <input
+                  type="checkbox"
+                  className="rounded border-gray-300 text-gray-900 focus:ring-gray-900"
+                />
+                <span className="ml-2 text-sm text-gray-600">
+                  로그인 상태 유지
+                </span>
               </label>
-              <Link href="/forgot-password" className="text-sm text-gray-600 hover:text-gray-900">
+              <Link
+                href="/forgot-password"
+                className="text-sm text-gray-600 hover:text-gray-900"
+              >
                 비밀번호 찾기
               </Link>
             </div>
@@ -119,19 +137,16 @@ export default function LoginPage() {
             </button>
           </form>
 
-          <div className="mt-6 text-center">
+          {/* <div className="mt-6 text-center">
             <p className="text-sm text-gray-600">
               계정이 없으신가요?{" "}
               <Link href="/signup" className="text-gray-900 font-medium hover:underline">
                 회원가입
               </Link>
             </p>
-          </div>
+          </div> */}
         </div>
-
       </div>
     </div>
   );
 }
-
-

@@ -11,7 +11,12 @@ interface WheelPickerProps {
   placeholder?: string;
 }
 
-const WheelPicker = ({ items, value, onChange, placeholder }: WheelPickerProps) => {
+const WheelPicker = ({
+  items,
+  value,
+  onChange,
+  placeholder,
+}: WheelPickerProps) => {
   const scrollRef = useRef<HTMLDivElement>(null);
   const [selectedIndex, setSelectedIndex] = useState(0);
 
@@ -36,7 +41,7 @@ const WheelPicker = ({ items, value, onChange, placeholder }: WheelPickerProps) 
       const scrollTop = scrollRef.current.scrollTop;
       const index = Math.round(scrollTop / itemHeight);
       const clampedIndex = Math.max(0, Math.min(index, items.length - 1));
-      
+
       if (clampedIndex !== selectedIndex) {
         setSelectedIndex(clampedIndex);
         onChange(items[clampedIndex]);
@@ -55,7 +60,7 @@ const WheelPicker = ({ items, value, onChange, placeholder }: WheelPickerProps) 
     <div className="relative w-full h-[180px] overflow-hidden border-2 border-gray-300 rounded-xl bg-white shadow-sm">
       {/* 선택 영역 표시 */}
       <div className="absolute top-1/2 left-0 right-0 -translate-y-1/2 h-14 border-y-2 border-toss-500 bg-toss-50/40 pointer-events-none z-10" />
-      
+
       {/* 그라데이션 마스크 */}
       <div className="absolute top-0 left-0 right-0 h-16 bg-gradient-to-b from-white to-transparent pointer-events-none z-20" />
       <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-white to-transparent pointer-events-none z-20" />
@@ -92,7 +97,13 @@ const WheelPicker = ({ items, value, onChange, placeholder }: WheelPickerProps) 
                 scrollSnapAlign: "center",
               }}
             >
-              <span className={`text-lg ${distance === 0 ? 'font-extrabold text-gray-900' : 'font-medium text-gray-600'}`}>
+              <span
+                className={`text-lg ${
+                  distance === 0
+                    ? "font-extrabold text-gray-900"
+                    : "font-medium text-gray-600"
+                }`}
+              >
                 {item}
               </span>
             </div>
@@ -116,12 +127,7 @@ function ApplyForm() {
   const [isPromoApplied, setIsPromoApplied] = useState(false);
   const [promoMessage, setPromoMessage] = useState("");
 
-  const centers = [
-    "홍대 1호",
-    "홍대 2호",
-    "구로",
-    "기타",
-  ];
+  const centers = ["홍대 1호", "홍대 2호", "구로", "기타"];
 
   const programsWithPrice: { [key: string]: number } = {
     "Self Roadmap": 80000,
@@ -160,14 +166,16 @@ function ApplyForm() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (!program) {
       alert("프로그램을 선택해주세요.");
       return;
     }
-    
+
     const finalPrice = getCurrentPrice();
-    alert(`신청이 접수되었습니다.\n\n이름: ${name}\n성별: ${gender}\n나이: ${age}\n연락처: ${phone}\n희망장소: ${center}\n프로그램: ${program}\n결제금액: ${finalPrice.toLocaleString()}원\n\n담당자가 24시간 내 연락드리겠습니다.`);
+    alert(
+      `신청이 접수되었습니다.\n\n이름: ${name}\n성별: ${gender}\n나이: ${age}\n연락처: ${phone}\n희망장소: ${center}\n프로그램: ${program}\n결제금액: ${finalPrice.toLocaleString()}원\n\n담당자가 24시간 내 연락드리겠습니다.`
+    );
   };
 
   const handleProgramChange = (selectedProgram: string) => {
@@ -293,21 +301,34 @@ function ApplyForm() {
 
             {/* 가격 표시 */}
             {program && (
-              <div style={{ marginTop: '32px' }} className="p-7 bg-gradient-to-br from-gray-50 to-blue-50 rounded-xl border-2 border-gray-200">
+              <div
+                style={{ marginTop: "32px" }}
+                className="p-7 bg-gradient-to-br from-gray-50 to-blue-50 rounded-xl border-2 border-gray-200"
+              >
                 <div className="flex justify-between items-center mb-5">
-                  <span className="text-gray-800 font-semibold text-base">선택한 프로그램</span>
-                  <span className="text-gray-900 font-bold text-lg">{program}</span>
+                  <span className="text-gray-800 font-semibold text-base">
+                    선택한 프로그램
+                  </span>
+                  <span className="text-gray-900 font-bold text-lg">
+                    {program}
+                  </span>
                 </div>
-                
+
                 <div className="flex justify-between items-center mb-7 pb-5 border-b-2 border-gray-200">
-                  <span className="text-gray-800 font-semibold text-base">결제 금액</span>
+                  <span className="text-gray-800 font-semibold text-base">
+                    결제 금액
+                  </span>
                   <div className="text-right">
                     {isPromoApplied && programsWithPrice[program] > 0 && (
                       <span className="block text-base text-gray-400 line-through mb-2 font-medium">
                         {programsWithPrice[program].toLocaleString()}원
                       </span>
                     )}
-                    <span className={`text-3xl font-extrabold ${isPromoApplied ? 'text-toss-600' : 'text-gray-900'}`}>
+                    <span
+                      className={`text-3xl font-extrabold ${
+                        isPromoApplied ? "text-toss-600" : "text-gray-900"
+                      }`}
+                    >
                       {getCurrentPrice().toLocaleString()}원
                     </span>
                   </div>
@@ -337,16 +358,18 @@ function ApplyForm() {
                       적용하기
                     </button>
                   </div>
-                  
+
                   {/* 메시지 표시 */}
                   {promoMessage && (
-                    <div className={`text-base font-semibold ${
-                      promoMessage.includes('적용') 
-                        ? 'text-toss-600' 
-                        : promoMessage.includes('확인')
-                        ? 'text-red-600'
-                        : 'text-amber-600'
-                    }`}>
+                    <div
+                      className={`text-base font-semibold ${
+                        promoMessage.includes("적용")
+                          ? "text-toss-600"
+                          : promoMessage.includes("확인")
+                          ? "text-red-600"
+                          : "text-amber-600"
+                      }`}
+                    >
                       {promoMessage}
                     </div>
                   )}
@@ -358,19 +381,21 @@ function ApplyForm() {
             <button
               type="submit"
               className="w-full bg-toss-500 text-white py-5 text-lg font-extrabold hover:bg-toss-600 transition-all rounded-xl shadow-md hover:shadow-lg"
-              style={{ marginTop: '40px' }}
+              style={{ marginTop: "40px" }}
             >
               신청하기
             </button>
           </form>
 
           {/* 안내 텍스트 */}
-          <div style={{ marginTop: '36px', paddingTop: '28px' }} className="border-t-2 border-gray-200">
+          <div
+            style={{ marginTop: "36px", paddingTop: "28px" }}
+            className="border-t-2 border-gray-200"
+          >
             <p className="text-center text-base font-semibold text-gray-700">
-              ⏱️ 담당자가 <span className="text-toss-600 font-extrabold">24시간 내</span> 연락드립니다
-            </p>
-            <p className="text-center text-sm font-medium text-gray-600" style={{ marginTop: '12px' }}>
-              문의사항이 있으시면 02-1234-5678로 연락주세요
+              ⏱️ 담당자가{" "}
+              <span className="text-toss-600 font-extrabold">24시간 내</span>{" "}
+              연락드립니다
             </p>
           </div>
         </div>
@@ -382,14 +407,16 @@ function ApplyForm() {
 // Suspense로 감싼 메인 페이지 컴포넌트
 export default function ApplyPage() {
   return (
-    <Suspense fallback={
-      <div className="min-h-screen bg-white pt-24 pb-16 flex items-center justify-center">
-        <div className="text-center">
-          <div className="inline-block animate-spin rounded-full h-14 w-14 border-4 border-gray-200 border-t-toss-500 mb-5"></div>
-          <p className="text-lg font-semibold text-gray-700">로딩 중...</p>
+    <Suspense
+      fallback={
+        <div className="min-h-screen bg-white pt-24 pb-16 flex items-center justify-center">
+          <div className="text-center">
+            <div className="inline-block animate-spin rounded-full h-14 w-14 border-4 border-gray-200 border-t-toss-500 mb-5"></div>
+            <p className="text-lg font-semibold text-gray-700">로딩 중...</p>
+          </div>
         </div>
-      </div>
-    }>
+      }
+    >
       <ApplyForm />
     </Suspense>
   );

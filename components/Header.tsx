@@ -88,8 +88,8 @@ const Header = () => {
     {
       name: "기업용",
       subMenu: [
-        { name: "기업 상담", href: "/business/corporate" },
-        { name: "교육기관 상담", href: "/business/education" },
+        { name: "기업", href: "/business/corporate" },
+        { name: "교육기관", href: "/business/education" },
         { name: "강연 및 세미나", href: "/business/seminar" },
       ],
     },
@@ -104,15 +104,16 @@ const Header = () => {
   ];
 
   // 관리자인 경우 관리자 메뉴 추가
-  const navigation: MenuItem[] = user?.role === "admin"
-    ? [
-        ...baseNavigation,
-        {
-          name: "관리자",
-          subMenu: [{ name: "게시판", href: "/admin/board" }],
-        },
-      ]
-    : baseNavigation;
+  const navigation: MenuItem[] =
+    user?.role === "admin"
+      ? [
+          ...baseNavigation,
+          {
+            name: "관리자",
+            subMenu: [{ name: "게시판", href: "/admin/board" }],
+          },
+        ]
+      : baseNavigation;
 
   const handleClick = (
     e: React.MouseEvent<HTMLAnchorElement>,
@@ -161,7 +162,7 @@ const Header = () => {
               alt="ONSOOM 온숨 심리상담센터"
               width={150}
               height={50}
-              className="h-8 md:h-10 lg:h-12 w-auto object-contain"
+              className="h-8 md:h-10 lg:h-8 w-auto object-contain"
               priority
               unoptimized
             />
@@ -237,12 +238,12 @@ const Header = () => {
                   >
                     로그인
                   </Link>
-                  <Link
+                  {/* <Link
                     href="/signup"
                     className="text-gray-700 hover:text-toss-500 text-xs md:text-sm lg:text-base font-medium transition-colors"
                   >
                     회원가입
-                  </Link>
+                  </Link> */}
                 </>
               )}
             </div>
@@ -353,12 +354,12 @@ const Header = () => {
                     >
                       로그인
                     </Link>
-                    <Link
+                    {/* <Link
                       href="/signup"
                       className="flex-1 text-center py-2.5 text-gray-700 text-sm font-medium border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
                     >
                       회원가입
-                    </Link>
+                    </Link> */}
                   </>
                 )}
               </div>

@@ -10,22 +10,32 @@ export default function StoryPage() {
         {/* 이모지 헤더 */}
         <div className="text-center mb-8 sm:mb-10 md:mb-12">
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold text-gray-900 mb-6 sm:mb-8">
-            🌿 숨쉬는 이야기
+            대표 인사말
           </h2>
+          {/* //todo 아래 내용 수정 예정  */}
+          <p className="text-center">
+            애국가는 대한민국의 국가다. 1919년 안창호에 의해 대한민국
+            임시정부에서 스코틀랜드 민요인 〈작별〉에 삽입해서 부르기 시작하다가
+            1935년 한국의 작곡가 안익태가 지은 《한국환상곡》에 가사를 삽입해서
+            현재까지 부르고 있다.
+          </p>
         </div>
 
         {/* 본문 */}
         <div className="space-y-3 sm:space-y-4 text-gray-700 text-base sm:text-lg font-medium leading-relaxed">
           <p className="text-center">
-            'ONːSOOM(온ː숨)'은 청년들의 내면 성장을 돕는 코칭 브랜드입니다.
+            'ONːSOOM(온ː숨)'은 청년들과 기업의 성장을 돕는 교육 코칭
+            브랜드입니다.
           </p>
 
           <p className="text-center">
-            저희는 'ON'과 '숨'이라는 두 단어에 깨어남과 회복의 의미를 담았습니다.
+            저희는 'ON'과 '숨'이라는 두 단어에 깨어남과 회복 그리고 그것을
+            뛰어넘는 성장의 의미를 담았습니다.
           </p>
 
           <p className="text-center">
-            'ON'은 자신을 인식하고 변화의 스위치를 켜는 순간을, '숨'은 존재의 리듬을 되찾는 과정을 상징합니다.
+            'ON'은 자신과 조직을 인식하고 변화의 스위치를 켜는 순간을, '숨'은
+            존재의 리듬을 되찾는 과정을 상징합니다.
           </p>
 
           <div className="p-6 sm:p-8 bg-gradient-to-r from-blue-50 to-green-50 rounded-xl my-6 sm:my-8 md:my-10">
@@ -56,5 +66,3 @@ export default function StoryPage() {
     </div>
   );
 }
-
-

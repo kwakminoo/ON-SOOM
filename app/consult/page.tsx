@@ -18,8 +18,8 @@ const programs = [
     features: [
       "목표와 감정을 명확히 인식",
       "1:1 개인 세션",
-      "자기 인식과 감정 정리 중심"
-    ]
+      "자기 인식과 감정 정리 중심",
+    ],
   },
   {
     id: "life-direction",
@@ -30,8 +30,8 @@ const programs = [
     features: [
       "진로·관계·자기 방향성 설계",
       "매주 피드백과 과제 제공",
-      "성장형 코칭"
-    ]
+      "성장형 코칭",
+    ],
   },
   {
     id: "emotional-recovery",
@@ -42,8 +42,8 @@ const programs = [
     features: [
       "번아웃, 무기력, 자존감 회복",
       "감정일기, 리프레임 훈련",
-      "장기 코칭 프로그램"
-    ]
+      "장기 코칭 프로그램",
+    ],
   },
   {
     id: "inner-growth",
@@ -54,8 +54,8 @@ const programs = [
     features: [
       "4~6인 그룹 참여",
       "내면 대화 탐색",
-      "관계 안에서의 나 이해하기"
-    ]
+      "관계 안에서의 나 이해하기",
+    ],
   },
   {
     id: "youth-vision",
@@ -66,9 +66,9 @@ const programs = [
     features: [
       "청년층 대상 장기 성장 프로젝트",
       "코칭+과제+팔로업 시스템",
-      "지속적 자기 확장 지원"
-    ]
-  }
+      "지속적 자기 확장 지원",
+    ],
+  },
 ];
 
 export default function ConsultPage() {
@@ -82,12 +82,14 @@ export default function ConsultPage() {
     age: "",
     phone: "",
     location: "",
-    privacyAgree: false
+    privacyAgree: false,
   });
   const swiperRef = useRef<SwiperType | null>(null);
 
-  const selectedProgramData = programs.find(program => program.id === selectedProgram);
-  const finalPrice = isPromoApplied ? 0 : (selectedProgramData?.priceValue || 0);
+  const selectedProgramData = programs.find(
+    (program) => program.id === selectedProgram
+  );
+  const finalPrice = isPromoApplied ? 0 : selectedProgramData?.priceValue || 0;
 
   const handlePromoCheck = () => {
     if (promoCode === "1234") {
@@ -101,26 +103,30 @@ export default function ConsultPage() {
     }
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >
+  ) => {
     const { name, value, type } = e.target;
-    
+
     if (type === "checkbox") {
       const target = e.target as HTMLInputElement;
       setFormData({
         ...formData,
-        [name]: target.checked
+        [name]: target.checked,
       });
     } else {
       setFormData({
         ...formData,
-        [name]: value
+        [name]: value,
       });
     }
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (!formData.privacyAgree) {
       alert("개인정보 수집 및 이용에 동의해주세요.");
       return;
@@ -130,12 +136,16 @@ export default function ConsultPage() {
       alert("프로그램을 선택해주세요.");
       return;
     }
-    
-    const programInfo = `\n선택한 프로그램: ${selectedProgramData?.name}\n최종 가격: ${finalPrice.toLocaleString()}원`;
+
+    const programInfo = `\n선택한 프로그램: ${
+      selectedProgramData?.name
+    }\n최종 가격: ${finalPrice.toLocaleString()}원`;
     const promoInfo = isPromoApplied ? "\n추천코드 적용됨 (100% 할인)" : "";
-    
-    alert(`신청이 접수되었습니다.\n\n이름: ${formData.name}\n성별: ${formData.gender}\n나이: ${formData.age}세\n연락처: ${formData.phone}\n코칭 희망 장소: ${formData.location}${programInfo}${promoInfo}\n\n빠른 시일 내에 연락드리겠습니다.`);
-    
+
+    alert(
+      `신청이 접수되었습니다.\n\n이름: ${formData.name}\n성별: ${formData.gender}\n나이: ${formData.age}세\n연락처: ${formData.phone}\n코칭 희망 장소: ${formData.location}${programInfo}${promoInfo}\n\n빠른 시일 내에 연락드리겠습니다.`
+    );
+
     // 폼 초기화
     setFormData({
       name: "",
@@ -143,7 +153,7 @@ export default function ConsultPage() {
       age: "",
       phone: "",
       location: "",
-      privacyAgree: false
+      privacyAgree: false,
     });
     setSelectedProgram("");
     setPromoCode("");
@@ -167,10 +177,16 @@ export default function ConsultPage() {
 
           {/* 신청 폼 */}
           <div className="bg-white p-6 sm:p-7 md:p-8 lg:p-10 shadow-md">
-            <form onSubmit={handleSubmit} className="space-y-5 sm:space-y-6 md:space-y-8">
+            <form
+              onSubmit={handleSubmit}
+              className="space-y-5 sm:space-y-6 md:space-y-8"
+            >
               {/* 이름 */}
               <div>
-                <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
+                <label
+                  htmlFor="name"
+                  className="block text-sm font-medium text-gray-700 mb-2"
+                >
                   이름 <span className="text-red-500">*</span>
                 </label>
                 <input
@@ -187,7 +203,10 @@ export default function ConsultPage() {
 
               {/* 성별 */}
               <div>
-                <label htmlFor="gender" className="block text-sm font-medium text-gray-700 mb-2">
+                <label
+                  htmlFor="gender"
+                  className="block text-sm font-medium text-gray-700 mb-2"
+                >
                   성별 <span className="text-red-500">*</span>
                 </label>
                 <select
@@ -206,7 +225,10 @@ export default function ConsultPage() {
 
               {/* 나이(만) */}
               <div>
-                <label htmlFor="age" className="block text-sm font-medium text-gray-700 mb-2">
+                <label
+                  htmlFor="age"
+                  className="block text-sm font-medium text-gray-700 mb-2"
+                >
                   나이(만) <span className="text-red-500">*</span>
                 </label>
                 <input
@@ -225,7 +247,10 @@ export default function ConsultPage() {
 
               {/* 연락처 */}
               <div>
-                <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2">
+                <label
+                  htmlFor="phone"
+                  className="block text-sm font-medium text-gray-700 mb-2"
+                >
                   연락처 <span className="text-red-500">*</span>
                 </label>
                 <input
@@ -242,7 +267,10 @@ export default function ConsultPage() {
 
               {/* 코칭 희망 장소 */}
               <div>
-                <label htmlFor="location" className="block text-sm font-medium text-gray-700 mb-2">
+                <label
+                  htmlFor="location"
+                  className="block text-sm font-medium text-gray-700 mb-2"
+                >
                   코칭 희망 장소 <span className="text-red-500">*</span>
                 </label>
                 <select
@@ -308,7 +336,9 @@ export default function ConsultPage() {
                       {({ isActive }) => (
                         <div
                           className={`bg-gray-50 border-2 p-5 sm:p-6 transition-all duration-500 ${
-                            isActive ? 'opacity-100 scale-100' : 'opacity-60 scale-90'
+                            isActive
+                              ? "opacity-100 scale-100"
+                              : "opacity-60 scale-90"
                           } ${
                             selectedProgram === program.id
                               ? "border-gray-900 shadow-lg"
@@ -391,12 +421,22 @@ export default function ConsultPage() {
                 <div className="bg-gray-50 p-4 sm:p-5 border border-gray-200">
                   <div className="flex justify-between items-center">
                     <div>
-                      <p className="text-xs sm:text-sm text-gray-600">선택한 프로그램</p>
-                      <p className="text-base sm:text-lg font-medium text-gray-900">{selectedProgramData?.name}</p>
+                      <p className="text-xs sm:text-sm text-gray-600">
+                        선택한 프로그램
+                      </p>
+                      <p className="text-base sm:text-lg font-medium text-gray-900">
+                        {selectedProgramData?.name}
+                      </p>
                     </div>
                     <div className="text-right">
-                      <p className="text-xs sm:text-sm text-gray-600">최종 가격</p>
-                      <p className={`text-xl sm:text-2xl font-light ${isPromoApplied ? 'text-green-600' : 'text-gray-900'}`}>
+                      <p className="text-xs sm:text-sm text-gray-600">
+                        최종 가격
+                      </p>
+                      <p
+                        className={`text-xl sm:text-2xl font-light ${
+                          isPromoApplied ? "text-green-600" : "text-gray-900"
+                        }`}
+                      >
                         {finalPrice.toLocaleString()}원
                       </p>
                     </div>
@@ -416,12 +456,19 @@ export default function ConsultPage() {
                     className="mt-1 mr-3 w-4 h-4"
                     required
                   />
-                  <label htmlFor="privacyAgree" className="text-sm text-gray-700">
-                    <span className="font-medium text-gray-900">개인정보 수집 및 이용에 동의합니다.</span>
+                  <label
+                    htmlFor="privacyAgree"
+                    className="text-sm text-gray-700"
+                  >
+                    <span className="font-medium text-gray-900">
+                      개인정보 수집 및 이용에 동의합니다.
+                    </span>
                     <span className="text-red-500"> *</span>
                     <p className="mt-2 text-xs text-gray-500">
-                      수집 항목: 이름, 성별, 나이, 연락처, 코칭 희망 장소<br />
-                      수집 목적: 프로그램 신청 및 상담 서비스 제공<br />
+                      수집 항목: 이름, 성별, 나이, 연락처, 코칭 희망 장소
+                      <br />
+                      수집 목적: 프로그램 신청 및 상담 서비스 제공
+                      <br />
                       보유 기간: 상담 종료 후 1년
                     </p>
                   </label>

@@ -7,6 +7,7 @@
 온ː숨은 개인 상담부터 기업 코칭, 교육기관 연계 프로그램, 강연 및 세미나까지 다양한 성장 프로그램을 제공합니다.
 
 **핵심 가치**
+
 - 개인의 내면 성장과 회복
 - 사람 중심의 리더십과 조직문화
 - 청년과 학생들의 자기 이해와 진로 설계
@@ -113,6 +114,7 @@ npm start
 ## 📄 주요 페이지 설명
 
 ### 홈페이지 (`/`)
+
 - 메인 히어로 슬라이더
 - 프로그램 소개 섹션
 - 전문가 소개
@@ -121,12 +123,14 @@ npm start
 - 빠른 상담 버튼
 
 ### 센터 소개 (`/about`)
+
 - `/about` - 센터 소개 메인
 - `/about/story` - 센터 이야기
 - `/about/vision` - 센터 비전
 - `/about/centers` - 센터 위치 및 정보
 
 ### 프로그램 (`/programs`)
+
 - `/programs` - 프로그램 메인 페이지
 - `/programs/corporate` - **기업 상담 (Corporate Coaching)**
   - 조직문화 개선 및 리더십 개발
@@ -144,10 +148,12 @@ npm start
 - `/programs/self-test` - 자가 진단 테스트
 
 ### 커뮤니티 (`/community`)
+
 - `/community/notice` - 공지사항
 - `/community/faq` - 자주 묻는 질문
 
 ### 상담 및 회원
+
 - `/consult` - 상담 신청
 - `/login` - 로그인
 - `/signup` - 회원가입
@@ -155,10 +161,12 @@ npm start
 ## 🎨 컴포넌트 설명
 
 ### 레이아웃 컴포넌트
+
 - **Header.tsx**: 네비게이션 메뉴, 반응형 모바일 메뉴
 - **Footer.tsx**: 센터 정보, 링크, 소셜 미디어
 
 ### 홈페이지 컴포넌트
+
 - **HeroSlider.tsx**: Swiper를 이용한 메인 슬라이더
 - **ProgramSection.tsx**: 주요 프로그램 카드 표시
 - **ExpertSection.tsx**: 전문가 프로필 섹션
@@ -170,22 +178,26 @@ npm start
 ## 💻 개발 가이드
 
 ### 코드 스타일
+
 - TypeScript를 사용하며 `any` 타입은 금지
 - Tailwind CSS로 스타일링
 - 컴포넌트는 함수형 컴포넌트 사용
 - 50줄 이내의 작은 함수로 분리
 
 ### 페이지 추가 방법
+
 1. `app/` 폴더에 새 폴더 생성
 2. `page.tsx` 파일 생성
 3. 필요시 `layout.tsx`로 레이아웃 설정
 
 ### 컴포넌트 추가 방법
+
 1. `components/` 폴더에 새 `.tsx` 파일 생성
 2. 함수형 컴포넌트로 작성
 3. 필요한 곳에서 import하여 사용
 
 ### 스타일링 가이드
+
 - Tailwind CSS 유틸리티 클래스 우선 사용
 - 일관된 색상 팔레트 사용:
   - 기업: `blue-600`
@@ -227,6 +239,7 @@ NEXT_PUBLIC_API_URL=https://api.example.com
 ## 🐛 문제 해결
 
 ### 개발 서버가 시작되지 않을 때
+
 ```bash
 # node_modules 삭제 후 재설치
 rm -rf node_modules
@@ -235,6 +248,7 @@ npm install
 ```
 
 ### 빌드 오류 발생 시
+
 ```bash
 # Next.js 캐시 삭제
 rm -rf .next

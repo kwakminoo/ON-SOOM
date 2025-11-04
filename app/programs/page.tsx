@@ -1,57 +1,69 @@
-import Link from "next/link";
+"use client";
+
+import { useState } from "react";
+import Image from "next/image";
 
 export default function ProgramsPage() {
+  const [hoveredId, setHoveredId] = useState<string | null>(null);
   const programs = [
     {
       title: "Self Roadmap",
       subtitle: "1회 • 80,000원",
-      description:
-        "목표와 감정을 명확히 인식하도록 돕는 1:1 로드맵. 자기 인식과 감정 정리를 중심으로 진행합니다.",
-      icon: "🧭",
+      description: "현상 인지와 단기 목표 설정을 중심으로 진행합니다.",
       href: "/programs/apply",
-      color: "from-blue-50 to-indigo-50",
+      color: "#262627",
+      hoverColor: "#3d58ac",
       highlight: "자기 인식",
+      image:
+        "https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?w=400&h=300&fit=crop",
     },
     {
       title: "Self-growth Roadmap",
       subtitle: "5회 패키지 • 400,000원",
       description:
-        "진로·관계·자기 방향성을 함께 설계하는 성장형 로드맵. 매주 피드백과 과제를 제공합니다.",
-      icon: "🌱",
+        "목표를 명확히 인식하도록 돕는 로드맵.\n 다양한 자기 인지를 목표로 진행됩니다.",
       href: "/programs/apply",
-      color: "from-emerald-50 to-teal-50",
-      highlight: "성장 설계",
+      color: "#262627",
+      hoverColor: "#3d58ac",
+      highlight: "성장",
+      image:
+        "https://images.unsplash.com/photo-1588196749597-9ff075ee6b5b?w=400&h=300&fit=crop",
     },
     {
       title: "Life Roadmap",
       subtitle: "8회 패키지 • 650,000원",
-      description:
-        "번아웃, 무기력, 자존감 회복을 위한 장기 로드맵. 감정일기와 리프레임 훈련이 포함됩니다.",
-      icon: "🌿",
+      description: "미래의 방향성을 함께 설계하기 위한 성장형 로드맵.",
       href: "/programs/apply",
-      color: "from-amber-50 to-orange-50",
-      highlight: "회복과 치유",
+      color: "#262627",
+      hoverColor: "#3d58ac",
+      highlight: "설계",
+      image:
+        "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=400&h=300&fit=crop",
     },
     {
       title: "Life-growth Roadmap",
-      subtitle: "3개월 과정 • 3,000,000원",
+      subtitle: "1년 과정 • 3,000,000원",
       description:
         "청년층 대상 장기 성장 프로젝트. 코칭+과제+팔로업 시스템을 결합해 지속적 자기 확장을 지원합니다.",
-      icon: "🚀",
       href: "/programs/apply",
-      color: "from-purple-50 to-violet-50",
+      color: "#262627",
+      hoverColor: "#3d58ac",
       highlight: "장기 프로젝트",
       featured: true,
+      image:
+        "https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=400&h=300&fit=crop",
     },
     {
       title: "Workshop Roadmap",
       subtitle: "그룹 세션 1회 • 40,000원",
       description:
         "4~6인이 함께 참여해 '내면 대화'와 '관계 안에서의 나'를 탐색하는 집단 성장형 워크숍입니다.",
-      icon: "👥",
       href: "/programs/apply",
-      color: "from-rose-50 to-pink-50",
+      color: "#262627",
+      hoverColor: "#3d58ac",
       highlight: "그룹 성장",
+      image:
+        "https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=400&h=300&fit=crop",
     },
   ];
 
@@ -71,48 +83,74 @@ export default function ProgramsPage() {
         {/* 프로그램 카드 그리드 */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
           {programs.map((program) => (
-            <Link
+            <a
               key={program.title}
-              href={`${program.href}?program=${encodeURIComponent(program.title)}`}
-              className={`relative p-8 bg-gradient-to-br ${
-                program.color
-              } rounded-2xl hover:shadow-xl transition-all duration-300 group border border-gray-100 ${
+              href={`${program.href}?program=${encodeURIComponent(
+                program.title
+              )}`}
+              className={`relative overflow-hidden rounded-2xl hover:shadow-xl transition-all duration-300 group border border-gray-100 ${
                 program.featured ? "md:col-span-2 lg:col-span-1" : ""
               }`}
+              onMouseEnter={() => setHoveredId(program.title)}
+              onMouseLeave={() => setHoveredId(null)}
             >
               {program.featured && (
-                <div className="absolute top-4 right-4 bg-purple-600 text-white text-xs font-medium px-3 py-1 rounded-full">
+                <div className="absolute top-4 right-4 bg-purple-600 text-white text-xs font-medium px-3 py-1 rounded-full z-10">
                   추천
                 </div>
               )}
 
-              <div className="flex flex-col h-full">
-                <div className="text-5xl mb-4">{program.icon}</div>
+              {/* 배경 이미지 */}
+              <div className="absolute inset-0">
+                <Image
+                  src={program.image}
+                  alt={program.title}
+                  fill
+                  className="object-cover"
+                />
+                {/* 색상 오버레이 - 호버 시 더 진하게 */}
+                <div
+                  className="absolute inset-0 transition-all duration-300"
+                  style={{
+                    backgroundColor:
+                      hoveredId === program.title
+                        ? program.hoverColor
+                        : program.color,
+                    opacity: hoveredId === program.title ? 0.95 : 0.85,
+                  }}
+                />
+              </div>
 
-                <h2 className="text-2xl font-semibold text-gray-900 mb-2 group-hover:text-gray-700 transition-colors">
-                  {program.title}
-                </h2>
+              {/* 컨텐츠 */}
+              <div className="relative z-10 p-8 flex flex-col justify-between h-full min-h-[350px]">
+                <div>
+                  <h2 className="text-2xl font-semibold text-white mb-2 transition-colors">
+                    {program.title}
+                  </h2>
 
-                <div className="inline-flex items-center text-sm font-medium text-gray-700 mb-4">
-                  <span className="bg-white/60 px-3 py-1 rounded-full">
-                    {program.subtitle}
-                  </span>
+                  <div className="inline-flex items-center text-sm font-medium text-white mb-4">
+                    <span className="bg-white/20 px-3 py-1 rounded-full">
+                      {program.subtitle}
+                    </span>
+                  </div>
                 </div>
 
-                <p className="text-sm text-gray-700 leading-relaxed mb-4 flex-grow">
-                  {program.description}
-                </p>
+                <div>
+                  <p className="text-sm text-white/90 leading-relaxed mb-4 whitespace-pre-line">
+                    {program.description}
+                  </p>
 
-                <div className="flex items-center justify-between mt-auto pt-4 border-t border-gray-200">
-                  <span className="text-xs font-medium text-gray-600">
-                    {program.highlight}
-                  </span>
-                  <span className="text-gray-400 group-hover:text-gray-600 group-hover:translate-x-1 transition-all">
-                    →
-                  </span>
+                  <div className="flex items-center justify-between pt-4 border-t border-white/20">
+                    <span className="text-xs font-medium text-white/80">
+                      {program.highlight}
+                    </span>
+                    <span className="text-white/60 group-hover:text-white/90 group-hover:translate-x-1 transition-all">
+                      →
+                    </span>
+                  </div>
                 </div>
               </div>
-            </Link>
+            </a>
           ))}
         </div>
 
@@ -149,22 +187,6 @@ export default function ProgramsPage() {
               <p className="text-sm text-gray-600">Life-growth Roadmap 추천</p>
             </div>
           </div>
-        </div>
-
-        {/* 안내 메시지 */}
-        <div className="bg-gradient-to-r from-gray-900 to-gray-800 p-10 rounded-2xl text-center">
-          <h3 className="text-2xl font-semibold text-white mb-3">
-            프로그램 상담이 필요하신가요?
-          </h3>
-          <p className="text-gray-300 mb-6 max-w-2xl mx-auto">
-            각 프로그램에 대한 자세한 설명과 맞춤 상담을 제공해드립니다
-          </p>
-          <Link
-            href="/consult"
-            className="inline-block px-8 py-3 bg-white text-gray-900 rounded-lg hover:bg-gray-100 transition-colors font-medium"
-          >
-            무료 상담 신청하기
-          </Link>
         </div>
       </div>
     </div>

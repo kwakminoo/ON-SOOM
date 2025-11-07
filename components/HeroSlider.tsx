@@ -19,7 +19,8 @@ const bannerSlides = [
     buttonImage: "/pc1_botton.png",
     title: "온숨심리상담센터 - 프로그램 안내",
     link: "/programs",
-    buttonPosition: "right-[3%] bottom-[9%] md:right-[4%] md:bottom-[11%] lg:right-[5%] lg:bottom-[13%] xl:right-[6%] xl:bottom-[14%]", // 왼쪽으로 약간 이동
+    buttonPosition:
+      "right-[3%] bottom-[9%] md:right-[4%] md:bottom-[11%] lg:right-[5%] lg:bottom-[13%] xl:right-[6%] xl:bottom-[14%]", // 왼쪽으로 약간 이동
     buttonSize: "w-[18vw] min-w-[180px] max-w-[400px]", // 화면 너비의 18%, 최소 180px, 최대 400px
   },
   {
@@ -29,7 +30,8 @@ const bannerSlides = [
     buttonImage: "/pc2_botton.png",
     title: "온숨심리상담센터 - 후기",
     link: "#testimonials",
-    buttonPosition: "left-[2%] bottom-[14%] md:left-[3%] md:bottom-[16%] lg:left-[4%] lg:bottom-[18%] xl:left-[5%] xl:bottom-[19%]", // 더 왼쪽으로 이동
+    buttonPosition:
+      "left-[2%] bottom-[14%] md:left-[3%] md:bottom-[16%] lg:left-[4%] lg:bottom-[18%] xl:left-[5%] xl:bottom-[19%]", // 더 왼쪽으로 이동
     buttonSize: "w-[19vw] min-w-[190px] max-w-[430px]", // 화면 너비의 19%, 최소 190px, 최대 430px
   },
   {
@@ -51,7 +53,7 @@ const HeroSlider = () => {
 
   useEffect(() => {
     setMounted(true);
-    
+
     // 모바일 여부 확인 (768px 미만)
     const checkMobile = () => {
       setIsMobile(window.innerWidth < 768);
@@ -80,9 +82,7 @@ const HeroSlider = () => {
   };
 
   if (!mounted) {
-    return (
-      <section className="relative w-full h-auto bg-gray-100" />
-    );
+    return <section className="relative w-full h-auto bg-gray-100" />;
   }
 
   return (
@@ -103,7 +103,8 @@ const HeroSlider = () => {
         pagination={{
           clickable: true,
           bulletClass: "swiper-pagination-bullet !bg-gray-400 !w-3 !h-3",
-          bulletActiveClass: "swiper-pagination-bullet-active !bg-gray-800 !w-10",
+          bulletActiveClass:
+            "swiper-pagination-bullet-active !bg-gray-800 !w-10",
         }}
         modules={[Autoplay, Pagination, EffectFade]}
         className="w-full h-auto"
@@ -113,7 +114,7 @@ const HeroSlider = () => {
             <div className="relative w-full h-auto">
               {/* 배경 이미지 - 모바일에서는 클릭 가능 */}
               {isMobile ? (
-                <div 
+                <div
                   onClick={() => handleBannerClick(slide.link)}
                   className="cursor-pointer"
                   role="button"
@@ -151,9 +152,9 @@ const HeroSlider = () => {
                     unoptimized={true}
                     sizes="100vw"
                   />
-                  
+
                   {/* PC - Button Image (Clickable) */}
-                  <button
+                  {/* <button
                     onClick={() => handleBannerClick(slide.link)}
                     className={`absolute ${slide.buttonPosition} transition-all duration-300 hover:scale-105 hover:brightness-110 active:scale-95 cursor-pointer z-10 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded-lg`}
                     aria-label={`${slide.title}로 이동`}
@@ -166,7 +167,7 @@ const HeroSlider = () => {
                       className={`h-auto ${slide.buttonSize || "w-[18vw] min-w-[180px] max-w-[400px]"}`}
                       unoptimized
                     />
-                  </button>
+                  </button> */}
                 </>
               )}
             </div>

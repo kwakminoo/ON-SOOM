@@ -21,6 +21,12 @@ const TEST_ACCOUNTS = [
     role: "admin",
     name: "관리자",
   },
+  {
+    username: "sbjd1116",
+    password: "ydp12000",
+    role: "admin",
+    name: "운영 관리자",
+  },
 ] as const;
 
 export async function POST(request: NextRequest) {

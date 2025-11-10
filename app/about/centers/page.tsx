@@ -6,8 +6,8 @@ export default function CentersPage() {
   const centers = [
     {
       id: 1,
-      name: "홍대 1호",
-      tag: "1호점",
+      name: "홍대",
+      tag: "홍대",
       tagColor: "bg-blue-100 text-blue-800",
       address: "서울특별시 마포구 서교동 354-8 호 LA",
       phone: "02-1234-5678",
@@ -24,18 +24,18 @@ export default function CentersPage() {
     },
     {
       id: 2,
-      name: "홍대 2호",
-      tag: "2호점",
+      name: "여의도",
+      tag: "여의도",
       tagColor: "bg-green-100 text-green-800",
-      address: "서울특별시 마포구 서교동 354-8 호 LA",
+      address: "서울특별시 영등포구 여의대로 24",
       phone: "02-2345-6789",
       hours: {
         weekday: "평일: 10:00 - 20:00",
         weekend: "주말: 10:00 - 18:00",
       },
       directions: [
-        "지하철 2호선 홍대입구역 3번 출구 도보 7분",
-        "버스 정류장 홍대정문 앞 하차",
+        "지하철 5호선 여의도역 3번 출구 도보 4분",
+        "버스 정류장 국회의사당역 앞 하차",
       ],
       image: "/center2.jpg",
       status: "open",

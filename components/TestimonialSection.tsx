@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useRef, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, EffectCoverflow } from "swiper/modules";
 import "swiper/css";
@@ -78,10 +79,94 @@ const testimonials = [
   },
 ];
 
-const TestimonialSection = () => {
+const stats = [
+  { label: "누적 코칭 세션", value: 1240, suffix: "+" },
+  { label: "참여자 만족도", value: 96, suffix: "%" },
+  { label: "로드맵 완주율", value: 89, suffix: "%" },
+  { label: "재참여 비율", value: 72, suffix: "%" },
+];
+
+const useCountUp = (targetValue: number, duration = 1500, shouldStart = false) => {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    if (!shouldStart) {
+      return;
+    }
+
+    let startTimestamp: number | null = null;
+    let animationFrame: number;
+
+    const step = (timestamp: number) => {
+      if (startTimestamp === null) startTimestamp = timestamp;
+      const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+      const easedProgress = 1 - Math.pow(1 - progress, 3);
+      setCount(Math.floor(easedProgress * targetValue));
+
+      if (progress < 1) {
+        animationFrame = requestAnimationFrame(step);
+      }
+    };
+
+    animationFrame = requestAnimationFrame(step);
+
+    return () => cancelAnimationFrame(animationFrame);
+  }, [targetValue, duration, shouldStart]);
+
+  return count;
+};
+
+const AnimatedStat = ({
+  value,
+  label,
+  suffix,
+  start,
+}: {
+  value: number;
+  label: string;
+  suffix?: string;
+  start: boolean;
+}) => {
+  const count = useCountUp(value, 1500, start);
+
   return (
-    <section id="testimonials" className="py-16 md:py-24 bg-white scroll-mt-20">
-      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-8">
+    <div className="bg-gray-900 text-white rounded-3xl px-6 py-6 sm:px-8 sm:py-8 shadow-lg shadow-gray-900/20 border border-white/10">
+      <div className="text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-tight">
+        <span>{count}</span>
+        {suffix && <span className="ml-1 text-2xl sm:text-3xl">{suffix}</span>}
+      </div>
+      <p className="mt-3 text-sm sm:text-base text-white/70">{label}</p>
+    </div>
+  );
+};
+
+const TestimonialSection = () => {
+  const statsRef = useRef<HTMLDivElement | null>(null);
+  const [statsVisible, setStatsVisible] = useState(false);
+
+  useEffect(() => {
+    if (!statsRef.current || statsVisible) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setStatsVisible(true);
+            observer.disconnect();
+          }
+        });
+      },
+      { threshold: 0.3 }
+    );
+
+    observer.observe(statsRef.current);
+
+    return () => observer.disconnect();
+  }, [statsVisible]);
+
+  return (
+    <section id="testimonials" className="py-16 md:py-24 bg-gradient-to-b from-white via-white to-gray-50 scroll-mt-20">
+      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-10">
         {/* 섹션 헤더 */}
         <div className="mb-8 sm:mb-10 md:mb-12 lg:mb-16">
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-semibold text-gray-900 mb-4 tracking-tight">
@@ -92,7 +177,6 @@ const TestimonialSection = () => {
           </p>
         </div>
 
-        {/* 후기 슬라이더 - Coverflow 효과 */}
         <Swiper
           effect="coverflow"
           grabCursor={true}
@@ -206,6 +290,15 @@ const TestimonialSection = () => {
             </SwiperSlide>
           ))}
         </Swiper>
+
+        <div
+          ref={statsRef}
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 lg:gap-6 mt-12 sm:mt-14 md:mt-16"
+        >
+          {stats.map((stat) => (
+            <AnimatedStat key={stat.label} start={statsVisible} {...stat} />
+          ))}
+        </div>
       </div>
     </section>
   );

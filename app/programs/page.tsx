@@ -49,7 +49,6 @@ export default function ProgramsPage() {
       color: "#262627",
       hoverColor: "#3d58ac",
       highlight: "장기 프로젝트",
-      featured: true,
       image:
         "https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=400&h=300&fit=crop",
     },
@@ -81,26 +80,19 @@ export default function ProgramsPage() {
         </div>
 
         {/* 프로그램 카드 그리드 */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
-          {programs.map((program) => (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-6 mb-16">
+          {programs.map((program, index) => (
             <a
               key={program.title}
-              href={`${program.href}?program=${encodeURIComponent(
-                program.title
-              )}`}
+              href={`${program.href}?program=${encodeURIComponent(program.title)}`}
               className={`relative overflow-hidden rounded-2xl hover:shadow-xl transition-all duration-300 group border border-gray-100 ${
-                program.featured ? "md:col-span-2 lg:col-span-1" : ""
+                index < 2
+                  ? "lg:col-span-3 lg:col-start-auto"
+                  : "lg:col-span-2"
               }`}
               onMouseEnter={() => setHoveredId(program.title)}
               onMouseLeave={() => setHoveredId(null)}
             >
-              {program.featured && (
-                <div className="absolute top-4 right-4 bg-purple-600 text-white text-xs font-medium px-3 py-1 rounded-full z-10">
-                  추천
-                </div>
-              )}
-
-              {/* 배경 이미지 */}
               <div className="absolute inset-0">
                 <Image
                   src={program.image}
@@ -108,7 +100,6 @@ export default function ProgramsPage() {
                   fill
                   className="object-cover"
                 />
-                {/* 색상 오버레이 - 호버 시 더 진하게 */}
                 <div
                   className="absolute inset-0 transition-all duration-300"
                   style={{
@@ -121,7 +112,6 @@ export default function ProgramsPage() {
                 />
               </div>
 
-              {/* 컨텐츠 */}
               <div className="relative z-10 p-8 flex flex-col justify-between h-full min-h-[350px]">
                 <div>
                   <h2 className="text-2xl font-semibold text-white mb-2 transition-colors">

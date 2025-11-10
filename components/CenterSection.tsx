@@ -6,12 +6,12 @@ import Image from "next/image";
 const centers = [
   {
     id: 1,
-    name: "홍대1호점",
+    name: "홍대",
     image: "/yoongsan.svg",
   },
   {
     id: 2,
-    name: "홍대2호점",
+    name: "여의도",
     image: "/yungdonpo.svg",
   },
   {

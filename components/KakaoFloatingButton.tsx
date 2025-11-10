@@ -4,7 +4,8 @@ const KakaoFloatingButton = () => {
   const handleClick = () => {
     // 카카오톡 채널 1:1 채팅 URL
     // 방법 1: 직접 채팅방으로 이동 (권장)
-    const kakaoChannelUrl = process.env.NEXT_PUBLIC_KAKAO_CHANNEL_URL || "http://pf.kakao.com/_xjAxexj/chat";
+    const kakaoChannelUrl =
+      process.env.NEXT_PUBLIC_KAKAO_CHANNEL_URL || "https://open.kakao.com/o/s6VnLJYh";
     
     // 방법 2: 채널 홈으로 이동 후 채팅 버튼 클릭 유도
     // const kakaoChannelUrl = process.env.NEXT_PUBLIC_KAKAO_CHANNEL_URL || "http://pf.kakao.com/_xjAxexj";

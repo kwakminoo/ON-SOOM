@@ -127,7 +127,7 @@ function ApplyForm() {
   const [isPromoApplied, setIsPromoApplied] = useState(false);
   const [promoMessage, setPromoMessage] = useState("");
 
-  const centers = ["홍대 1호", "홍대 2호", "구로", "기타"];
+  const centers = ["홍대", "여의도", "구로", "기타"];
 
   const programsWithPrice: { [key: string]: number } = {
     "Self Roadmap": 80000,
@@ -152,12 +152,18 @@ function ApplyForm() {
   };
 
   const handlePromoApply = () => {
-    if (promoCode === "1234") {
-      setIsPromoApplied(true);
-      setPromoMessage("✅ 추천코드가 적용되었습니다!");
-    } else if (promoCode.trim() === "") {
+    const normalizedCode = promoCode.trim().toUpperCase();
+
+    if (normalizedCode === "") {
       setPromoMessage("⚠️ 추천코드를 입력해주세요");
       setIsPromoApplied(false);
+      return;
+    }
+
+    if (normalizedCode === "1234" || normalizedCode === "OS-614412") {
+      setIsPromoApplied(true);
+      setPromoMessage("✅ 추천코드가 적용되었습니다!");
+      setPromoCode(normalizedCode);
     } else {
       setIsPromoApplied(false);
       setPromoMessage("❌ 코드를 확인해주세요");

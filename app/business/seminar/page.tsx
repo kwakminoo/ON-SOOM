@@ -25,16 +25,12 @@ export default function SeminarPage() {
               온ː숨은 <strong className="text-purple-600">'숨을 트는 순간들'</strong>을 세상과 나누기 위해 강연과 세미나를 엽니다.
             </p>
             <p className="text-center">
-              리더십, 회복탄력성, 마음 성장, 관계의 예술 등 다양한 주제를 다루며,<br/>
-              각 분야의 코치와 심리 전문가들이 <strong className="text-gray-900">깨어 있는 삶의 태도</strong>를 이야기합니다.
+              리더십, 회복탄력성, 관계의 예술 등 다양한 주제를 다루며,<br/>
+              각 분야의 코치와 전문가들이 <strong className="text-gray-900">깨어 있는 삶의 태도</strong>를 이야기합니다.
             </p>
             <p className="text-center">
               모든 강연은 듣는 사람의 일상 속에 변화를 불러일으키는 <strong className="text-gray-900">'성찰의 장'</strong>이 되도록 설계됩니다.<br/>
               온ː숨의 무대는 단순한 강연이 아니라, <strong className="text-purple-600">함께 생각하고 숨 쉬는 시간</strong>입니다.
-            </p>
-            <p className="text-center">
-              조직과 개인이 서로의 경험을 통해 성장할 때,<br/>
-              사회는 조금 더 따뜻해집니다.
             </p>
           </div>
         </div>
@@ -86,10 +82,10 @@ export default function SeminarPage() {
                 </svg>
               </div>
               <h3 className="text-xl font-medium text-gray-900 mb-3">
-                마음 성장
+                자기 개발
               </h3>
               <p className="text-gray-600 leading-relaxed">
-                자기이해, 감정 다루기, 자존감 회복 등 개인의 내면 성장과 정신 건강에 대한 주제를 다룹니다.
+                자기이해, 감정 다루기, 자존감 회복 등 개인이 스스로를 성장시키는 방법과 실천 전략을 다룹니다.
               </p>
             </div>
 

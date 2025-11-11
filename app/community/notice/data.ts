@@ -639,9 +639,9 @@ export const notices = [
   {
     id: 15,
     title: "온ː숨 홈페이지 리뉴얼 및 예약 시스템 개편 안내",
-    date: "2025.11.15",
+    date: "2025.11.11",
     author: "온ː숨",
-    views: 2450,
+    views: 112,
     badge: "중요",
     badgeColor: "bg-red-100 text-red-600",
     category: "공지사항",

@@ -6,7 +6,7 @@ import Image from "next/image";
 const centers = [
   {
     id: 1,
-    name: "홍대",
+    name: "마포",
     image: "/yoongsan.svg",
   },
   {

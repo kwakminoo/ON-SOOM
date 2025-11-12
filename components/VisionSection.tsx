@@ -1,4 +1,66 @@
+"use client";
+
 import Image from "next/image";
+import { useEffect, useRef, useState } from "react";
+
+type BannerDirection = "left" | "right";
+
+interface AnimatedSubBannerProps {
+  src: string;
+  alt: string;
+  enterFrom: BannerDirection;
+}
+
+const AnimatedSubBanner = ({
+  src,
+  alt,
+  enterFrom,
+}: AnimatedSubBannerProps) => {
+  const containerRef = useRef<HTMLDivElement | null>(null);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const node = containerRef.current;
+    if (!node) {
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        } else {
+          setIsVisible(false);
+        }
+      },
+      {
+        threshold: 0.3,
+        rootMargin: "0px 0px -15% 0px",
+      }
+    );
+
+    observer.observe(node);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
+
+  const hiddenTransform =
+    enterFrom === "right" ? "translate-x-full" : "-translate-x-full";
+
+  return (
+    <div ref={containerRef} className="w-full">
+      <div
+        className={`transition-all duration-700 ease-out will-change-transform ${
+          isVisible ? "translate-x-0 opacity-100" : `${hiddenTransform} opacity-0`
+        }`}
+      >
+        <Image src={src} alt={alt} width={1200} height={400} className="w-full h-auto" />
+      </div>
+    </div>
+  );
+};
 
 const VisionSection = () => {
   return (
@@ -32,34 +94,22 @@ const VisionSection = () => {
           </div>
 
           {/* Subbenner 1~3 - 원래 사이즈, 세로 배치 */}
-          <div className="flex flex-col items-center gap-3 w-full">
-            <div className="w-full">
-              <Image
-                src="/subbenner01.png"
-                alt="Subbenner 1"
-                width={1200}
-                height={400}
-                className="w-full h-auto"
-              />
-            </div>
-            <div className="w-full">
-              <Image
-                src="/subbenner02.png"
-                alt="Subbenner 2"
-                width={1200}
-                height={400}
-                className="w-full h-auto"
-              />
-            </div>
-            <div className="w-full">
-              <Image
-                src="/subbenner03.png"
-                alt="Subbenner 3"
-                width={1200}
-                height={400}
-                className="w-full h-auto"
-              />
-            </div>
+          <div className="flex flex-col items-center gap-3 w-full overflow-hidden">
+            <AnimatedSubBanner
+              src="/subbenner01.png"
+              alt="Subbenner 1"
+              enterFrom="right"
+            />
+            <AnimatedSubBanner
+              src="/subbenner02.png"
+              alt="Subbenner 2"
+              enterFrom="left"
+            />
+            <AnimatedSubBanner
+              src="/subbenner03.png"
+              alt="Subbenner 3"
+              enterFrom="right"
+            />
           </div>
         </div>
       </div>

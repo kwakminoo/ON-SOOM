@@ -6,8 +6,8 @@ export default function CentersPage() {
   const centers = [
     {
       id: 1,
-      name: "홍대",
-      tag: "홍대",
+      name: "마포",
+      tag: "마포",
       tagColor: "bg-blue-100 text-blue-800",
       address: "서울특별시 마포구 서교동 354-8 호 LA",
       phone: "02-1234-5678",
@@ -16,8 +16,8 @@ export default function CentersPage() {
         weekend: "주말: 10:00 - 18:00",
       },
       directions: [
-        "지하철 2호선 홍대입구역 9번 출구 도보 5분",
-        "공항철도 홍대입구역 하차",
+        "지하철 5호선 마포역 3번 출구 도보 5분",
+        "경의중앙선 공덕역 환승 가능",
       ],
       image: "/center1.jpg",
       status: "open",

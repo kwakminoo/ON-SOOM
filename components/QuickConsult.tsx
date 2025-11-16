@@ -33,7 +33,7 @@ const QuickConsult = () => {
             온ː숨 전문가가 함께하겠습니다
           </p>
           <div className="bg-white rounded-2xl shadow-toss-lg p-6 md:p-10">
-            <form onSubmit={handleSubmit} className="space-y-5">
+            <form onSubmit={handleSubmit} className="m-0">
               {/* 이름 입력 */}
               {/* <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -123,7 +123,7 @@ const QuickConsult = () => {
               <button
                 type="button"
                 onClick={() => (window.location.href = "/programs/apply")}
-                className="w-full bg-toss-500 text-white py-4 text-base md:text-lg font-bold hover:bg-toss-600 transition-all rounded-xl mt-6 shadow-md hover:shadow-lg"
+                className="w-full bg-toss-500 text-white py-4 text-base md:text-lg font-bold hover:bg-toss-500 transition-all rounded-xl shadow-md hover:shadow-lg"
               >
                 프로그램 문의하기
               </button>

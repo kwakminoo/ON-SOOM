@@ -108,7 +108,7 @@ export default function CorporatePage() {
       description:
         "온ː숨의 기업 코칭은 조직의 성과 이전에 사람의 회복과 연결을 다룹니다. 구성원이 스스로 동기와 가치를 발견하도록 돕고, 리더가 사람을 이해하는 리더십을 개발하도록 설계합니다.",
       highlight: "Immersive Session",
-      imageSrc: "/enterprise4.jpg",
+      imageSrc: "/enterprise_No1.jpg",
       imageAlt: "기업 워크숍에서 리더들이 토론하고 있는 모습",
     },
     {
@@ -117,7 +117,7 @@ export default function CorporatePage() {
       description:
         "팀 간의 관계, 소통, 정서적 안전감 같은 ‘조직의 내면’을 세심하게 돌봅니다. 구성원 모두가 숨 쉬고 안심할 수 있는 토대 위에서 조직은 서로의 다름을 이해하고 성장의 연결고리를 찾습니다.",
       highlight: "Dialogue Lab",
-      imageSrc: "/enterprise2.jpg",
+      imageSrc: "/enterprise_No2.jpg",
       imageAlt: "구성원들이 서로 대화를 나누며 협력하는 장면",
     },
     {
@@ -126,7 +126,7 @@ export default function CorporatePage() {
       description:
         "온ː숨은 단기적인 퍼포먼스 향상보다 지속 가능한 성장 문화를 만드는 것을 목표로 합니다. 워크숍, 리더십 코칭, 정기 피드백 시스템을 통해 기업이 ‘함께 숨 쉬는 조직’으로 변화할 수 있도록 지원합니다.",
       highlight: "Growth Partnership Studio",
-      imageSrc: "/enterprise6.jpg",
+      imageSrc: "/enterprise_No3.jpg",
       imageAlt: "조직 구성원들이 성장을 축하하는 모습",
     },
   ];

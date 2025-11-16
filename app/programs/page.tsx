@@ -17,8 +17,7 @@ export default function ProgramsPage() {
       color: "#262627",
       hoverColor: "#3d58ac",
       highlight: "자기 인식",
-      image:
-        "https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?w=400&h=300&fit=crop",
+      image: "/enterprise3.jpg",
     },
     {
       title: "Self-growth Roadmap",
@@ -29,8 +28,7 @@ export default function ProgramsPage() {
       color: "#262627",
       hoverColor: "#3d58ac",
       highlight: "성장",
-      image:
-        "https://images.unsplash.com/photo-1588196749597-9ff075ee6b5b?w=400&h=300&fit=crop",
+      image: "/enterprise5.jpg",
     },
     {
       title: "Life Roadmap",
@@ -41,8 +39,7 @@ export default function ProgramsPage() {
       color: "#262627",
       hoverColor: "#3d58ac",
       highlight: "설계",
-      image:
-        "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=400&h=300&fit=crop",
+      image: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=1200&h=800&fit=crop&q=80",
     },
     {
       title: "Life-growth Roadmap",
@@ -53,20 +50,18 @@ export default function ProgramsPage() {
       color: "#262627",
       hoverColor: "#3d58ac",
       highlight: "장기 프로젝트",
-      image:
-        "https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=400&h=300&fit=crop",
+      image: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=1200&h=800&fit=crop&q=80",
     },
     {
       title: "Workshop Roadmap",
       subtitle: "그룹 세션 1회 • 40,000원",
       description:
-        "1. 사고의 표현력\n\n복잡한 개념을 이해하고 명확하게 표현하는 사고 훈련 과정입니다.\n\n논리적 사고와 창의적 문제 해결력을 함께 키울 수 있습니다.\n\n\n2. 사야의 확장\n\n다양한 관점과 의견을 접하며 사고의 폭을 넓힐 수 있습니다.\n\n자신의 틀을 벗어나 새로운 아이디어와 시선을 얻게 됩니다.\n\n\n3. 창의적 문제 해결\n\n단순한 답을 찾는 과정을 넘어 복잡한 문제에 대한 통찰을 길러줍니다.\n\n이를 통해 차별화된 해법을 탐색하고 창의적 아이디어를 구현할 수 있습니다.",
+        "1. 사고의 표현력\n복잡한 개념을 이해하고 명확하게 표현하는 사고 훈련 과정입니다.\n논리적 사고와 창의적 문제 해결력을 함께 키울 수 있습니다.\n\n2. 사야의 확장\n다양한 관점과 의견을 접하며 사고의 폭을 넓힐 수 있습니다.\n자신의 틀을 벗어나 새로운 아이디어와 시선을 얻게 됩니다.\n\n3. 창의적 문제 해결\n단순한 답을 찾는 과정을 넘어 복잡한 문제에 대한 통찰을 길러줍니다.\n이를 통해 차별화된 해법을 탐색하고 창의적 아이디어를 구현할 수 있습니다.",
       href: "/programs/apply",
       color: "#262627",
       hoverColor: "#3d58ac",
       highlight: "그룹 성장",
-      image:
-        "https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=400&h=300&fit=crop",
+      image: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=1200&h=800&fit=crop&q=80",
     },
   ];
 
@@ -167,8 +162,7 @@ export default function ProgramsPage() {
           <div
             className={heroBackgroundClasses}
             style={{
-              backgroundImage:
-                "url('https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=2000&q=80')",
+              backgroundImage: "url('/enterprise5.jpg')",
             }}
           />
           <div className="absolute inset-0 bg-gradient-to-b from-slate-950 via-slate-950/80 to-slate-950 transition-opacity duration-700 ease-out" />
@@ -273,7 +267,7 @@ export default function ProgramsPage() {
 
             {/* 콘텐츠 */}
             <div className="relative z-10 flex items-center justify-center min-h-screen px-4 sm:px-6 lg:px-8">
-              <div className="max-w-7xl w-full flex flex-col sm:flex-row items-center gap-8 sm:gap-12">
+              <div className="max-w-7xl w-full flex flex-col sm:flex-row items-center sm:items-stretch gap-8 sm:gap-12">
                 {/* 이미지 영역 - 70% */}
                 <div
                   className={`relative w-full sm:w-[70%] transition-all duration-700 ease-out ${
@@ -299,7 +293,7 @@ export default function ProgramsPage() {
 
                 {/* 텍스트 영역 - 30% */}
                 <div
-                  className={`w-full sm:w-[30%] flex flex-col justify-center transition-all duration-700 ease-out delay-200 ${
+                  className={`w-full sm:w-[40%] flex flex-col justify-center transition-all duration-700 ease-out delay-200 ${
                     isImageLeft ? "sm:order-2" : "sm:order-1"
                   } ${
                     visibleSections.has(index + 1)
@@ -308,6 +302,9 @@ export default function ProgramsPage() {
                       ? "opacity-0 translate-x-8"
                       : "opacity-0 -translate-x-8"
                   }`}
+                  style={{
+                    height: viewportHeight ? viewportHeight * 0.7 : "70vh",
+                  }}
                 >
                   <div className="text-white">
                     <h3 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold mb-4">

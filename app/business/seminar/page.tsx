@@ -99,36 +99,33 @@ export default function SeminarPage() {
   const [viewportHeight, setViewportHeight] = useState(720);
  
  const narratives: NarrativeContent[] = [
- {
- direction: "image-right",
- title: "숨을 틔우는 키노트",
- description:
- "리더십, 정서 회복, 변화의 기술을 다루는 온ː숨의 키노트 강연은 단순한 인사이트 전달을 넘어 자기 안으로 숨을 들이키게 합니다.",
- highlight: "Keynote Session",
- imageSrc:
- "https://images.unsplash.com/photo-1518608821971-0b6b1f2f9368?auto=format&fit=crop&w=1400&q=80",
- imageAlt: "무대에서 강연하는 연사와 청중",
- },
- {
- direction: "image-left",
- title: "대화와 공감의 세미나",
- description:
- "참여형 세미나는 질문과 대화를 통해 서로의 경험을 공명시키며, 조직과 커뮤니티가 함께 숨 쉬도록 돕습니다.",
- highlight: "Interactive Dialogue",
- imageSrc:
- "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1400&q=80",
- imageAlt: "원탁에 모여 토론하는 사람들",
- },
- {
- direction: "image-right",
- title: "생각이 확장되는 무대 경험",
- description:
- "토크콘서트와 라이브 세션은 이야기와 음악, 예술을 결합하여 숨 고르는 감각을 일깨우고 일상에 변화를 가져옵니다.",
- highlight: "Immersive Experience",
- imageSrc:
- "https://images.unsplash.com/photo-1515165562835-c4c378958d58?auto=format&fit=crop&w=1400&q=80",
- imageAlt: "조명이 있는 공연장에서 관객과 무대",
- },
+  {
+    direction: "image-right",
+    title: "숨을 틔우는 키노트",
+    description:
+      "리더십, 정서 회복, 변화의 기술을 다루는 온ː숨의 키노트 강연은 단순한 인사이트 전달을 넘어 자기 안으로 숨을 들이키게 합니다.",
+    highlight: "Keynote Session",
+    imageSrc: "/seminar_No1.jpg",
+    imageAlt: "무대에서 강연하는 연사와 청중",
+  },
+  {
+    direction: "image-left",
+    title: "대화와 공감의 세미나",
+    description:
+      "참여형 세미나는 질문과 대화를 통해 서로의 경험을 공명시키며, 조직과 커뮤니티가 함께 숨 쉬도록 돕습니다.",
+    highlight: "Interactive Dialogue",
+    imageSrc: "/seminar_No2.jpg",
+    imageAlt: "원탁에 모여 토론하는 사람들",
+  },
+  {
+    direction: "image-right",
+    title: "생각이 확장되는 무대 경험",
+    description:
+      "토크콘서트와 라이브 세션은 이야기와 음악, 예술을 결합하여 숨 고르는 감각을 일깨우고 일상에 변화를 가져옵니다.",
+    highlight: "Immersive Experience",
+    imageSrc: "/seminar_No3.jpg",
+    imageAlt: "조명이 있는 공연장에서 관객과 무대",
+  },
  ];
  
  useEffect(() => {
@@ -189,13 +186,12 @@ export default function SeminarPage() {
  }}
  >
  <div aria-hidden className="absolute inset-0">
- <div
- className={heroBackgroundClasses}
- style={{
- backgroundImage:
- "url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1600&q=80')",
- }}
- />
+        <div
+          className={heroBackgroundClasses}
+          style={{
+            backgroundImage: "url('/seminar_benner.jpg')",
+          }}
+        />
  <div className="absolute inset-0 bg-gradient-to-b from-black/45 via-black/65 to-black/85 transition-opacity duration-700 ease-out" />
  <div className="absolute inset-0 bg-gradient-to-tr from-purple-700/25 via-transparent to-slate-900/70 transition-opacity duration-700 ease-out" />
  </div>

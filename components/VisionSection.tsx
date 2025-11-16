@@ -67,21 +67,8 @@ const VisionSection = () => {
     <section id="vision" className="py-16 md:py-24 bg-white">
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-8">
         <div className="flex flex-col items-center">
-          {/* Subment 이미지와 로고를 가깝게 */}
+          {/* 로고 */}
           <div className="flex flex-col items-center gap-4 mb-16">
-            {/* Subment 이미지 */}
-            <div className="w-full max-w-xs">
-              <Image
-                src="/subment.png"
-                alt="Subment"
-                width={1200}
-                height={400}
-                className="w-full h-auto"
-                priority
-              />
-            </div>
-
-            {/* 로고 - 2배 크기 */}
             <div className="w-full max-w-lg">
               <Image
                 src="/ONSOOM_Logo.png"

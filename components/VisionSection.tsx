@@ -63,6 +63,15 @@ const AnimatedSubBanner = ({
 };
 
 const VisionSection = () => {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const update = () => setIsMobile(window.innerWidth < 640);
+    update();
+    window.addEventListener("resize", update);
+    return () => window.removeEventListener("resize", update);
+  }, []);
+
   return (
     <section id="vision" className="py-16 md:py-24 bg-white">
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-8">
@@ -80,20 +89,20 @@ const VisionSection = () => {
             </div>
           </div>
 
-          {/* Subbenner 1~3 - 원래 사이즈, 세로 배치 */}
+          {/* Subbenner 1~3 - 반응형 소스 분기 */}
           <div className="flex flex-col items-center gap-3 w-full overflow-hidden">
             <AnimatedSubBanner
-              src="/subbenner01.png"
+              src={isMobile ? "/new_mobile_subbenner1.png" : "/new_subbenner1.png"}
               alt="Subbenner 1"
               enterFrom="right"
             />
             <AnimatedSubBanner
-              src="/subbenner02.png"
+              src={isMobile ? "/new_mobile_subbenner2.png" : "/new_subbenner2.png"}
               alt="Subbenner 2"
               enterFrom="left"
             />
             <AnimatedSubBanner
-              src="/subbenner03.png"
+              src={isMobile ? "/new_mobile_subbenner3.png" : "/new_subbenner3.png"}
               alt="Subbenner 3"
               enterFrom="right"
             />

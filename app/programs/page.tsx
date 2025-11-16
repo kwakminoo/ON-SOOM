@@ -6,6 +6,7 @@ import Image from "next/image";
 export default function ProgramsPage() {
   const [heroCondensed, setHeroCondensed] = useState(false);
   const [viewportHeight, setViewportHeight] = useState(720);
+  const [screenWidth, setScreenWidth] = useState(1280);
   const [visibleSections, setVisibleSections] = useState<Set<number>>(new Set());
   const sectionRefs = useRef<(HTMLElement | null)[]>([]);
   const programs = [
@@ -68,6 +69,7 @@ export default function ProgramsPage() {
   useEffect(() => {
     const syncViewport = () => {
       setViewportHeight(window.innerHeight);
+      setScreenWidth(window.innerWidth);
     };
     syncViewport();
     window.addEventListener("resize", syncViewport);
@@ -136,6 +138,17 @@ export default function ProgramsPage() {
   const heroHeight = heroCondensed
     ? Math.max(Math.min(viewportHeight * 0.22, 300), 220)
     : Math.min(viewportHeight, 760);
+
+  // 모바일에서 섹션/이미지 높이를 낮춰 스크롤 부담과 레이아웃 깨짐 방지
+  const isSmallScreen = screenWidth < 640;
+  const sectionMinHeight = isSmallScreen
+    ? Math.min(Math.max(viewportHeight * 0.9, 520), 680)
+    : viewportHeight || "100vh";
+  const imageHeight = isSmallScreen
+    ? Math.max(Math.min(viewportHeight * 0.52, 520), 320)
+    : viewportHeight
+    ? viewportHeight * 0.7
+    : "70vh";
 
   const heroBackgroundClasses = [
     "absolute inset-0 bg-cover bg-center transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] will-change-transform",
@@ -245,7 +258,7 @@ export default function ProgramsPage() {
             }}
             className="relative"
             style={{
-              minHeight: viewportHeight || "100vh",
+              minHeight: sectionMinHeight,
             }}
           >
             {/* 배경 이미지 */}
@@ -280,7 +293,7 @@ export default function ProgramsPage() {
                       : "opacity-0 translate-x-8"
                   }`}
                   style={{
-                    height: viewportHeight ? viewportHeight * 0.7 : "70vh",
+                    height: imageHeight,
                   }}
                 >
                   <Image
@@ -303,7 +316,7 @@ export default function ProgramsPage() {
                       : "opacity-0 -translate-x-8"
                   }`}
                   style={{
-                    height: viewportHeight ? viewportHeight * 0.7 : "70vh",
+                    height: imageHeight,
                   }}
                 >
                   <div className="text-white">

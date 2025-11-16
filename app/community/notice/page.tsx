@@ -160,11 +160,6 @@ export default function NoticePage() {
                       <span className="text-sm font-medium text-gray-900 hover:text-toss-600 transition-colors">
                         {post.title}
                       </span>
-                      <span
-                        className={`inline-block px-2 py-1 rounded text-xs font-medium ${post.badgeColor}`}
-                      >
-                        {post.badge}
-                      </span>
                     </div>
                   </div>
                   <div className="col-span-2 text-center text-sm text-gray-600">
@@ -227,11 +222,6 @@ export default function NoticePage() {
                 <div className="flex items-start justify-between mb-2">
                   <span className="inline-block px-2 py-1 bg-gray-500 text-white text-xs font-bold rounded">
                     일반
-                  </span>
-                  <span
-                    className={`inline-block px-2 py-1 rounded text-xs font-medium ${post.badgeColor}`}
-                  >
-                    {post.badge}
                   </span>
                 </div>
                 <h3 className="text-sm font-medium text-gray-900 mb-2 line-clamp-2">

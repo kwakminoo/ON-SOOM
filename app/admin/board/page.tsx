@@ -23,6 +23,7 @@ interface Post {
   badgeColor?: string;
   isNotice: boolean;
   files?: PostFile[];
+  order?: number;
 }
 
 // 초기 샘플 데이터 (처음 한 번만 사용)
@@ -744,7 +745,12 @@ export default function NoticePage() {
 
   // 공지사항과 일반 게시글 분리
   const noticePosts = notices.filter((notice) => notice.isNotice);
-  const generalPosts = notices.filter((notice) => !notice.isNotice);
+  const generalPosts = notices
+    .filter((notice) => !notice.isNotice)
+    .map((notice, index) => ({
+      ...notice,
+      order: index + 1, // 최신 글이 1번이 되도록 API 순서를 유지
+    }));
 
   // 검색 필터링
   const filteredGeneralPosts = generalPosts.filter(
@@ -904,7 +910,7 @@ export default function NoticePage() {
                       className="grid grid-cols-12 gap-4 px-6 py-4 hover:bg-gray-50 cursor-pointer transition-colors"
                     >
                       <div className="col-span-1 text-center text-sm text-gray-600">
-                        {index + 1}
+                        {post.order ?? index + 1}
                       </div>
                       <div className="col-span-8">
                         <span className="text-sm font-medium text-gray-900 hover:text-toss-600 transition-colors">

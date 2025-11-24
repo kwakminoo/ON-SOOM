@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
-import fs from "fs";
-import path from "path";
+import { createClient } from "@supabase/supabase-js";
 
 // 게시글 스키마
 const postSchema = z.object({
@@ -11,13 +10,19 @@ const postSchema = z.object({
   badge: z.string().optional(),
   badgeColor: z.string().optional(),
   isNotice: z.boolean().default(false),
-  files: z.array(z.object({
-    filename: z.string(),
-    originalName: z.string(),
-    size: z.number(),
-    mimetype: z.string(),
-    url: z.string(),
-  })).optional(),
+  author: z.string().optional(),
+  files: z
+    .array(
+      z.object({
+        filename: z.string(),
+        originalName: z.string(),
+        size: z.number(),
+        mimetype: z.string(),
+        url: z.string(),
+      })
+    )
+    .optional()
+    .default([]),
 });
 
 interface PostFile {
@@ -42,46 +47,152 @@ interface Post {
   files?: PostFile[];
 }
 
-// 데이터 파일 경로 (나중에 DB로 대체)
-const DATA_FILE = path.join(process.cwd(), "data", "posts.json");
+// Supabase 클라이언트 생성
+function getSupabaseClient() {
+  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+  const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
-// 데이터 디렉토리 확인 및 생성
-function ensureDataDirectory() {
-  const dataDir = path.join(process.cwd(), "data");
-  if (!fs.existsSync(dataDir)) {
-    fs.mkdirSync(dataDir, { recursive: true });
+  if (!supabaseUrl || !supabaseAnonKey) {
+    throw new Error("Supabase 환경 변수가 설정되지 않았습니다.");
   }
+
+  return createClient(supabaseUrl, supabaseAnonKey);
 }
 
-// 게시글 목록 읽기
-function readPosts(): Post[] {
-  ensureDataDirectory();
-  if (!fs.existsSync(DATA_FILE)) {
-    return [];
-  }
-  const data = fs.readFileSync(DATA_FILE, "utf-8");
-  return JSON.parse(data);
-}
-
-// 게시글 목록 저장
-function writePosts(posts: Post[]) {
-  ensureDataDirectory();
-  fs.writeFileSync(DATA_FILE, JSON.stringify(posts, null, 2), "utf-8");
-}
-
-// 현재 날짜 포맷 (YYYY.MM.DD)
-function getCurrentDate(): string {
-  const now = new Date();
-  const year = now.getFullYear();
-  const month = String(now.getMonth() + 1).padStart(2, "0");
-  const day = String(now.getDate()).padStart(2, "0");
+// 날짜 포맷 변환 (YYYY.MM.DD)
+function formatDate(date: Date | string): string {
+  const d = typeof date === "string" ? new Date(date) : date;
+  const year = d.getFullYear();
+  const month = String(d.getMonth() + 1).padStart(2, "0");
+  const day = String(d.getDate()).padStart(2, "0");
   return `${year}.${month}.${day}`;
+}
+
+// DB Post를 API Post 형식으로 변환
+function transformPost(dbPost: any): Post {
+  return {
+    id: dbPost.id,
+    category: dbPost.category,
+    title: dbPost.title,
+    content: dbPost.content,
+    date: formatDate(dbPost.created_at),
+    author: dbPost.author_name || "관리자",
+    views: dbPost.views || 0,
+    badge: dbPost.badge || undefined,
+    badgeColor: dbPost.badge_color || undefined,
+    isNotice: dbPost.is_notice || false,
+    files: dbPost.files || [],
+  };
+}
+
+async function fetchPostFiles(
+  supabase: ReturnType<typeof getSupabaseClient>,
+  postIds: number[]
+) {
+  if (postIds.length === 0) {
+    return new Map<number, PostFile[]>();
+  }
+
+  const { data, error } = await supabase
+    .from("admin_post_files")
+    .select("*")
+    .in("post_id", postIds);
+
+  if (error) {
+    throw error;
+  }
+
+  return mapFilesByPostId(data || []);
+}
+
+function mapFilesByPostId(
+  data: Array<Record<string, any>>
+) {
+  const filesByPostId = new Map<number, PostFile[]>();
+
+  data.forEach((file) => {
+    const sizeValue =
+      typeof file.file_size === "number"
+        ? file.file_size
+        : typeof file.size === "number"
+        ? file.size
+        : 0;
+
+    const mimeValue =
+      file.mime_type ||
+      file.mimetype ||
+      file.mimeType ||
+      "application/octet-stream";
+
+    const transformed: PostFile = {
+      filename: file.filename,
+      originalName: file.original_name || file.originalName || file.name || "",
+      size: sizeValue,
+      mimetype: mimeValue,
+      url: file.file_url || file.url || "",
+    };
+
+    const existing = filesByPostId.get(file.post_id) || [];
+    filesByPostId.set(file.post_id, [...existing, transformed]);
+  });
+
+  return filesByPostId;
+}
+
+async function parseRequestBody(request: NextRequest) {
+  const contentType = request.headers.get("content-type") || "";
+
+  try {
+    if (contentType.includes("application/json")) {
+      return await request.json();
+    }
+
+    const rawText = (await request.text()).trim();
+    if (!rawText) {
+      return {};
+    }
+
+    // PowerShell에서 단일 인용부호가 포함되어 전달되는 경우 제거
+    const normalized = rawText.replace(/^'+|'+$/g, "");
+    return JSON.parse(normalized);
+  } catch (error) {
+    console.error("Invalid JSON payload:", error);
+    throw new Error("INVALID_JSON");
+  }
 }
 
 // GET - 게시글 목록 조회
 export async function GET(request: NextRequest) {
   try {
-    const posts = readPosts();
+    const supabase = getSupabaseClient();
+
+    // 게시글 목록 조회 (삭제되지 않은 것만, 최신순)
+    const { data: postsData, error: postsError } = await supabase
+      .from("admin_posts")
+      .select("*")
+      .is("deleted_at", null)
+      .order("created_at", { ascending: false });
+
+    if (postsError) {
+      console.error("Supabase error:", postsError);
+      throw postsError;
+    }
+
+    // 첨부파일 조회 (FK 관계 없이도 작동하도록 별도 호출)
+    const postIds = (postsData || []).map((post: any) => post.id);
+    const filesByPostId = await fetchPostFiles(supabase, postIds);
+
+    // 첨부파일 형식 변환
+    const posts = (postsData || []).map((post: any) => {
+      const transformed = transformPost(post);
+
+      const relatedFiles = filesByPostId.get(post.id);
+      if (relatedFiles && relatedFiles.length > 0) {
+        transformed.files = relatedFiles;
+      }
+
+      return transformed;
+    });
 
     return NextResponse.json(
       {
@@ -96,7 +207,7 @@ export async function GET(request: NextRequest) {
     return NextResponse.json(
       {
         code: "INTERNAL_ERROR",
-        message: "서버 오류가 발생했습니다",
+        message: error instanceof Error ? error.message : "서버 오류가 발생했습니다",
       },
       { status: 500 }
     );
@@ -108,7 +219,18 @@ export async function POST(request: NextRequest) {
   try {
     // 관리자 권한 확인 (헤더나 세션에서)
     // 현재는 간단히 구현, 나중에 미들웨어로 개선
-    const body = await request.json();
+    let body: unknown;
+    try {
+      body = await parseRequestBody(request);
+    } catch {
+      return NextResponse.json(
+        {
+          code: "INVALID_JSON",
+          message: "요청 본문이 올바른 JSON 형식이 아닙니다.",
+        },
+        { status: 400 }
+      );
+    }
 
     // 입력 검증
     const validationResult = postSchema.safeParse(body);
@@ -123,38 +245,92 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const { category, title, content, badge, badgeColor, isNotice, files } =
-      validationResult.data;
-
-    // 기존 게시글 목록 읽기
-    const posts = readPosts();
-
-    // 새 게시글 생성
-    const newPost: Post = {
-      id: posts.length > 0 ? Math.max(...posts.map((p) => p.id)) + 1 : 1,
+    const {
       category,
       title,
       content,
-      date: getCurrentDate(),
-      author: body.author || "관리자",
-      views: 0,
-      badge: badge || "신규",
-      badgeColor: badgeColor || "bg-blue-100 text-blue-600",
+      badge,
+      badgeColor,
       isNotice,
-      files: files || [],
-    };
+      author,
+      files = [],
+    } = validationResult.data;
 
-    // 게시글 추가 (최신 글이 앞에 오도록)
-    posts.unshift(newPost);
+    const supabase = getSupabaseClient();
 
-    // 저장
-    writePosts(posts);
+    // 게시글 삽입
+    const { data: newPostData, error: postError } = await supabase
+      .from("admin_posts")
+      .insert({
+        category,
+        title,
+        content,
+        author_name: author || "관리자",
+        views: 0,
+        badge: badge || "신규",
+        badge_color: badgeColor || "bg-blue-100 text-blue-600",
+        is_notice: isNotice,
+      })
+      .select()
+      .single();
+
+    if (postError) {
+      console.error("Supabase insert error:", postError);
+      throw postError;
+    }
+
+    // 첨부파일이 있으면 저장
+    if (files && files.length > 0 && newPostData) {
+      const fileInserts = files.map((file) => ({
+        post_id: newPostData.id,
+        filename: file.filename,
+        original_name: file.originalName,
+        file_size: file.size,
+        mime_type: file.mimetype,
+        file_url: file.url,
+      }));
+
+      const { error: filesError } = await supabase
+        .from("admin_post_files")
+        .insert(fileInserts);
+
+      if (filesError) {
+        const missingColumn =
+          filesError.code === "42703" &&
+          filesError.message?.toLowerCase().includes("file_size");
+
+        if (missingColumn) {
+          const fallbackPayload = fileInserts.map(
+            ({ file_size, ...rest }) => rest
+          );
+
+          const fallbackResult = await supabase
+            .from("admin_post_files")
+            .insert(fallbackPayload);
+
+          if (fallbackResult.error) {
+            console.error(
+              "Supabase files insert fallback error:",
+              fallbackResult.error
+            );
+          }
+        } else {
+          console.error("Supabase files insert error:", filesError);
+        }
+      }
+    }
+
+    // 응답 형식 변환
+    const transformedPost = transformPost(newPostData);
+    if (files && files.length > 0) {
+      transformedPost.files = files;
+    }
 
     return NextResponse.json(
       {
         code: "SUCCESS",
         message: "게시글이 작성되었습니다",
-        data: newPost,
+        data: transformedPost,
       },
       { status: 201 }
     );
@@ -163,7 +339,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json(
       {
         code: "INTERNAL_ERROR",
-        message: "서버 오류가 발생했습니다",
+        message: error instanceof Error ? error.message : "서버 오류가 발생했습니다",
       },
       { status: 500 }
     );

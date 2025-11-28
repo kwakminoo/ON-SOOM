@@ -122,6 +122,7 @@ function ApplyForm() {
   const [age, setAge] = useState("");
   const [phone, setPhone] = useState("");
   const [center, setCenter] = useState("");
+  const [date, setDate] = useState("");
   const [program, setProgram] = useState("");
   const [promoCode, setPromoCode] = useState("");
   const [isPromoApplied, setIsPromoApplied] = useState(false);
@@ -135,6 +136,7 @@ function ApplyForm() {
     "Life Roadmap": 650000,
     "Life-growth Roadmap": 3000000,
     "Workshop Roadmap": 40000,
+    "ONE&OWN": 100000,
   };
 
   // URL 파라미터에서 프로그램 자동 선택
@@ -180,7 +182,7 @@ function ApplyForm() {
 
     const finalPrice = getCurrentPrice();
     alert(
-      `신청이 접수되었습니다.\n\n이름: ${name}\n성별: ${gender}\n나이: ${age}\n연락처: ${phone}\n희망장소: ${center}\n프로그램: ${program}\n결제금액: ${finalPrice.toLocaleString()}원\n\n담당자가 24시간 내 연락드리겠습니다.`
+      `신청이 접수되었습니다.\n\n이름: ${name}\n성별: ${gender}\n나이: ${age}\n연락처: ${phone}\n희망장소: ${center}\n일자: ${date}\n프로그램: ${program}\n결제금액: ${finalPrice.toLocaleString()}원\n\n담당자가 24시간 내 연락드리겠습니다.`
     );
   };
 
@@ -272,19 +274,6 @@ function ApplyForm() {
               />
             </div>
 
-            {/* 프로그램 선택 */}
-            <div>
-              <label className="block text-base font-semibold text-gray-800 mb-4">
-                프로그램 선택 <span className="text-red-500">*</span>
-              </label>
-              <WheelPicker
-                items={Object.keys(programsWithPrice)}
-                value={program}
-                onChange={handleProgramChange}
-                placeholder="프로그램을 스크롤하여 선택하세요"
-              />
-            </div>
-
             {/* 희망장소 선택 */}
             <div>
               <label className="block text-base font-semibold text-gray-800 mb-3">
@@ -303,6 +292,33 @@ function ApplyForm() {
                   </option>
                 ))}
               </select>
+            </div>
+
+            {/* 일자 선택 */}
+            <div>
+              <label className="block text-base font-semibold text-gray-800 mb-3">
+                일자 <span className="text-red-500">*</span>
+              </label>
+              <input
+                type="date"
+                value={date}
+                onChange={(e) => setDate(e.target.value)}
+                className="w-full px-4 py-4 border-2 border-gray-200 focus:border-toss-500 focus:ring-2 focus:ring-toss-100 focus:outline-none bg-white text-gray-900 text-base font-medium rounded-xl transition-colors"
+                required
+              />
+            </div>
+
+            {/* 프로그램 선택 */}
+            <div>
+              <label className="block text-base font-semibold text-gray-800 mb-4">
+                프로그램 선택 <span className="text-red-500">*</span>
+              </label>
+              <WheelPicker
+                items={Object.keys(programsWithPrice)}
+                value={program}
+                onChange={handleProgramChange}
+                placeholder="프로그램을 스크롤하여 선택하세요"
+              />
             </div>
 
             {/* 가격 표시 */}
@@ -398,11 +414,6 @@ function ApplyForm() {
             style={{ marginTop: "36px", paddingTop: "28px" }}
             className="border-t-2 border-gray-200"
           >
-            <p className="text-center text-base font-semibold text-gray-700">
-              ⏱️ 담당자가{" "}
-              <span className="text-toss-600 font-extrabold">24시간 내</span>{" "}
-              연락드립니다
-            </p>
           </div>
         </div>
       </div>

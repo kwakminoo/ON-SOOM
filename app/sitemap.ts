@@ -1,13 +1,25 @@
 import { MetadataRoute } from 'next';
+import { headers } from 'next/headers';
 import { notices } from './community/notice/data';
 
-export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://www.onsoom.co.kr';
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  // 요청된 호스트를 기반으로 동적으로 도메인 설정
+  const headersList = await headers();
+  const host = headersList.get('host') || '';
+  const protocol = process.env.NODE_ENV === 'production' ? 'https' : 'http';
+  
+  // Vercel 배포 환경에서는 VERCEL_URL 사용, 없으면 요청 호스트 사용
+  const baseUrl = 
+    process.env.NEXT_PUBLIC_SITE_URL || 
+    (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : null) ||
+    (host ? `${protocol}://${host}` : 'https://www.onsoom.co.kr');
+  
   const now = new Date();
 
   // 날짜 파싱 헬퍼 함수
   const parseDate = (dateStr: string): Date => {
     try {
+      if (!dateStr) return now;
       // "2023.08.08" 형식을 "2023-08-08"로 변환
       const normalizedDate = dateStr.replace(/\./g, '-');
       const date = new Date(normalizedDate);
@@ -115,15 +127,17 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   ];
 
-  // 공지사항 상세 페이지들 (동적)
-  const noticePages: MetadataRoute.Sitemap = notices.map((notice) => {
-    return {
-      url: `${baseUrl}/community/notice/${notice.id}`,
-      lastModified: parseDate(notice.date),
-      changeFrequency: 'weekly' as const,
-      priority: 0.6,
-    };
-  });
+  // 공지사항 상세 페이지들 (동적) - 안전하게 처리
+  const noticePages: MetadataRoute.Sitemap = Array.isArray(notices)
+    ? notices
+        .filter((notice) => notice && notice.id && notice.date)
+        .map((notice) => ({
+          url: `${baseUrl}/community/notice/${notice.id}`,
+          lastModified: parseDate(notice.date),
+          changeFrequency: 'weekly' as const,
+          priority: 0.6,
+        }))
+    : [];
 
   return [...staticPages, ...noticePages];
 }

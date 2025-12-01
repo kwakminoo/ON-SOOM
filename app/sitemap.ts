@@ -1,18 +1,12 @@
 import { MetadataRoute } from 'next';
-import { headers } from 'next/headers';
 import { notices } from './community/notice/data';
 
-export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  // 요청된 호스트를 기반으로 동적으로 도메인 설정
-  const headersList = await headers();
-  const host = headersList.get('host') || '';
-  const protocol = process.env.NODE_ENV === 'production' ? 'https' : 'http';
-  
-  // Vercel 배포 환경에서는 VERCEL_URL 사용, 없으면 요청 호스트 사용
+export default function sitemap(): MetadataRoute.Sitemap {
+  // 프로덕션 도메인을 우선 사용, 환경 변수가 있으면 그것 사용
+  // onsoom.co.kr 또는 www.onsoom.co.kr 중 하나 선택
   const baseUrl = 
     process.env.NEXT_PUBLIC_SITE_URL || 
-    (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : null) ||
-    (host ? `${protocol}://${host}` : 'https://www.onsoom.co.kr');
+    'https://onsoom.co.kr';
   
   const now = new Date();
 

@@ -1,0 +1,16 @@
+{
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.onsoom.co.kr"
+        }
+      ],
+      "destination": "https://onsoom.co.kr/:path*",
+      "permanent": true
+    }
+  ]
+}
+

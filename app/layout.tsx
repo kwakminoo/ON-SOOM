@@ -13,7 +13,7 @@ const pretendard = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "ON:SOOM",
+  title: "ONSOOM 온숨",
   description: "개인 및 기업 교육, 교육기관 강사 파견을 제공하는 교육 컨설팅 전문 기업",
   keywords: "교육컨설팅, 기업교육, 개인교육, 강사파견",
   verification: {
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     apple: '/ONSOOM_Logo.png',
   },
   openGraph: {
-    title: "ON:SOOM",
+    title: "ONSOOM 온숨",
     description: "개인 및 기업 교육, 교육기관 강사 파견을 제공하는 교육 컨설팅 전문 기업",
     type: "website",
     url: "https://onsoom.co.kr",

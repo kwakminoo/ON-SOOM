@@ -17,7 +17,7 @@ const bannerSlides = [
     desktopImage: "/pc1.png",
     mobileImage: "/mob1.png",
     buttonImage: "/pc1_botton.png",
-    title: "온숨심리상담센터 - 프로그램 안내",
+    title: "온숨- 프로그램 안내",
     link: "/programs",
     buttonPosition:
       "right-[3%] bottom-[9%] md:right-[4%] md:bottom-[11%] lg:right-[5%] lg:bottom-[13%] xl:right-[6%] xl:bottom-[14%]", // 왼쪽으로 약간 이동

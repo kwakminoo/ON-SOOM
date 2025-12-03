@@ -64,7 +64,7 @@ export default function AboutPage() {
               ON ː SOOM과 함께하는 성장의 여정
             </h3>
             <p className="text-gray-700 leading-relaxed mb-4">
-              ON ː SOOM은 청년들의 내면 성장을 돕는 코칭 브랜드입니다.
+              ON ː SOOM은 교육 컨설팅 전문기관입니다.
             </p>
             <p className="text-gray-700 leading-relaxed">
               우리는 한 사람 한 사람의 진정한 성장이 더 건강한 사회를 만든다고 믿으며,

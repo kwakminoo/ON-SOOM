@@ -28,7 +28,7 @@ const bannerSlides = [
     desktopImage: "/pc2.png",
     mobileImage: "/mob2.png",
     buttonImage: "/pc2_botton.png",
-    title: "온숨심리상담센터 - 후기",
+    title: "온숨 - 후기",
     link: "#testimonials",
     buttonPosition:
       "left-[2%] bottom-[14%] md:left-[3%] md:bottom-[16%] lg:left-[4%] lg:bottom-[18%] xl:left-[5%] xl:bottom-[19%]", // 더 왼쪽으로 이동
@@ -39,7 +39,7 @@ const bannerSlides = [
     desktopImage: "/pc3.png",
     mobileImage: "/mob3.png",
     buttonImage: "/pc3_botton.png",
-    title: "온숨심리상담센터 - 자가진단",
+    title: "온숨 - 자가진단",
     link: "/community/self-test",
     buttonPosition: "bottom-[14%] left-1/2 -translate-x-[110%]", // 중앙에서 왼쪽으로 이동 후 우측으로 40% 조정, 더 위로
     buttonSize: "w-[18vw] min-w-[180px] max-w-[400px]", // 화면 너비의 18%, 최소 180px, 최대 400px

@@ -159,7 +159,7 @@ const Header = () => {
           <Link href="/" className="flex items-center">
             <Image
               src="/ONSOOM_Logo.png"
-              alt="ONSOOM 온숨 심리상담센터"
+              alt="ONSOOM 온숨"
               width={150}
               height={50}
               className="h-8 md:h-10 lg:h-8 w-auto object-contain"
